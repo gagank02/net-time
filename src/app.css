@@ -10,6 +10,7 @@
 	--tint: light-dark(#1d7733, #30d158);
 	--on-tint: light-dark(#ffffff, #000000);
 	--link: light-dark(#0066cc, #409cff);
+	--danger: light-dark(#d70015, #ff6961); /* Apple high-contrast red: 4.8:1 / 6.0:1 */
 	--indigo: light-dark(#5e5ce6, #7d7aff); /* decorative only, never text */
 	--bg: light-dark(#f2f2f7, #000000);
 	--card: light-dark(#ffffff, #1c1c1e);
