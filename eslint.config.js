@@ -65,7 +65,8 @@ export default defineConfig(
 					message: 'document.write is an XSS risk.'
 				}
 			],
-			'svelte/no-dom-manipulating': 'error'
+			'svelte/no-dom-manipulating': 'error',
+			'svelte/no-target-blank': ['error', { allowReferrer: false, enforceDynamicLinks: 'always' }]
 		}
 	}
 );

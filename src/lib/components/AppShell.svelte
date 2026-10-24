@@ -2,6 +2,7 @@
 	import type { Snippet } from 'svelte';
 	import { resolve } from '$app/paths';
 	import type { Theme } from '#lib/theme.js';
+	import ExternalLink from './ExternalLink.svelte';
 	import SkipLink from './SkipLink.svelte';
 	import ThemeToggle from './ThemeToggle.svelte';
 
@@ -26,9 +27,10 @@
 <footer>
 	<ThemeToggle {theme} />
 	<p class="attribution">
-		Court and shop data © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>
+		Court and shop data ©
+		<ExternalLink href="https://www.openstreetmap.org/copyright">OpenStreetMap</ExternalLink>
 		contributors (ODbL) and the
-		<a href="https://data.cityofchicago.org">City of Chicago Data Portal</a>.
+		<ExternalLink href="https://data.cityofchicago.org">City of Chicago Data Portal</ExternalLink>.
 	</p>
 </footer>
 
