@@ -10,7 +10,7 @@ const allowedFields = new Set([
 	'kind',
 	'bucket',
 	'reason',
-	'ipHash',
+	'ipPrefix',
 	'error'
 ]);
 

@@ -2,6 +2,7 @@ import { sequence } from '@sveltejs/kit/hooks';
 import type { Handle, HandleServerError } from '@sveltejs/kit/hooks';
 import { describeError, log } from '#lib/server/log.js';
 import { applySecurityHeaders } from '#lib/server/security/headers.js';
+import { checkLimit, ipPrefix, periodSeconds } from '#lib/server/security/ratelimit.js';
 
 const requestContext: Handle = async ({ event, resolve }) => {
 	const start = Date.now();
@@ -22,7 +23,37 @@ const requestContext: Handle = async ({ event, resolve }) => {
 const securityHeaders: Handle = async ({ event, resolve }) =>
 	applySecurityHeaders(await resolve(event));
 
-export const handle = sequence(requestContext, securityHeaders);
+/** Global per-IP limit before any route code or DB access. Limiter outage → 503 (fail closed). */
+export const rateLimit: Handle = async ({ event, resolve }) => {
+	let ip = 'unknown';
+	try {
+		ip = event.getClientAddress() || ip;
+	} catch {
+		// Shared 'unknown' bucket: still limited, never unlimited.
+	}
+	const result = await checkLimit('global', ip);
+	if (result === 'allowed') return resolve(event);
+
+	log('warn', 'rate_limited', {
+		requestId: event.locals.requestId,
+		route: event.route.id,
+		bucket: 'global',
+		reason: result,
+		ipPrefix: ipPrefix(ip)
+	});
+	return result === 'limited'
+		? new Response('Too many requests', {
+				status: 429,
+				headers: { 'retry-after': String(periodSeconds), 'content-type': 'text/plain' }
+			})
+		: new Response('Service unavailable', {
+				status: 503,
+				headers: { 'retry-after': '5', 'content-type': 'text/plain' }
+			});
+};
+
+// Order matters: securityHeaders wraps rateLimit so 429/503 responses get headers too.
+export const handle = sequence(requestContext, securityHeaders, rateLimit);
 
 /** Unknown errors are logged in full server-side; the client only ever sees a generic message + id. */
 export const handleError: HandleServerError = ({ kind, error, event }) => {
