@@ -1,9 +1,8 @@
-import { describe, expect, it, vi } from 'vitest';
+import { env } from 'cloudflare:workers';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { limit } from './ratelimit';
 
-function platformWith(binding: Partial<RateLimit> | undefined) {
-	return { env: { RL_WRITE: binding } } as unknown as App.Platform;
-}
+const bindings = env as unknown as Record<string, unknown>;
 
 /** In-memory stand-in for the Workers binding: allows `max` calls per key. */
 function fakeLimiter(max: number) {
@@ -18,26 +17,29 @@ function fakeLimiter(max: number) {
 }
 
 describe('limit', () => {
+	beforeEach(() => {
+		delete bindings.RL_WRITE;
+	});
+
 	it('allows up to the limit, then denies', async () => {
-		const platform = platformWith(fakeLimiter(2));
-		expect(await limit(platform, 'write', '1.2.3.4')).toBe(true);
-		expect(await limit(platform, 'write', '1.2.3.4')).toBe(true);
-		expect(await limit(platform, 'write', '1.2.3.4')).toBe(false);
+		bindings.RL_WRITE = fakeLimiter(2);
+		expect(await limit('write', '1.2.3.4')).toBe(true);
+		expect(await limit('write', '1.2.3.4')).toBe(true);
+		expect(await limit('write', '1.2.3.4')).toBe(false);
 	});
 
 	it('counts keys independently', async () => {
-		const platform = platformWith(fakeLimiter(1));
-		expect(await limit(platform, 'write', 'a')).toBe(true);
-		expect(await limit(platform, 'write', 'b')).toBe(true);
+		bindings.RL_WRITE = fakeLimiter(1);
+		expect(await limit('write', 'a')).toBe(true);
+		expect(await limit('write', 'b')).toBe(true);
 	});
 
 	it('fails closed when the binding is missing', async () => {
-		expect(await limit(undefined, 'write', 'a')).toBe(false);
-		expect(await limit(platformWith(undefined), 'write', 'a')).toBe(false);
+		expect(await limit('write', 'a')).toBe(false);
 	});
 
 	it('fails closed when the binding throws', async () => {
-		const platform = platformWith({ limit: vi.fn().mockRejectedValue(new Error('boom')) });
-		expect(await limit(platform, 'write', 'a')).toBe(false);
+		bindings.RL_WRITE = { limit: vi.fn().mockRejectedValue(new Error('boom')) };
+		expect(await limit('write', 'a')).toBe(false);
 	});
 });

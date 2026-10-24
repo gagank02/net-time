@@ -14,6 +14,15 @@
 		{ "name": "RL_WRITE", "namespace_id": "1002", "simple": { "limit": 20, "period": 60 } },
 		{ "name": "RL_AUTH", "namespace_id": "1003", "simple": { "limit": 10, "period": 60 } }
 	],
+	// Prod points at Neon (id set at go-live). Locally connects straight to Postgres as the app role.
+	// Wrangler requires a password; local Homebrew Postgres trusts localhost, so "local" is ignored. Not a secret.
+	"hyperdrive": [
+		{
+			"binding": "HYPERDRIVE",
+			"id": "set-at-go-live",
+			"localConnectionString": "postgres://net_time_app:local@localhost:5432/net_time"
+		}
+	],
 	"workers_dev": true,
 	"preview_urls": true
 }

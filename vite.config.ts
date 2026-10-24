@@ -42,6 +42,10 @@ export default defineConfig({
 				test: {
 					name: 'server',
 					environment: 'node',
+					alias: {
+						'cloudflare:workers': new URL('./src/test/cloudflare-workers.ts', import.meta.url)
+							.pathname
+					},
 					include: ['src/**/*.{test,spec}.{js,ts}'],
 					exclude: ['src/**/*.svelte.{test,spec}.{js,ts}']
 				}
