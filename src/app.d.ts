@@ -9,8 +9,13 @@ declare global {
 			cf?: IncomingRequestCfProperties;
 		}
 
-		// interface Error {}
-		// interface Locals {}
+		interface Error {
+			/** Request id shown to the user and present in server logs, for support lookups. */
+			id?: string;
+		}
+		interface Locals {
+			requestId: string;
+		}
 		// interface PageData {}
 		// interface PageState {}
 	}
