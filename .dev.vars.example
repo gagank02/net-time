@@ -1,0 +1,3 @@
+# Copy to .dev.vars for local dev. Committed: holds only key names + public Cloudflare test values.
+# Cloudflare Turnstile TEST secret (always passes). Real secret: `npx wrangler secret put TURNSTILE_SECRET`.
+TURNSTILE_SECRET=1x0000000000000000000000000000000AA
