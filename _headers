@@ -1,0 +1,8 @@
+# Security headers for static assets (served by Workers Assets, bypassing hooks.server.ts).
+# Must match src/lib/server/security/headers.ts; e2e/headers.e2e.ts checks both.
+/*
+  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(self), camera=(), microphone=(), payment=()
+  Cross-Origin-Opener-Policy: same-origin

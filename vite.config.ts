@@ -11,7 +11,30 @@ export default defineConfig({
 				runes: ({ filename }) =>
 					filename.split(/[/\\]/).includes('node_modules') ? undefined : true
 			},
-			adapter: adapter()
+			adapter: adapter(),
+			// Nonces for SSR, hashes for prerendered pages. Never add 'unsafe-inline'/'unsafe-eval' to script-src.
+			// style-src allows inline because Svelte transitions and MapLibre set style attributes.
+			csp: {
+				mode: 'auto',
+				directives: {
+					'default-src': ['self'],
+					'script-src': [
+						'self',
+						'https://challenges.cloudflare.com',
+						'https://static.cloudflareinsights.com'
+					],
+					'style-src': ['self', 'unsafe-inline'],
+					'img-src': ['self', 'data:', 'blob:'],
+					'font-src': ['self'],
+					'connect-src': ['self', 'https://cloudflareinsights.com'],
+					'frame-src': ['https://challenges.cloudflare.com'],
+					'worker-src': ['self', 'blob:'],
+					'object-src': ['none'],
+					'base-uri': ['self'],
+					'form-action': ['self'],
+					'frame-ancestors': ['none']
+				}
+			}
 		})
 	],
 	test: {
