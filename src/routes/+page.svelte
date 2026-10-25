@@ -1,3 +1,7 @@
+<script lang="ts">
+	import { resolve } from '$app/paths';
+</script>
+
 <svelte:head>
 	<title>net-time · Tennis in Chicago</title>
 	<meta
@@ -15,16 +19,27 @@
 	</p>
 </section>
 
+<section aria-labelledby="explore">
+	<h2 id="explore" class="section-title">Explore</h2>
+	<ul class="grouped" role="list">
+		<li>
+			<a class="row-link" href={resolve('/courts')}>
+				<span class="dot courts" aria-hidden="true"></span>
+				<span class="text">
+					<span class="title">Courts near you</span>
+					<span class="subtitle">Open hours and when classes are on</span>
+				</span>
+				<svg class="chevron" viewBox="0 0 8 14" aria-hidden="true"
+					><path d="M1 1l6 6-6 6" fill="none" stroke-width="2" /></svg
+				>
+			</a>
+		</li>
+	</ul>
+</section>
+
 <section aria-labelledby="soon">
 	<h2 id="soon" class="section-title">Coming soon</h2>
 	<ul class="grouped" role="list">
-		<li>
-			<span class="dot courts" aria-hidden="true"></span>
-			<span class="text">
-				<span class="title">Courts near you</span>
-				<span class="subtitle">Open hours and when classes are on</span>
-			</span>
-		</li>
 		<li>
 			<span class="dot shops" aria-hidden="true"></span>
 			<span class="text">
@@ -101,6 +116,38 @@
 		right: 0;
 		left: calc(var(--space-4) + 1.75rem + var(--space-3));
 		border-top: 0.5px solid var(--separator);
+	}
+
+	section + section {
+		margin-top: var(--space-6);
+	}
+
+	/* A whole row as one link, iOS style */
+	.grouped li:has(.row-link) {
+		padding: 0;
+	}
+
+	.row-link {
+		display: flex;
+		flex: 1;
+		align-items: center;
+		gap: var(--space-3);
+		min-height: var(--target);
+		padding: var(--space-3) var(--space-4);
+		color: inherit;
+	}
+
+	.row-link:hover {
+		text-decoration: none;
+		background: var(--fill);
+	}
+
+	.chevron {
+		width: 0.5rem;
+		height: 0.875rem;
+		margin-left: auto;
+		stroke: var(--label-2);
+		opacity: 0.6;
 	}
 
 	.dot {

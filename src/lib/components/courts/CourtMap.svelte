@@ -105,10 +105,12 @@
 			body.appendChild(line);
 			popup.setDOMContent(body);
 
-			return new lib.Marker({ element: el })
+			const marker = new lib.Marker({ element: el })
 				.setLngLat([court.lng, court.lat])
 				.setPopup(popup)
 				.addTo(map!);
+			el.tabIndex = -1; // maplibre makes markers tabbable; these are visual-only (aria-hidden)
+			return marker;
 		});
 		if (rows.length) {
 			const bounds = new lib.LngLatBounds();

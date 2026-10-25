@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
 	import { resolve } from '$app/paths';
+	import { page } from '$app/state';
 	import type { Theme } from '#lib/theme.js';
 	import ExternalLink from './ExternalLink.svelte';
 	import SkipLink from './SkipLink.svelte';
@@ -17,6 +18,14 @@
 			<span class="ball" aria-hidden="true"></span>
 			net-time
 		</a>
+		<ul class="links" role="list">
+			<li>
+				<a
+					href={resolve('/courts')}
+					aria-current={page.url.pathname.startsWith('/courts') ? 'page' : undefined}>Courts</a
+				>
+			</li>
+		</ul>
 	</nav>
 </header>
 
@@ -52,6 +61,7 @@
 	nav {
 		display: flex;
 		align-items: center;
+		justify-content: space-between;
 		max-width: var(--content-width);
 		min-height: var(--target);
 		margin: 0 auto;
@@ -71,6 +81,32 @@
 
 	.brand:hover {
 		text-decoration: none;
+	}
+
+	.links {
+		display: flex;
+		gap: var(--space-1);
+	}
+
+	.links a {
+		display: inline-flex;
+		align-items: center;
+		min-height: var(--target);
+		padding: 0 var(--space-3);
+		border-radius: var(--radius-control);
+		color: var(--label);
+		font-size: var(--text-subhead);
+		font-weight: 500;
+	}
+
+	.links a:hover {
+		background: var(--fill);
+		text-decoration: none;
+	}
+
+	.links a[aria-current='page'] {
+		color: var(--tint);
+		font-weight: 600;
 	}
 
 	.ball {

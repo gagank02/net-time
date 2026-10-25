@@ -177,7 +177,7 @@
 </div>
 
 {#if rows.length}
-	<ul class="grouped" role="list">
+	<ul class="grouped" role="list" aria-label="Courts">
 		{#each rows as { court, status, meters } (court.slug)}
 			<li>
 				<CourtRow
@@ -273,7 +273,7 @@
 		padding: 0 var(--space-4);
 		border: 0;
 		border-radius: var(--radius-control);
-		background: var(--fill);
+		background: var(--card);
 		color: var(--link);
 		font-size: var(--text-subhead);
 		font-weight: 600;

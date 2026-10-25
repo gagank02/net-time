@@ -1,46 +1,10 @@
-import { expect, test, type Page, type Request } from './fixtures';
-
-// OpenFreeMap is mocked: the suite never loads a third-party tile server (fair use, no network
-// flakiness). The mock tilejson carries OpenFreeMap's real attribution HTML.
-const attribution =
-	'<a href="https://openfreemap.org" target="_blank">OpenFreeMap</a> <a href="https://www.openmaptiles.org/" target="_blank">&copy; OpenMapTiles</a> Data from <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>';
-
-async function mockTiles(page: Page) {
-	await page.route('https://tiles.openfreemap.org/**', (route) => {
-		const url = route.request().url();
-		if (url.includes('/styles/'))
-			return route.fulfill({
-				json: {
-					version: 8,
-					sources: {
-						openmaptiles: { type: 'vector', url: 'https://tiles.openfreemap.org/planet' }
-					},
-					layers: [
-						{ id: 'bg', type: 'background', paint: { 'background-color': '#ddd' } },
-						// A layer must use the source for maplibre to show its attribution (as real styles do).
-						{ id: 'water', type: 'fill', source: 'openmaptiles', 'source-layer': 'water' }
-					]
-				}
-			});
-		if (url.endsWith('/planet'))
-			return route.fulfill({
-				json: {
-					tilejson: '3.0.0',
-					tiles: ['https://tiles.openfreemap.org/planet/test/{z}/{x}/{y}.pbf'],
-					attribution,
-					minzoom: 0,
-					maxzoom: 14
-				}
-			});
-		return route.fulfill({ status: 204 });
-	});
-}
+import { expect, mockTiles, test, type Page, type Request } from './fixtures';
 
 async function openCourts(page: Page, at: string) {
 	await mockTiles(page);
 	await page.clock.setFixedTime(new Date(at));
 	await page.goto(`/courts?at=${encodeURIComponent(at)}`);
-	await expect(page.getByRole('button', { name: 'Use my location' })).toBeVisible(); // hydrated
+	await expect(page.getByRole('button', { name: 'Use my location' })).toBeEnabled(); // hydrated
 }
 
 const pins = (page: Page) => page.locator('.map .pin');
@@ -76,7 +40,7 @@ test('one labelled pin per listed court, status shown by shape, popup links to t
 	page
 }) => {
 	await openCourts(page, '2026-10-26T10:00:00-05:00'); // Monday 10 AM: Maggie Daley has pickleball
-	const listed = await page.getByRole('list').getByRole('listitem').count();
+	const listed = await page.getByRole('list', { name: 'Courts' }).getByRole('listitem').count();
 	await page.getByRole('button', { name: 'Show map' }).click();
 	await expect(pins(page)).toHaveCount(listed);
 
@@ -107,7 +71,9 @@ test('filters update the pins; attribution links open safely in a new tab; no CS
 	await page.getByRole('button', { name: 'Show map' }).click();
 	await page.getByRole('checkbox', { name: 'Lights' }).check();
 	await expect(page).toHaveURL(/lights=1/);
-	await expect(pins(page)).toHaveCount(await page.getByRole('list').getByRole('listitem').count());
+	await expect(pins(page)).toHaveCount(
+		await page.getByRole('list', { name: 'Courts' }).getByRole('listitem').count()
+	);
 
 	const osm = page.locator('.maplibregl-ctrl-attrib').getByRole('link', { name: 'OpenStreetMap' });
 	await expect(osm).toHaveAttribute('target', '_blank');

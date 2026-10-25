@@ -1,9 +1,11 @@
 import AxeBuilder from '@axe-core/playwright';
-import { expect, test, type Page } from './fixtures';
+import { expect, mockTiles, test, type Page } from './fixtures';
 
 const pages = [
 	{ name: 'home', path: '/' },
 	{ name: 'data', path: '/data' },
+	{ name: 'courts list', path: '/courts' },
+	{ name: 'court detail', path: '/courts/maggie-daley-park' },
 	{ name: '404', path: '/no-such-page' },
 	{ name: 'error', path: '/__e2e/throw' }
 ];
@@ -24,6 +26,29 @@ for (const scheme of ['light', 'dark'] as const) {
 		});
 	}
 }
+
+for (const scheme of ['light', 'dark'] as const) {
+	test(`axe: courts list with the map open has no violations (${scheme})`, async ({ page }) => {
+		await mockTiles(page);
+		await page.emulateMedia({ colorScheme: scheme, reducedMotion: 'reduce' });
+		await page.goto('/courts');
+		await expect(page.getByRole('button', { name: 'Use my location' })).toBeEnabled();
+		await page.getByRole('button', { name: 'Show map' }).click();
+		await expect(page.locator('.maplibregl-canvas')).toBeVisible();
+		expect(await axe(page)).toEqual([]);
+	});
+}
+
+test('nav: Courts tab marks the current section and the home row links to it', async ({ page }) => {
+	await page.goto('/');
+	const tab = page.getByRole('navigation', { name: 'Main' }).getByRole('link', { name: 'Courts' });
+	await expect(tab).not.toHaveAttribute('aria-current');
+	await page.getByRole('link', { name: /Courts near you/ }).click();
+	await expect(page).toHaveURL(/\/courts$/);
+	await expect(tab).toHaveAttribute('aria-current', 'page');
+	await page.goto('/courts/oz-park');
+	await expect(tab).toHaveAttribute('aria-current', 'page');
+});
 
 test('keyboard: skip link is first, visible on focus, and moves focus to main', async ({
 	page

@@ -6,7 +6,7 @@ const leaks = ['41.9198', '87.6459', '41,9198', '87,6459'];
 
 const names = async (page: Page) =>
 	page
-		.getByRole('list')
+		.getByRole('list', { name: 'Courts' })
 		.getByRole('link')
 		.evaluateAll((links) => links.map((a) => a.querySelector('span')?.textContent?.trim() ?? ''));
 
@@ -34,9 +34,9 @@ test('"Use my location" sorts nearest first and the coordinates never leave the 
 
 	const [first] = await names(page);
 	expect(first).toBe('Oz Park');
-	await expect(page.getByRole('list').getByRole('listitem').first()).toContainText(
-		/<0\.1 mi|0\.\d mi/
-	);
+	await expect(
+		page.getByRole('list', { name: 'Courts' }).getByRole('listitem').first()
+	).toContainText(/<0\.1 mi|0\.\d mi/);
 
 	// Toggling a filter keeps the on-device sort and still sends nothing location-related.
 	await page.getByRole('checkbox', { name: 'Lights' }).check();
@@ -67,8 +67,8 @@ test('blocked location shows help and focuses the neighborhood picker', async ({
 
 test('neighborhood sorts nearest first and is shareable via the URL', async ({ page }) => {
 	await page.goto('/courts');
-	// The auto-submit handler exists only once hydrated; the JS-only button is the signal.
-	await expect(page.getByRole('button', { name: 'Use my location' })).toBeVisible();
+	// The auto-submit handler exists only once hydrated; the button becomes enabled on hydration.
+	await expect(page.getByRole('button', { name: 'Use my location' })).toBeEnabled();
 	await page.getByLabel('Neighborhood').selectOption({ label: 'Loop' });
 	await expect(page).toHaveURL(/area=loop/);
 	await expect(page.getByText('Nearest to Loop')).toBeVisible();
@@ -87,7 +87,7 @@ test('ZIP works without JavaScript; unknown ZIPs get a helpful message', async (
 	const context = await browser.newContext({ extraHTTPHeaders, javaScriptEnabled: false });
 	const page = await context.newPage();
 	await page.goto('/courts');
-	await expect(page.getByRole('button', { name: 'Use my location' })).toHaveCount(0); // JS-only
+	await expect(page.getByRole('button', { name: 'Use my location' })).toBeDisabled(); // needs JS
 	await page.getByLabel('ZIP').fill('60614');
 	await page.getByRole('button', { name: 'Go' }).click();
 	await expect(page).toHaveURL(/zip=60614/);
