@@ -11,6 +11,7 @@
 	--on-tint: light-dark(#ffffff, #000000);
 	--link: light-dark(#0066cc, #409cff);
 	--danger: light-dark(#d70015, #ff6961); /* Apple high-contrast red: 4.8:1 / 6.0:1 */
+	--amber: light-dark(#c93400, #ffb340); /* Apple high-contrast orange: status icon for classes */
 	--indigo: light-dark(#5e5ce6, #7d7aff); /* decorative only, never text */
 	--bg: light-dark(#f2f2f7, #000000);
 	--card: light-dark(#ffffff, #1c1c1e);

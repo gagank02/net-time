@@ -21,3 +21,22 @@ export type CourtStatus =
 	| { state: 'open'; until: string; nextClassAt: string | null }
 	| { state: 'class'; until: string; courtsFree: number; titles: string[] }
 	| { state: 'closed'; nextOpen: { time: string; inDays: number; weekday: number } | null };
+
+export type Access = 'free' | 'reservation';
+
+/** One row of the /courts list (also the shape the map and near-me sorting use). */
+export type CourtListItem = {
+	slug: string;
+	name: string;
+	lat: number;
+	lng: number;
+	courtCount: number;
+	lights: boolean | null;
+	surface: 'hard' | 'clay' | 'grass' | 'other' | null;
+	indoor: boolean;
+	access: Access;
+	bookingUrl: string | null;
+	communityArea: string;
+	hours: HoursRow[];
+	classes: ClassRow[];
+};
