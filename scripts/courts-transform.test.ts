@@ -36,7 +36,7 @@ const base = (): Input => ({
 	parks: [],
 	cpdCourts: [],
 	cpdFacilities: [],
-	curation: { additions: [], removed: [] },
+	curation: { additions: [], corrections: [], removed: [] },
 	communityAreas: [
 		{ name: 'LINCOLN PARK', polygons: [square(41.92, -87.65, 0.05)[0]].map((r) => [r]) }
 	],
@@ -229,6 +229,7 @@ describe('buildCourtsSeed', () => {
 		];
 		const by = { verifiedAt: '2026-10-25', verifiedBy: 'project owner' };
 		input.curation = {
+			corrections: [],
 			additions: [
 				{
 					slug: 'bell-park',
@@ -268,6 +269,7 @@ describe('buildCourtsSeed', () => {
 		input.pitches = [pitch(1, 41.92, -87.65)];
 		input.cpdCourts = [{ park: 'OZ', parkNo: 1, lat: 41.92, lng: -87.65 }];
 		input.curation = {
+			corrections: [],
 			additions: [],
 			removed: [
 				{ cpdParkNo: 1, park: 'Oz', note: 'Gone?', verifiedAt: '2026-10-25', verifiedBy: 'x' }
@@ -276,6 +278,38 @@ describe('buildCourtsSeed', () => {
 		const { courts, report } = buildCourtsSeed(input);
 		expect(courts.locations).toHaveLength(0);
 		expect(report).toContain('dropped OSM site Oz Park (1 court(s), way/1): consider updating OSM');
+	});
+
+	it('applies field corrections from verified sources and reports them', () => {
+		const input = base();
+		input.pitches = [pitch(1, 41.92, -87.65)];
+		input.cpdCourts = [{ park: 'OZ', parkNo: 1, lat: 41.92, lng: -87.65 }];
+		input.curation = {
+			additions: [],
+			removed: [],
+			corrections: [
+				{
+					slug: 'oz-park',
+					lights: true,
+					note: 'Park page says lit.',
+					sourceUrl: 'https://example.org/oz',
+					verifiedAt: '2026-10-25',
+					verifiedBy: 'owner'
+				},
+				{
+					slug: 'nope',
+					lights: true,
+					note: 'x',
+					sourceUrl: 'https://example.org',
+					verifiedAt: '2026-10-25',
+					verifiedBy: 'owner'
+				}
+			]
+		};
+		const { courts, report } = buildCourtsSeed(input);
+		expect(courts.locations[0]).toMatchObject({ lights: true, verifiedAt: '2026-10-25' });
+		expect(report).toContain('- Oz Park: lights null → true. Park page says lit.');
+		expect(report).toContain('correction nope: no such location');
 	});
 
 	it('builds valid community area and ZIP centroids', () => {

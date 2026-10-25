@@ -156,6 +156,24 @@ export const CurationSeed = z.strictObject({
 			verifiedBy: safeText(80)
 		})
 	),
+	corrections: z.array(
+		z
+			.strictObject({
+				slug,
+				lights: z.boolean().optional(),
+				surface: z.enum(['hard', 'clay', 'grass', 'other']).optional(),
+				courtCount: z.int().min(1).max(40).optional(),
+				indoor: z.boolean().optional(),
+				note: safeText(300),
+				sourceUrl: httpsUrl,
+				verifiedAt: isoDate,
+				verifiedBy: safeText(80)
+			})
+			.refine(
+				(c) => ['lights', 'surface', 'courtCount', 'indoor'].some((k) => k in c),
+				'a correction must change at least one field'
+			)
+	),
 	removed: z.array(
 		z.strictObject({
 			cpdParkNo: z.int().positive(),

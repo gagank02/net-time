@@ -1,5 +1,5 @@
 {
-	"generatedAt": "2026-10-25T15:54:20Z",
+	"generatedAt": "2026-10-25T15:58:35Z",
 	"locations": [
 		{
 			"slug": "abbott-park",
@@ -1473,7 +1473,7 @@
 			"lat": 41.883943,
 			"lng": -87.615957,
 			"courtCount": 6,
-			"lights": null,
+			"lights": true,
 			"surface": null,
 			"indoor": false,
 			"communityArea": "Loop",

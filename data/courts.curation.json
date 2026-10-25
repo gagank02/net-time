@@ -13,6 +13,16 @@
 			"verifiedBy": "project owner"
 		}
 	],
+	"corrections": [
+		{
+			"slug": "maggie-daley-park",
+			"lights": true,
+			"note": "Park page: \"Tennis court lights will be on an hour before dusk.\"",
+			"sourceUrl": "https://www.maggiedaleypark.com/things-to-do-see/tennis-courts",
+			"verifiedAt": "2026-10-25",
+			"verifiedBy": "Claude (web check), pending owner review"
+		}
+	],
 	"removed": [
 		{
 			"cpdParkNo": 5,

@@ -1,6 +1,6 @@
 # Courts seed report
 
-Generated 2026-10-25T15:54:20Z from OpenStreetMap (data as of 2026-10-25T14:55:50Z) and City of Chicago datasets eix4-gf83, igwz-8jzy, unjd-c2ca.
+Generated 2026-10-25T15:58:35Z from OpenStreetMap (data as of 2026-10-25T14:55:50Z) and City of Chicago datasets eix4-gf83, igwz-8jzy, unjd-c2ca.
 
 ## Totals
 
@@ -20,6 +20,10 @@ Generated 2026-10-25T15:54:20Z from OpenStreetMap (data as of 2026-10-25T14:55:5
 ## Added by hand (data/courts.curation.json)
 
 - Bell Park (1 court(s)): Court exists but is not mapped in OpenStreetMap. Location from the 2016 CPD tennis points for this park. Verified 2026-10-25 by project owner.
+
+## Corrected from verified sources (data/courts.curation.json)
+
+- Maggie Daley Park: lights null → true. Park page: "Tennis court lights will be on an hour before dusk." Source: https://www.maggiedaleypark.com/things-to-do-see/tennis-courts. Verified 2026-10-25 by Claude (web check), pending owner review.
 
 ## Confirmed removed (data/courts.curation.json)
 

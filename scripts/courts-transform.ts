@@ -378,6 +378,26 @@ export function buildCourtsSeed(input: Input) {
 		}
 		matched.delete(key);
 	}
+	// Field corrections from verified sources (e.g. the park's own page says the courts are lit).
+	const correctedLines: string[] = [];
+	for (const c of input.curation.corrections) {
+		const l = locations.find((x) => x.slug === c.slug);
+		if (!l) {
+			curationWarnings.push(`correction ${c.slug}: no such location`);
+			continue;
+		}
+		const changes: string[] = [];
+		for (const key of ['lights', 'surface', 'courtCount', 'indoor'] as const) {
+			if (c[key] === undefined) continue;
+			changes.push(`${key} ${String(l[key])} → ${String(c[key])}`);
+			Object.assign(l, { [key]: c[key] });
+		}
+		l.verifiedAt = c.verifiedAt;
+		correctedLines.push(
+			`- ${l.name}: ${changes.join(', ')}. ${c.note} Source: ${c.sourceUrl}. Verified ${c.verifiedAt} by ${c.verifiedBy}.`
+		);
+	}
+
 	const missingCpd = [...tennisParks]
 		.filter(([key]) => !matched.has(key) && !removed.has(key))
 		.map(([, name]) => titleCase(name))
@@ -427,6 +447,10 @@ export function buildCourtsSeed(input: Input) {
 		`## Added by hand (data/courts.curation.json)`,
 		``,
 		...(added.length ? added : ['- none']),
+		``,
+		`## Corrected from verified sources (data/courts.curation.json)`,
+		``,
+		...(correctedLines.length ? correctedLines : ['- none']),
 		``,
 		`## Confirmed removed (data/courts.curation.json)`,
 		``,
