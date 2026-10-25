@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test';
+import { expect, test } from './fixtures';
 
 test('unhandled error shows a generic page with a reference id and no internals', async ({
 	page

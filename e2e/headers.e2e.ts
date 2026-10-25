@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test';
+import { expect, test } from './fixtures';
 import { securityHeaders } from '../src/lib/server/security/headers';
 
 const workerRoutes = ['/', '/healthz', '/does-not-exist'];

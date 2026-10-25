@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test';
+import { expect, test } from './fixtures';
 
 test('external links open in a new tab safely and say so', async ({ page }) => {
 	await page.goto('/');

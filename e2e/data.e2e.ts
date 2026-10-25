@@ -1,5 +1,5 @@
 import { readFileSync } from 'node:fs';
-import { expect, test } from '@playwright/test';
+import { expect, test } from './fixtures';
 
 // The City of Chicago Data Terms of Use require this exact disclaimer on the site. Read it from the
 // terms file kept in planning/ when present, else from the committed copy in data/README.md, so a

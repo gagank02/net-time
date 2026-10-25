@@ -30,7 +30,7 @@ export function chicagoTime(now: Date): LocalTime {
 }
 
 const toMinutes = (t: string) => Number(t.slice(0, 2)) * 60 + Number(t.slice(3, 5));
-const toClock = (m: number) =>
+export const toClock = (m: number) =>
 	`${String(Math.floor(m / 60)).padStart(2, '0')}:${String(m % 60).padStart(2, '0')}`;
 
 /** Adds days to a YYYY-MM-DD date (calendar arithmetic in UTC, so DST can't shift the day). */
@@ -155,3 +155,31 @@ export function describeStatus(
 		}
 	}
 }
+
+const longDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+const mondayFirst = [1, 2, 3, 4, 5, 6, 0];
+
+/** Weekdays as compact ranges in Mon→Sun order: [1,2,3,4,5] → "Mon–Fri", [6,0] → "Sat–Sun". */
+export function dayRanges(weekdays: number[]): string {
+	const runs: number[][] = [];
+	for (const d of mondayFirst.filter((d) => weekdays.includes(d))) {
+		const last = runs.at(-1);
+		const adjacent = last && mondayFirst.indexOf(d) === mondayFirst.indexOf(last.at(-1)!) + 1;
+		if (adjacent) last.push(d);
+		else runs.push([d]);
+	}
+	return runs
+		.map((r) => (r.length > 1 ? `${dayNames[r[0]]}–${dayNames[r.at(-1)!]}` : dayNames[r[0]]))
+		.join(', ');
+}
+
+export const dayName = (weekday: number) => longDays[weekday];
+
+/** "2026-10-25" → "Oct 25, 2026" (calendar date, no time zone shift). */
+export const formatDate = (date: string) =>
+	new Intl.DateTimeFormat('en-US', {
+		month: 'short',
+		day: 'numeric',
+		year: 'numeric',
+		timeZone: 'UTC'
+	}).format(new Date(`${date}T00:00:00Z`));

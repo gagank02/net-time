@@ -1,4 +1,4 @@
-import { expect, test, type Page } from '@playwright/test';
+import { expect, test, type Page } from './fixtures';
 
 const bg = (page: Page) => page.evaluate(() => getComputedStyle(document.body).backgroundColor);
 const black = 'rgb(0, 0, 0)';
@@ -34,8 +34,12 @@ test('toggle switches instantly and persists across reloads', async ({ page }) =
 	expect(await bg(page)).toBe(black);
 });
 
-test('works without JavaScript', async ({ browser }) => {
-	const context = await browser.newContext({ javaScriptEnabled: false, colorScheme: 'dark' });
+test('works without JavaScript', async ({ browser, extraHTTPHeaders }) => {
+	const context = await browser.newContext({
+		extraHTTPHeaders,
+		javaScriptEnabled: false,
+		colorScheme: 'dark'
+	});
 	const page = await context.newPage();
 	await page.goto('/');
 	await page.getByRole('button', { name: 'Light' }).click();

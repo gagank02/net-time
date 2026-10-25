@@ -1,0 +1,2 @@
+ALTER TABLE "court_locations" ADD COLUMN "hours_source_url" text;--> statement-breakpoint
+ALTER TABLE "court_locations" ADD CONSTRAINT "court_locations_hours_source_url" CHECK ("court_locations"."hours_source_url" is null or "court_locations"."hours_source_url" like 'https://%');

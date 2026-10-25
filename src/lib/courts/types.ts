@@ -44,3 +44,14 @@ export type CourtListItem = {
 /** Community-area or ZIP centroid: a coarse "near" point that is fine to put in a URL. */
 export type Area = { slug: string; name: string; lat: number; lng: number };
 export type Zip = { zip: string; lat: number; lng: number };
+
+export type ClassDetail = ClassRow & { sourceUrl: string; verifiedAt: string };
+
+/** Everything the /courts/[slug] page shows. */
+export type CourtDetail = Omit<CourtListItem, 'classes'> & {
+	address: string | null;
+	osmIds: string[];
+	verifiedAt: string;
+	hoursSourceUrl: string | null;
+	classes: ClassDetail[];
+};

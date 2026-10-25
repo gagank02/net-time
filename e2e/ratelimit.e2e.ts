@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test';
+import { expect, test } from './fixtures';
 
 // Locally, wrangler dev passes a client-supplied CF-Connecting-IP through, so each test run uses its
 // own fake IP (TEST-NET-3) and its own bucket, leaving other tests unaffected. In production,

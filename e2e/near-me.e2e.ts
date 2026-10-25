@@ -1,4 +1,4 @@
-import { expect, test, type Page, type Request } from '@playwright/test';
+import { expect, test, type Page, type Request } from './fixtures';
 
 // Distinctive coordinates (near Oz Park) so any leak is unambiguous in request URLs/bodies/headers.
 const me = { latitude: 41.919871, longitude: -87.645913 };
@@ -11,9 +11,14 @@ const names = async (page: Page) =>
 		.evaluateAll((links) => links.map((a) => a.querySelector('span')?.textContent?.trim() ?? ''));
 
 test('"Use my location" sorts nearest first and the coordinates never leave the browser', async ({
-	browser
+	browser,
+	extraHTTPHeaders
 }) => {
-	const context = await browser.newContext({ geolocation: me, permissions: ['geolocation'] });
+	const context = await browser.newContext({
+		extraHTTPHeaders,
+		geolocation: me,
+		permissions: ['geolocation']
+	});
 	const page = await context.newPage();
 	const requests: Request[] = [];
 	page.on('request', (r) => requests.push(r));
@@ -47,8 +52,11 @@ test('"Use my location" sorts nearest first and the coordinates never leave the 
 	await context.close();
 });
 
-test('blocked location shows help and focuses the neighborhood picker', async ({ browser }) => {
-	const context = await browser.newContext({ permissions: [] });
+test('blocked location shows help and focuses the neighborhood picker', async ({
+	browser,
+	extraHTTPHeaders
+}) => {
+	const context = await browser.newContext({ extraHTTPHeaders, permissions: [] });
 	const page = await context.newPage();
 	await page.goto('/courts');
 	await page.getByRole('button', { name: 'Use my location' }).click();
@@ -59,6 +67,8 @@ test('blocked location shows help and focuses the neighborhood picker', async ({
 
 test('neighborhood sorts nearest first and is shareable via the URL', async ({ page }) => {
 	await page.goto('/courts');
+	// The auto-submit handler exists only once hydrated; the JS-only button is the signal.
+	await expect(page.getByRole('button', { name: 'Use my location' })).toBeVisible();
 	await page.getByLabel('Neighborhood').selectOption({ label: 'Loop' });
 	await expect(page).toHaveURL(/area=loop/);
 	await expect(page.getByText('Nearest to Loop')).toBeVisible();
@@ -70,8 +80,11 @@ test('neighborhood sorts nearest first and is shareable via the URL', async ({ p
 	await expect(page.getByText('Nearest to')).toHaveCount(0);
 });
 
-test('ZIP works without JavaScript; unknown ZIPs get a helpful message', async ({ browser }) => {
-	const context = await browser.newContext({ javaScriptEnabled: false });
+test('ZIP works without JavaScript; unknown ZIPs get a helpful message', async ({
+	browser,
+	extraHTTPHeaders
+}) => {
+	const context = await browser.newContext({ extraHTTPHeaders, javaScriptEnabled: false });
 	const page = await context.newPage();
 	await page.goto('/courts');
 	await expect(page.getByRole('button', { name: 'Use my location' })).toHaveCount(0); // JS-only

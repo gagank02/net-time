@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test';
+import { expect, test } from './fixtures';
 
 // SvelteKit's origin check (production builds only, so this runs against preview) rejects
 // cross-site POST/PUT/PATCH/DELETE with a form content type before any route code runs.

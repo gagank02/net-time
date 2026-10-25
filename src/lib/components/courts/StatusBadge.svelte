@@ -26,8 +26,9 @@
 			<circle cx="6" cy="6" r="4.25" fill="none" stroke-width="1.5" />
 		{/if}
 	</svg>
-	<span class="label">{text.label}</span>
-	<span class="detail">· {text.detail}</span>
+	<!-- The separator ends the label so a wrapped line never starts with "·". -->
+	<span class="label">{text.label}<span class="sep" aria-hidden="true">·</span></span>
+	<span class="detail">{text.detail}</span>
 </span>
 
 <style>
@@ -68,7 +69,13 @@
 		color: var(--tint);
 	}
 
+	.sep {
+		margin-left: 0.25em;
+	}
+
+	.sep,
 	.detail {
 		color: var(--label-2);
+		font-weight: 400;
 	}
 </style>

@@ -4,7 +4,7 @@
 // to the same state, and a bad file changes nothing.
 import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
-import { notInArray, sql } from 'drizzle-orm';
+import { eq, notInArray, sql } from 'drizzle-orm';
 import { drizzle } from 'drizzle-orm/node-postgres';
 import pg from 'pg';
 import { z } from 'zod';
@@ -83,6 +83,7 @@ try {
 				indoor: l.indoor,
 				access: l.access,
 				bookingUrl: l.bookingUrl,
+				hoursSourceUrl: null,
 				communityArea: l.communityArea,
 				cpdParkNo: l.cpdParkNo,
 				osmIds: l.osmIds,
@@ -104,6 +105,12 @@ try {
 		await tx.delete(classBlocks);
 
 		const overrideBySlug = new Map(overrides.overrides.map((o) => [o.slug, o.hours]));
+		for (const o of overrides.overrides) {
+			await tx
+				.update(courtLocations)
+				.set({ hoursSourceUrl: o.sourceUrl })
+				.where(eq(courtLocations.slug, o.slug));
+		}
 		const hourRows = courts.locations.flatMap((l) =>
 			(overrideBySlug.get(l.slug) ?? defaultHours).map((h) => ({
 				locationId: ids.get(l.slug)!,

@@ -1,6 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import {
 	addDays,
+	dayRanges,
+	formatDate,
 	chicagoTime,
 	courtStatus,
 	describeStatus,
@@ -223,5 +225,22 @@ describe('formatting', () => {
 				.detail
 		).toBe('opens Mon 6 AM');
 		expect(describeStatus({ state: 'closed', nextOpen: null }, 4).detail).toBe('no upcoming hours');
+	});
+});
+
+describe('dayRanges', () => {
+	it.each([
+		[[1, 2, 3, 4, 5], 'Mon–Fri'],
+		[[6, 0], 'Sat–Sun'],
+		[[0, 1, 2, 3, 4, 5, 6], 'Mon–Sun'],
+		[[1, 3, 5], 'Mon, Wed, Fri'],
+		[[1, 2, 4], 'Mon–Tue, Thu'],
+		[[0], 'Sun']
+	])('%j → %s', (days, text) => {
+		expect(dayRanges(days)).toBe(text);
+	});
+
+	it('formatDate shows the calendar date without time-zone shift', () => {
+		expect(formatDate('2026-12-31')).toBe('Dec 31, 2026');
 	});
 });

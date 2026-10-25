@@ -1,4 +1,4 @@
-import { expect, test, type Page } from '@playwright/test';
+import { expect, test, type Page } from './fixtures';
 
 // Server clock via ?at= (honoured only with E2E_ROUTES=1); browser clock pinned to the same instant
 // so the client-side status refresh agrees. Runs against the real seeded local data.
@@ -36,6 +36,8 @@ test('reservation courts say so; closed courts say when they open', async ({ pag
 test('Open now and Lights filters narrow the list and work via the URL', async ({ page }) => {
 	const at = '2026-10-26T21:30:00-05:00';
 	await openAt(page, at);
+	// Checkbox auto-submit exists only once hydrated; the JS-only location button is the signal.
+	await expect(page.getByRole('button', { name: 'Use my location' })).toBeVisible();
 	const items = () => page.getByRole('list').getByRole('listitem');
 	const total = await items().count();
 
@@ -49,6 +51,7 @@ test('Open now and Lights filters narrow the list and work via the URL', async (
 	await page.getByRole('checkbox', { name: 'Open now' }).check();
 	await expect(page).toHaveURL(/open=1/);
 	await keepClock();
+	await expect(page.getByRole('button', { name: 'Use my location' })).toBeVisible();
 	await expect(page.getByRole('checkbox', { name: 'Open now' })).toBeChecked();
 	await expect(row(page, /^Maggie Daley Park/)).toHaveCount(0);
 	expect(await items().count()).toBe(total - 1);
@@ -64,8 +67,8 @@ test('Open now and Lights filters narrow the list and work via the URL', async (
 	await expect(page).toHaveURL(/\/courts$/);
 });
 
-test('filters work without JavaScript', async ({ browser }) => {
-	const context = await browser.newContext({ javaScriptEnabled: false });
+test('filters work without JavaScript', async ({ browser, extraHTTPHeaders }) => {
+	const context = await browser.newContext({ extraHTTPHeaders, javaScriptEnabled: false });
 	const page = await context.newPage();
 	await page.goto('/courts?at=2026-10-26T23:30:00-05:00&open=1');
 	await expect(page.getByText('No courts match')).toBeVisible();

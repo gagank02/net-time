@@ -4,19 +4,15 @@
 	import { goto } from '$app/navigation';
 	import CourtRow from '#lib/components/courts/CourtRow.svelte';
 	import LocationControls from '#lib/components/courts/LocationControls.svelte';
+	import { liveNow } from '#lib/courts/clock.svelte.js';
 	import { courtStatus, formatClock } from '#lib/courts/status.js';
 	import { distanceMeters, formatDistance, type LatLng } from '#lib/geo.js';
 	import type { PageProps } from './$types';
 
 	let { data }: PageProps = $props();
 
-	// Server time first (so SSR and hydration agree), then the browser keeps statuses fresh.
-	let now = $derived(new Date(data.now));
-	$effect(() => {
-		now = new Date();
-		const timer = setInterval(() => (now = new Date()), 60_000);
-		return () => clearInterval(timer);
-	});
+	const clock = liveNow(() => data.now);
+	const now = $derived(clock.current);
 
 	const openOnly = $derived(page.url.searchParams.get('open') === '1');
 	const lightsOnly = $derived(page.url.searchParams.get('lights') === '1');
