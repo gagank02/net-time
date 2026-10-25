@@ -1,6 +1,6 @@
 # Courts seed report
 
-Generated 2026-10-25T16:03:56Z from OpenStreetMap (data as of 2026-10-25T14:55:50Z) and City of Chicago datasets eix4-gf83, igwz-8jzy, unjd-c2ca.
+Generated 2026-10-25T22:39:10Z from OpenStreetMap (data as of 2026-10-25T14:55:50Z) and City of Chicago datasets eix4-gf83, igwz-8jzy, unjd-c2ca.
 
 ## Totals
 
@@ -31,8 +31,8 @@ Generated 2026-10-25T16:03:56Z from OpenStreetMap (data as of 2026-10-25T14:55:5
 - Cornell (Paul) Square: No tennis courts any more (removed or converted to futsal). Verified 2026-10-25 by project owner.
 - Hiawatha: No tennis courts any more (removed or converted to futsal). Verified 2026-10-25 by project owner.
 - Marquette (Jacques): No tennis courts any more at either site (OSM still maps 11; OSM is out of date here). Verified 2026-10-25 by project owner.
-  - dropped OSM site Marquette Park – Chicago Lawn (south) (6 court(s), way/1281192091 way/1281192092 way/1281192093 way/1281192094 way/1281192095 way/1281192096): consider updating OSM
-  - dropped OSM site Marquette Park – Chicago Lawn (north) (5 court(s), way/1141844941 way/1141844942 way/1141844943 way/1141844944 way/173521034): consider updating OSM
+  - dropped OSM site Marquette Park (Chicago Lawn, south) (6 court(s), way/1281192091 way/1281192092 way/1281192093 way/1281192094 way/1281192095 way/1281192096): consider updating OSM
+  - dropped OSM site Marquette Park (Chicago Lawn, north) (5 court(s), way/1141844941 way/1141844942 way/1141844943 way/1141844944 way/173521034): consider updating OSM
 - Ogden (William): No tennis courts any more (removed or converted to futsal). Verified 2026-10-25 by project owner.
 - Valley Forge: No tennis courts any more (removed or converted to futsal). Verified 2026-10-25 by project owner.
 

@@ -19,7 +19,7 @@ test('Maggie Daley: facts, hours with today, merged class schedule, sources', as
 
 	await expect(fact(page, 'Courts')).toHaveText('6');
 	await expect(fact(page, 'Lights')).toHaveText('Yes');
-	await expect(fact(page, 'Access')).toContainText('Free · first come, first served');
+	await expect(fact(page, 'Access')).toContainText('Free, first come first served');
 
 	const today = page.getByRole('row', { name: /Monday/ });
 	await expect(today).toHaveAttribute('aria-current', 'date');
@@ -39,7 +39,7 @@ test('Maggie Daley: facts, hours with today, merged class schedule, sources', as
 test('McFetridge: reservation access with a booking link in a new tab', async ({ page }) => {
 	await openAt(page, '/courts/mcfetridge-sports-center', '2026-10-26T13:00:00-05:00');
 	await expect(fact(page, 'Setting')).toHaveText('Indoor');
-	await expect(fact(page, 'Access')).toContainText('Reservation required · paid');
+	await expect(fact(page, 'Access')).toContainText('Paid, reservation required');
 	const book = page.getByRole('link', { name: /Book court time/ });
 	await expect(book).toHaveAttribute(
 		'href',
@@ -53,7 +53,7 @@ test('default-hours park: standard hours note, unknowns shown honestly, directio
 	page
 }) => {
 	await openAt(page, '/courts/oz-park', '2026-10-26T13:00:00-05:00');
-	await expect(page.getByText('Standard Chicago Park District park hours')).toBeVisible();
+	await expect(page.getByText('Standard Chicago Park District hours')).toBeVisible();
 	await expect(fact(page, 'Lights')).toHaveText('Not known');
 	for (const name of [/Apple Maps/, /Google Maps/]) {
 		const link = page.getByRole('link', { name });

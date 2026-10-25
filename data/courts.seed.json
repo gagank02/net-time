@@ -1,5 +1,5 @@
 {
-	"generatedAt": "2026-10-25T16:03:56Z",
+	"generatedAt": "2026-10-25T22:39:10Z",
 	"locations": [
 		{
 			"slug": "abbott-park",
@@ -1177,7 +1177,7 @@
 		},
 		{
 			"slug": "jackson-park-hyde-park",
-			"name": "Jackson Park – Hyde Park",
+			"name": "Jackson Park (Hyde Park)",
 			"address": null,
 			"lat": 41.786289,
 			"lng": -87.579013,
@@ -1203,7 +1203,7 @@
 		},
 		{
 			"slug": "jackson-park-woodlawn",
-			"name": "Jackson Park – Woodlawn",
+			"name": "Jackson Park (Woodlawn)",
 			"address": null,
 			"lat": 41.779625,
 			"lng": -87.583743,
@@ -1510,7 +1510,7 @@
 		},
 		{
 			"slug": "lincoln-park-lake-view-north",
-			"name": "Lincoln Park – Lake View (north)",
+			"name": "Lincoln Park (Lake View, north)",
 			"address": null,
 			"lat": 41.951435,
 			"lng": -87.643167,
@@ -1548,7 +1548,7 @@
 		},
 		{
 			"slug": "lincoln-park-lake-view-south",
-			"name": "Lincoln Park – Lake View (south)",
+			"name": "Lincoln Park (Lake View, south)",
 			"address": null,
 			"lat": 41.934071,
 			"lng": -87.632991,
@@ -2699,7 +2699,7 @@
 		},
 		{
 			"slug": "washington-park-hyde-park",
-			"name": "Washington Park – Hyde Park",
+			"name": "Washington Park (Hyde Park)",
 			"address": null,
 			"lat": 41.800162,
 			"lng": -87.582226,

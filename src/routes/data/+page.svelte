@@ -8,14 +8,14 @@
 			name: 'CPD Facilities',
 			owner: 'Chicago Park District',
 			license: 'Public Domain',
-			use: 'Which tennis courts are Park District courts'
+			use: 'finding which tennis courts belong to the Park District'
 		},
 		{
 			id: 'igwz-8jzy',
 			name: 'Boundaries - Community Areas',
 			owner: 'City of Chicago',
 			license: 'City of Chicago Data Terms of Use',
-			use: 'Neighborhood search and labels'
+			use: 'neighborhood search and labels'
 		},
 		{
 			id: 'unjd-c2ca',
@@ -34,8 +34,8 @@
 
 <h1>Data sources</h1>
 <p class="lede">
-	Court information is compiled from public sources and may be out of date. Check signs at the park
-	before you go.
+	We build court information from public sources, and it can be out of date. Check the signs at the
+	park before you go.
 </p>
 
 <section aria-labelledby="disclaimer">
@@ -56,7 +56,7 @@
 					<ExternalLink href="https://data.cityofchicago.org/d/{d.id}">{d.name}</ExternalLink>
 				</span>
 				<span class="meta">{d.owner} · {d.license}</span>
-				<span class="meta">Used for: {d.use}</span>
+				<span class="meta">Used for {d.use}</span>
 			</li>
 		{/each}
 		<li>
@@ -64,7 +64,7 @@
 				<ExternalLink href="https://www.openstreetmap.org/copyright">OpenStreetMap</ExternalLink>
 			</span>
 			<span class="meta">© OpenStreetMap contributors · Open Database License (ODbL)</span>
-			<span class="meta">Used for: court locations, lights, surface</span>
+			<span class="meta">Used for court locations, lights and surface</span>
 		</li>
 		<li>
 			<span class="title">Chicago Park District</span>

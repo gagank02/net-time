@@ -10,10 +10,10 @@
 <section class="error">
 	<h1>{page.status === 404 ? 'Page not found' : 'Something went wrong'}</h1>
 	{#if page.status !== 404}
-		<p>Please try again in a moment.</p>
+		<p>Try again in a moment.</p>
 	{/if}
 	{#if page.error?.id}
-		<p>Reference: <code>{page.error.id}</code></p>
+		<p>Your reference is <code>{page.error.id}</code></p>
 	{/if}
 	<p><a href={resolve('/')}>Back to home</a></p>
 </section>

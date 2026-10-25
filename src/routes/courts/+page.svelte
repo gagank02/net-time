@@ -42,7 +42,7 @@
 				locating = false;
 				locError =
 					err.code === err.PERMISSION_DENIED
-						? 'Location is blocked for this site. Pick a neighborhood or enter a ZIP instead.'
+						? 'Your browser blocks location for this site. Pick a neighborhood or enter a ZIP instead.'
 						: "Couldn't get your location. Pick a neighborhood or enter a ZIP instead.";
 			},
 			{ enableHighAccuracy: false, maximumAge: 5 * 60_000, timeout: 10_000 }
@@ -107,8 +107,8 @@
 
 <h1>Courts</h1>
 <p class="lede">
-	{data.courts.length} Chicago Park District locations. Status as of {asOf}, from posted hours and
-	classes. Courts may still be busy.
+	{data.courts.length} Chicago Park District locations. Status at {asOf}, based on posted hours and
+	classes. Other players can still fill the courts.
 </p>
 
 <form method="GET" class="filters" data-sveltekit-keepfocus data-sveltekit-noscroll>

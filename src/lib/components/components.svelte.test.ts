@@ -85,15 +85,15 @@ describe('FormErrors', () => {
 
 	it('takes focus and links each error to its field', async () => {
 		render(FormErrors, {
-			errors: { name: 'Required', _form: 'Please try again' },
+			errors: { name: 'Required', _form: 'Try again' },
 			labels: { name: 'Name' }
 		});
 		const summary = page.getByRole('region', { name: "There's a problem" });
 		await expect.element(summary).toHaveFocus();
 		await expect
-			.element(page.getByRole('link', { name: 'Name: Required' }))
+			.element(page.getByRole('link', { name: 'Name. Required' }))
 			.toHaveAttribute('href', '#field-name');
-		await expect.element(page.getByText('Please try again')).toBeVisible();
+		await expect.element(page.getByText('Try again')).toBeVisible();
 	});
 
 	it('escapes error text (no HTML injection)', async () => {

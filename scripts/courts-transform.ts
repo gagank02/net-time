@@ -255,13 +255,16 @@ export function buildCourtsSeed(input: Input) {
 	// 4. Disambiguate parks with several court sites: by community area, then north→south position.
 	const perName = new Map<string, number>();
 	for (const k of kept) perName.set(k.name, (perName.get(k.name) ?? 0) + 1);
+	// Names read "Lincoln Park (Lake View, north)": no dashes, per the app copy style.
 	const labelOf = new Map<(typeof kept)[number], string>();
 	const byLabel = new Map<string, typeof kept>();
+	const sharedArea = (k: (typeof kept)[number]) =>
+		perName.get(k.name)! > 1 && k.area !== k.name ? k.area : null;
 	for (const k of kept) {
-		const label = perName.get(k.name)! > 1 && k.area !== k.name ? `${k.name} – ${k.area}` : k.name;
-		byLabel.set(label, [...(byLabel.get(label) ?? []), k]);
+		const key = `${k.name}|${sharedArea(k) ?? ''}`;
+		byLabel.set(key, [...(byLabel.get(key) ?? []), k]);
 	}
-	for (const [label, group] of byLabel) {
+	for (const group of byLabel.values()) {
 		const sorted = [...group].sort((a, b) => b.center.lat - a.center.lat);
 		const positions =
 			sorted.length === 2
@@ -269,9 +272,11 @@ export function buildCourtsSeed(input: Input) {
 				: sorted.length === 3
 					? ['north', 'central', 'south']
 					: [];
-		sorted.forEach((k, i) =>
-			labelOf.set(k, sorted.length > 1 ? `${label} (${positions[i] ?? i + 1})` : label)
-		);
+		sorted.forEach((k, i) => {
+			const parts = [sharedArea(k), sorted.length > 1 ? (positions[i] ?? String(i + 1)) : null];
+			const extra = parts.filter(Boolean).join(', ');
+			labelOf.set(k, extra ? `${k.name} (${extra})` : k.name);
+		});
 	}
 	const usedSlugs = new Map<string, number>();
 	const collisions: string[] = [];

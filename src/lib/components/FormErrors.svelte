@@ -30,7 +30,7 @@
 					{#if field === '_form'}
 						{message}
 					{:else}
-						<a href="#field-{field}">{labels[field] ?? field}: {message}</a>
+						<a href="#field-{field}">{labels[field] ?? field}. {message}</a>
 					{/if}
 				</li>
 			{/each}

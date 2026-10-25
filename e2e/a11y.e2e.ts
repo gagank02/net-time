@@ -22,6 +22,9 @@ for (const scheme of ['light', 'dark'] as const) {
 		test(`axe: ${name} page has no violations (${scheme})`, async ({ page }) => {
 			await page.emulateMedia({ colorScheme: scheme, reducedMotion: 'reduce' });
 			await page.goto(path);
+			// The location button renders disabled (dimmed) until hydration; audit the settled page.
+			if (path === '/courts')
+				await expect(page.getByRole('button', { name: 'Use my location' })).toBeEnabled();
 			expect(await axe(page)).toEqual([]);
 		});
 	}

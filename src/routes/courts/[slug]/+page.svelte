@@ -30,9 +30,9 @@
 	<title>{court.name} tennis courts · net-time</title>
 	<meta
 		name="description"
-		content="{court.name}: {court.courtCount} tennis {court.courtCount === 1
+		content="{court.name} has {court.courtCount} tennis {court.courtCount === 1
 			? 'court'
-			: 'courts'} in {court.communityArea}, Chicago. Hours, lights and classes."
+			: 'courts'} in {court.communityArea}, Chicago. See hours, lights and classes."
 	/>
 </svelte:head>
 
@@ -67,12 +67,12 @@
 			<dt>Access</dt>
 			<dd>
 				{#if court.access === 'reservation'}
-					Reservation required · paid
+					Paid, reservation required
 					{#if court.bookingUrl}
 						<br /><ExternalLink href={court.bookingUrl}>Book court time</ExternalLink>
 					{/if}
 				{:else}
-					Free · first come, first served
+					Free, first come first served
 				{/if}
 			</dd>
 		</div>
@@ -88,7 +88,7 @@
 		{#if court.hoursSourceUrl}
 			<ExternalLink href={court.hoursSourceUrl}>Hours source</ExternalLink>
 		{:else}
-			Standard Chicago Park District park hours (6 AM – 11 PM) unless posted otherwise.
+			Standard Chicago Park District hours, 6 AM – 11 PM, unless the park posts other hours.
 		{/if}
 	</p>
 </section>
