@@ -139,6 +139,13 @@ a:hover {
 	text-decoration: underline;
 }
 
+/* Links inside running text need more than colour to stand out (WCAG 1.4.1). */
+:where(p, li, blockquote, td, dd) a {
+	text-decoration: underline;
+	text-decoration-thickness: 1px;
+	text-underline-offset: 0.15em;
+}
+
 :focus-visible {
 	outline: 3px solid var(--focus);
 	outline-offset: 2px;

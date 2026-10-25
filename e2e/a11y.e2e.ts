@@ -3,6 +3,7 @@ import { expect, test, type Page } from '@playwright/test';
 
 const pages = [
 	{ name: 'home', path: '/' },
+	{ name: 'data', path: '/data' },
 	{ name: '404', path: '/no-such-page' },
 	{ name: 'error', path: '/__e2e/throw' }
 ];

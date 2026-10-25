@@ -30,7 +30,9 @@
 		Court and shop data ©
 		<ExternalLink href="https://www.openstreetmap.org/copyright">OpenStreetMap</ExternalLink>
 		contributors (ODbL) and the
-		<ExternalLink href="https://data.cityofchicago.org">City of Chicago Data Portal</ExternalLink>.
+		<ExternalLink href="https://data.cityofchicago.org">City of Chicago Data Portal</ExternalLink>,
+		modified for use here. Provided as is; it may be incomplete or out of date.
+		<a href={resolve('/data')}>Data sources and disclaimer</a>
 	</p>
 </footer>
 
