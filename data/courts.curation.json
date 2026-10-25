@@ -1,0 +1,46 @@
+{
+	"additions": [
+		{
+			"slug": "bell-park",
+			"name": "Bell Park",
+			"cpdParkNo": 121,
+			"courtCount": 1,
+			"lights": null,
+			"surface": null,
+			"indoor": false,
+			"note": "Court exists but is not mapped in OpenStreetMap. Location from the 2016 CPD tennis points for this park.",
+			"verifiedAt": "2026-10-25",
+			"verifiedBy": "project owner"
+		}
+	],
+	"removed": [
+		{
+			"cpdParkNo": 5,
+			"park": "Cornell (Paul) Square",
+			"note": "No tennis courts any more (removed or converted to futsal).",
+			"verifiedAt": "2026-10-25",
+			"verifiedBy": "project owner"
+		},
+		{
+			"cpdParkNo": 229,
+			"park": "Hiawatha",
+			"note": "No tennis courts any more (removed or converted to futsal).",
+			"verifiedAt": "2026-10-25",
+			"verifiedBy": "project owner"
+		},
+		{
+			"cpdParkNo": 8,
+			"park": "Ogden (William)",
+			"note": "No tennis courts any more (removed or converted to futsal).",
+			"verifiedAt": "2026-10-25",
+			"verifiedBy": "project owner"
+		},
+		{
+			"cpdParkNo": 371,
+			"park": "Valley Forge",
+			"note": "No tennis courts any more (removed or converted to futsal).",
+			"verifiedAt": "2026-10-25",
+			"verifiedBy": "project owner"
+		}
+	]
+}

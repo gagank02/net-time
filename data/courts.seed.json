@@ -1,5 +1,5 @@
 {
-	"generatedAt": "2026-10-25T15:00:50Z",
+	"generatedAt": "2026-10-25T15:14:46Z",
 	"locations": [
 		{
 			"slug": "abbott-park",
@@ -13,7 +13,10 @@
 			"indoor": false,
 			"communityArea": "Roseland",
 			"cpdParkNo": 259,
-			"osmIds": ["way/1149323476", "way/178123647"],
+			"osmIds": [
+				"way/1149323476",
+				"way/178123647"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -28,7 +31,12 @@
 			"indoor": false,
 			"communityArea": "Morgan Park",
 			"cpdParkNo": 45,
-			"osmIds": ["way/1144530478", "way/1144530479", "way/1144530480", "way/208980758"],
+			"osmIds": [
+				"way/1144530478",
+				"way/1144530479",
+				"way/1144530480",
+				"way/208980758"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -43,7 +51,9 @@
 			"indoor": false,
 			"communityArea": "Austin",
 			"cpdParkNo": 129,
-			"osmIds": ["way/944972442"],
+			"osmIds": [
+				"way/944972442"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -58,7 +68,9 @@
 			"indoor": false,
 			"communityArea": "Archer Heights",
 			"cpdParkNo": 250,
-			"osmIds": ["way/229835557"],
+			"osmIds": [
+				"way/229835557"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -73,7 +85,10 @@
 			"indoor": false,
 			"communityArea": "Armour Square",
 			"cpdParkNo": 3,
-			"osmIds": ["way/1486712069", "way/1486712070"],
+			"osmIds": [
+				"way/1486712069",
+				"way/1486712070"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -88,7 +103,10 @@
 			"indoor": false,
 			"communityArea": "South Shore",
 			"cpdParkNo": 459,
-			"osmIds": ["way/1218919033", "way/179687132"],
+			"osmIds": [
+				"way/1218919033",
+				"way/179687132"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -103,7 +121,10 @@
 			"indoor": false,
 			"communityArea": "Irving Park",
 			"cpdParkNo": 80,
-			"osmIds": ["way/1218919571", "way/208147606"],
+			"osmIds": [
+				"way/1218919571",
+				"way/208147606"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -131,6 +152,21 @@
 			"verifiedAt": "2026-10-25"
 		},
 		{
+			"slug": "bell-park",
+			"name": "Bell Park",
+			"address": null,
+			"lat": 41.934859,
+			"lng": -87.796203,
+			"courtCount": 1,
+			"lights": null,
+			"surface": null,
+			"indoor": false,
+			"communityArea": "Montclare",
+			"cpdParkNo": 121,
+			"osmIds": [],
+			"verifiedAt": "2026-10-25"
+		},
+		{
 			"slug": "bessemer-park",
 			"name": "Bessemer Park",
 			"address": null,
@@ -142,7 +178,12 @@
 			"indoor": false,
 			"communityArea": "South Chicago",
 			"cpdParkNo": 12,
-			"osmIds": ["way/904888747", "way/904888748", "way/904888749", "way/904888750"],
+			"osmIds": [
+				"way/904888747",
+				"way/904888748",
+				"way/904888749",
+				"way/904888750"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -157,7 +198,12 @@
 			"indoor": false,
 			"communityArea": "Beverly",
 			"cpdParkNo": 254,
-			"osmIds": ["way/1138574696", "way/1138574697", "way/1138574698", "way/175838543"],
+			"osmIds": [
+				"way/1138574696",
+				"way/1138574697",
+				"way/1138574698",
+				"way/175838543"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -172,7 +218,10 @@
 			"indoor": false,
 			"communityArea": "Belmont Cragin",
 			"cpdParkNo": 122,
-			"osmIds": ["way/172096931", "way/172096934"],
+			"osmIds": [
+				"way/172096931",
+				"way/172096934"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -187,7 +236,11 @@
 			"indoor": false,
 			"communityArea": "Ashburn",
 			"cpdParkNo": 264,
-			"osmIds": ["way/1138573540", "way/1138573541", "way/190575037"],
+			"osmIds": [
+				"way/1138573540",
+				"way/1138573541",
+				"way/190575037"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -202,7 +255,10 @@
 			"indoor": false,
 			"communityArea": "Washington Heights",
 			"cpdParkNo": 177,
-			"osmIds": ["way/1144531092", "way/239365787"],
+			"osmIds": [
+				"way/1144531092",
+				"way/239365787"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -217,7 +273,10 @@
 			"indoor": false,
 			"communityArea": "Avondale",
 			"cpdParkNo": 187,
-			"osmIds": ["way/1218918873", "way/221308281"],
+			"osmIds": [
+				"way/1218918873",
+				"way/221308281"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -232,7 +291,10 @@
 			"indoor": false,
 			"communityArea": "Edison Park",
 			"cpdParkNo": 61,
-			"osmIds": ["way/1489976625", "way/1489976626"],
+			"osmIds": [
+				"way/1489976625",
+				"way/1489976626"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -247,7 +309,12 @@
 			"indoor": false,
 			"communityArea": "Irving Park",
 			"cpdParkNo": 189,
-			"osmIds": ["way/1140689944", "way/1140689945", "way/1140689946", "way/117201913"],
+			"osmIds": [
+				"way/1140689944",
+				"way/1140689945",
+				"way/1140689946",
+				"way/117201913"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -294,7 +361,12 @@
 			"indoor": false,
 			"communityArea": "Uptown",
 			"cpdParkNo": 103,
-			"osmIds": ["way/954383807", "way/954383808", "way/954383809", "way/954383810"],
+			"osmIds": [
+				"way/954383807",
+				"way/954383808",
+				"way/954383809",
+				"way/954383810"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -309,7 +381,10 @@
 			"indoor": false,
 			"communityArea": "Portage Park",
 			"cpdParkNo": 146,
-			"osmIds": ["way/1144161905", "way/354396967"],
+			"osmIds": [
+				"way/1144161905",
+				"way/354396967"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -324,7 +399,10 @@
 			"indoor": false,
 			"communityArea": "Uptown",
 			"cpdParkNo": 1002,
-			"osmIds": ["way/167794876", "way/608407247"],
+			"osmIds": [
+				"way/167794876",
+				"way/608407247"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -361,7 +439,10 @@
 			"indoor": false,
 			"communityArea": "West Pullman",
 			"cpdParkNo": 287,
-			"osmIds": ["way/1219061271", "way/234244802"],
+			"osmIds": [
+				"way/1219061271",
+				"way/234244802"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -376,7 +457,11 @@
 			"indoor": false,
 			"communityArea": "Beverly",
 			"cpdParkNo": 176,
-			"osmIds": ["way/1144531119", "way/1144531120", "way/172094856"],
+			"osmIds": [
+				"way/1144531119",
+				"way/1144531120",
+				"way/172094856"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -391,7 +476,10 @@
 			"indoor": false,
 			"communityArea": "Belmont Cragin",
 			"cpdParkNo": 131,
-			"osmIds": ["way/1489979054", "way/1489979055"],
+			"osmIds": [
+				"way/1489979054",
+				"way/1489979055"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -406,7 +494,10 @@
 			"indoor": false,
 			"communityArea": "Morgan Park",
 			"cpdParkNo": 47,
-			"osmIds": ["way/1218919227", "way/172426582"],
+			"osmIds": [
+				"way/1218919227",
+				"way/172426582"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -442,7 +533,11 @@
 			"indoor": false,
 			"communityArea": "North Lawndale",
 			"cpdParkNo": 218,
-			"osmIds": ["way/1288163117", "way/1288163118", "way/1288163119"],
+			"osmIds": [
+				"way/1288163117",
+				"way/1288163118",
+				"way/1288163119"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -479,7 +574,11 @@
 			"indoor": false,
 			"communityArea": "Portage Park",
 			"cpdParkNo": 258,
-			"osmIds": ["way/1139091115", "way/1139091116", "way/208356467"],
+			"osmIds": [
+				"way/1139091115",
+				"way/1139091116",
+				"way/208356467"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -494,7 +593,10 @@
 			"indoor": false,
 			"communityArea": "West Pullman",
 			"cpdParkNo": 379,
-			"osmIds": ["way/1219060868", "way/235789196"],
+			"osmIds": [
+				"way/1219060868",
+				"way/235789196"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -509,7 +611,10 @@
 			"indoor": false,
 			"communityArea": "West Ridge",
 			"cpdParkNo": 104,
-			"osmIds": ["way/1218919395", "way/209413000"],
+			"osmIds": [
+				"way/1218919395",
+				"way/209413000"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -524,7 +629,10 @@
 			"indoor": false,
 			"communityArea": "Washington Heights",
 			"cpdParkNo": 66,
-			"osmIds": ["way/1219044560", "way/238944938"],
+			"osmIds": [
+				"way/1219044560",
+				"way/238944938"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -539,7 +647,12 @@
 			"indoor": false,
 			"communityArea": "Roseland",
 			"cpdParkNo": 65,
-			"osmIds": ["way/1144530724", "way/1144530725", "way/1144530726", "way/233049686"],
+			"osmIds": [
+				"way/1144530724",
+				"way/1144530725",
+				"way/1144530726",
+				"way/233049686"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -554,7 +667,12 @@
 			"indoor": false,
 			"communityArea": "Albany Park",
 			"cpdParkNo": 41,
-			"osmIds": ["way/1139091445", "way/1139091446", "way/1139091447", "way/1139091448"],
+			"osmIds": [
+				"way/1139091445",
+				"way/1139091446",
+				"way/1139091447",
+				"way/1139091448"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -592,7 +710,11 @@
 			"indoor": false,
 			"communityArea": "Portage Park",
 			"cpdParkNo": 145,
-			"osmIds": ["way/1141834933", "way/1141834934", "way/208056522"],
+			"osmIds": [
+				"way/1141834933",
+				"way/1141834934",
+				"way/208056522"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -607,7 +729,10 @@
 			"indoor": false,
 			"communityArea": "Fuller Park",
 			"cpdParkNo": 4,
-			"osmIds": ["way/1489991652", "way/1489991653"],
+			"osmIds": [
+				"way/1489991652",
+				"way/1489991653"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -622,7 +747,12 @@
 			"indoor": false,
 			"communityArea": "Gage Park",
 			"cpdParkNo": 22,
-			"osmIds": ["way/404273045", "way/904885732", "way/904885733", "way/904885734"],
+			"osmIds": [
+				"way/404273045",
+				"way/904885732",
+				"way/904885733",
+				"way/904885734"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -637,7 +767,12 @@
 			"indoor": false,
 			"communityArea": "East Garfield Park",
 			"cpdParkNo": 204,
-			"osmIds": ["way/1138572128", "way/1138572129", "way/1138572130", "way/116060584"],
+			"osmIds": [
+				"way/1138572128",
+				"way/1138572129",
+				"way/1138572130",
+				"way/116060584"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -673,7 +808,12 @@
 			"indoor": false,
 			"communityArea": "Greater Grand Crossing",
 			"cpdParkNo": 15,
-			"osmIds": ["way/1240514655", "way/1240514656", "way/1240514657", "way/178134566"],
+			"osmIds": [
+				"way/1240514655",
+				"way/1240514656",
+				"way/1240514657",
+				"way/178134566"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -710,7 +850,11 @@
 			"indoor": false,
 			"communityArea": "Beverly",
 			"cpdParkNo": 179,
-			"osmIds": ["way/1223307003", "way/1223307004", "way/172094857"],
+			"osmIds": [
+				"way/1223307003",
+				"way/1223307004",
+				"way/172094857"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -725,7 +869,9 @@
 			"indoor": false,
 			"communityArea": "West Ridge",
 			"cpdParkNo": 188,
-			"osmIds": ["way/209528922"],
+			"osmIds": [
+				"way/209528922"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -740,7 +886,9 @@
 			"indoor": false,
 			"communityArea": "Kenwood",
 			"cpdParkNo": 362,
-			"osmIds": ["way/1571182109"],
+			"osmIds": [
+				"way/1571182109"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -755,7 +903,10 @@
 			"indoor": false,
 			"communityArea": "Clearing",
 			"cpdParkNo": 234,
-			"osmIds": ["way/1490215538", "way/1490215539"],
+			"osmIds": [
+				"way/1490215538",
+				"way/1490215539"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -794,7 +945,10 @@
 			"indoor": false,
 			"communityArea": "North Center",
 			"cpdParkNo": 106,
-			"osmIds": ["way/1216065655", "way/23989712"],
+			"osmIds": [
+				"way/1216065655",
+				"way/23989712"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -809,7 +963,9 @@
 			"indoor": false,
 			"communityArea": "Lower West Side",
 			"cpdParkNo": 213,
-			"osmIds": ["way/168104072"],
+			"osmIds": [
+				"way/168104072"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -824,7 +980,9 @@
 			"indoor": false,
 			"communityArea": "North Park",
 			"cpdParkNo": 75,
-			"osmIds": ["way/224729564"],
+			"osmIds": [
+				"way/224729564"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -839,7 +997,12 @@
 			"indoor": false,
 			"communityArea": "Irving Park",
 			"cpdParkNo": 228,
-			"osmIds": ["way/1144168864", "way/1144168865", "way/1144168866", "way/32709663"],
+			"osmIds": [
+				"way/1144168864",
+				"way/1144168865",
+				"way/1144168866",
+				"way/32709663"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -854,7 +1017,12 @@
 			"indoor": false,
 			"communityArea": "West Town",
 			"cpdParkNo": 219,
-			"osmIds": ["way/1138572392", "way/1138572393", "way/1138572394", "way/70985668"],
+			"osmIds": [
+				"way/1138572392",
+				"way/1138572393",
+				"way/1138572394",
+				"way/70985668"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -869,7 +1037,12 @@
 			"indoor": false,
 			"communityArea": "Irving Park",
 			"cpdParkNo": 83,
-			"osmIds": ["way/1147424975", "way/1147424976", "way/1147424977", "way/149598415"],
+			"osmIds": [
+				"way/1147424975",
+				"way/1147424976",
+				"way/1147424977",
+				"way/149598415"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -884,7 +1057,12 @@
 			"indoor": false,
 			"communityArea": "West Ridge",
 			"cpdParkNo": 165,
-			"osmIds": ["way/1138570341", "way/1138570342", "way/1138570343", "way/182327686"],
+			"osmIds": [
+				"way/1138570341",
+				"way/1138570342",
+				"way/1138570343",
+				"way/182327686"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -945,7 +1123,11 @@
 			"indoor": false,
 			"communityArea": "Jefferson Park",
 			"cpdParkNo": 94,
-			"osmIds": ["way/1141831552", "way/1141831553", "way/204487771"],
+			"osmIds": [
+				"way/1141831552",
+				"way/1141831553",
+				"way/204487771"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -982,7 +1164,10 @@
 			"indoor": false,
 			"communityArea": "Lincoln Park",
 			"cpdParkNo": 1270,
-			"osmIds": ["way/1216065670", "way/31135311"],
+			"osmIds": [
+				"way/1216065670",
+				"way/31135311"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -997,7 +1182,10 @@
 			"indoor": false,
 			"communityArea": "South Deering",
 			"cpdParkNo": 1004,
-			"osmIds": ["way/1218918950", "way/218399139"],
+			"osmIds": [
+				"way/1218918950",
+				"way/218399139"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -1012,7 +1200,10 @@
 			"indoor": false,
 			"communityArea": "Hermosa",
 			"cpdParkNo": 126,
-			"osmIds": ["way/1489978372", "way/1489978373"],
+			"osmIds": [
+				"way/1489978372",
+				"way/1489978373"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -1027,7 +1218,10 @@
 			"indoor": false,
 			"communityArea": "Morgan Park",
 			"cpdParkNo": 48,
-			"osmIds": ["way/1489990024", "way/1489990025"],
+			"osmIds": [
+				"way/1489990024",
+				"way/1489990025"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -1042,7 +1236,10 @@
 			"indoor": false,
 			"communityArea": "Kenwood",
 			"cpdParkNo": 1010,
-			"osmIds": ["way/115807839", "way/1216065582"],
+			"osmIds": [
+				"way/115807839",
+				"way/1216065582"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -1057,7 +1254,10 @@
 			"indoor": false,
 			"communityArea": "Irving Park",
 			"cpdParkNo": 84,
-			"osmIds": ["way/1144215955", "way/232864551"],
+			"osmIds": [
+				"way/1144215955",
+				"way/232864551"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -1072,7 +1272,9 @@
 			"indoor": false,
 			"communityArea": "Logan Square",
 			"cpdParkNo": 120,
-			"osmIds": ["way/172225703"],
+			"osmIds": [
+				"way/172225703"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -1087,7 +1289,9 @@
 			"indoor": false,
 			"communityArea": "Austin",
 			"cpdParkNo": 201,
-			"osmIds": ["way/351709698"],
+			"osmIds": [
+				"way/351709698"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -1102,7 +1306,10 @@
 			"indoor": false,
 			"communityArea": "Near North Side",
 			"cpdParkNo": 107,
-			"osmIds": ["way/1486711924", "way/1486711925"],
+			"osmIds": [
+				"way/1486711924",
+				"way/1486711925"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -1117,7 +1324,10 @@
 			"indoor": false,
 			"communityArea": "Garfield Ridge",
 			"cpdParkNo": 305,
-			"osmIds": ["way/1060402251", "way/354942743"],
+			"osmIds": [
+				"way/1060402251",
+				"way/354942743"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -1132,7 +1342,10 @@
 			"indoor": false,
 			"communityArea": "North Park",
 			"cpdParkNo": 274,
-			"osmIds": ["way/1216921733", "way/123466514"],
+			"osmIds": [
+				"way/1216921733",
+				"way/123466514"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -1147,7 +1360,10 @@
 			"indoor": false,
 			"communityArea": "West Ridge",
 			"cpdParkNo": 273,
-			"osmIds": ["way/1489980115", "way/1489980116"],
+			"osmIds": [
+				"way/1489980115",
+				"way/1489980116"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -1224,7 +1440,10 @@
 			"indoor": false,
 			"communityArea": "West Englewood",
 			"cpdParkNo": 243,
-			"osmIds": ["way/1478695483", "way/1478695536"],
+			"osmIds": [
+				"way/1478695483",
+				"way/1478695536"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -1239,7 +1458,12 @@
 			"indoor": false,
 			"communityArea": "Rogers Park",
 			"cpdParkNo": 115,
-			"osmIds": ["way/1147427858", "way/1147427859", "way/1147427860", "way/164752735"],
+			"osmIds": [
+				"way/1147427858",
+				"way/1147427859",
+				"way/1147427860",
+				"way/164752735"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -1276,7 +1500,10 @@
 			"indoor": false,
 			"communityArea": "Auburn Gresham",
 			"cpdParkNo": 386,
-			"osmIds": ["way/1218918502", "way/226318753"],
+			"osmIds": [
+				"way/1218918502",
+				"way/226318753"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -1291,7 +1518,10 @@
 			"indoor": false,
 			"communityArea": "Grand Boulevard",
 			"cpdParkNo": 504,
-			"osmIds": ["way/1422758554", "way/1422758558"],
+			"osmIds": [
+				"way/1422758554",
+				"way/1422758558"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -1306,7 +1536,12 @@
 			"indoor": false,
 			"communityArea": "Hegewisch",
 			"cpdParkNo": 17,
-			"osmIds": ["way/1482582630", "way/1482582631", "way/1482582632", "way/1482582633"],
+			"osmIds": [
+				"way/1482582630",
+				"way/1482582631",
+				"way/1482582632",
+				"way/1482582633"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -1364,7 +1599,12 @@
 			"indoor": false,
 			"communityArea": "West Ridge",
 			"cpdParkNo": 241,
-			"osmIds": ["way/1147425891", "way/1147425892", "way/1147425893", "way/209412995"],
+			"osmIds": [
+				"way/1147425891",
+				"way/1147425892",
+				"way/1147425893",
+				"way/209412995"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -1422,7 +1662,10 @@
 			"indoor": false,
 			"communityArea": "McKinley Park",
 			"cpdParkNo": 23,
-			"osmIds": ["way/1423648157", "way/1423648158"],
+			"osmIds": [
+				"way/1423648157",
+				"way/1423648158"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -1437,7 +1680,10 @@
 			"indoor": false,
 			"communityArea": "Grand Boulevard",
 			"cpdParkNo": 448,
-			"osmIds": ["way/1489981428", "way/1489981429"],
+			"osmIds": [
+				"way/1489981428",
+				"way/1489981429"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -1452,7 +1698,10 @@
 			"indoor": false,
 			"communityArea": "Clearing",
 			"cpdParkNo": 307,
-			"osmIds": ["way/1490215707", "way/1490215708"],
+			"osmIds": [
+				"way/1490215707",
+				"way/1490215708"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -1467,7 +1716,12 @@
 			"indoor": false,
 			"communityArea": "Mount Greenwood",
 			"cpdParkNo": 251,
-			"osmIds": ["way/1144179774", "way/1144179775", "way/1144179776", "way/175947167"],
+			"osmIds": [
+				"way/1144179774",
+				"way/1144179775",
+				"way/1144179776",
+				"way/175947167"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -1482,7 +1736,10 @@
 			"indoor": false,
 			"communityArea": "Hyde Park",
 			"cpdParkNo": 277,
-			"osmIds": ["way/1489992576", "way/1489992577"],
+			"osmIds": [
+				"way/1489992576",
+				"way/1489992577"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -1497,7 +1754,10 @@
 			"indoor": false,
 			"communityArea": "Norwood Park",
 			"cpdParkNo": 141,
-			"osmIds": ["way/1144160872", "way/195729410"],
+			"osmIds": [
+				"way/1144160872",
+				"way/195729410"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -1512,7 +1772,9 @@
 			"indoor": false,
 			"communityArea": "Auburn Gresham",
 			"cpdParkNo": 1012,
-			"osmIds": ["way/234348461"],
+			"osmIds": [
+				"way/234348461"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -1527,7 +1789,11 @@
 			"indoor": false,
 			"communityArea": "Edison Park",
 			"cpdParkNo": 60,
-			"osmIds": ["way/1144160234", "way/1144160235", "way/194741170"],
+			"osmIds": [
+				"way/1144160234",
+				"way/1144160235",
+				"way/194741170"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -1542,7 +1808,11 @@
 			"indoor": false,
 			"communityArea": "Norwood Park",
 			"cpdParkNo": 59,
-			"osmIds": ["way/1144160964", "way/1144160965", "way/206810146"],
+			"osmIds": [
+				"way/1144160964",
+				"way/1144160965",
+				"way/206810146"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -1557,7 +1827,12 @@
 			"indoor": false,
 			"communityArea": "Lincoln Park",
 			"cpdParkNo": 423,
-			"osmIds": ["way/1144169023", "way/1144169024", "way/1144169025", "way/28292484"],
+			"osmIds": [
+				"way/1144169023",
+				"way/1144169024",
+				"way/1144169025",
+				"way/28292484"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -1594,7 +1869,10 @@
 			"indoor": false,
 			"communityArea": "West Elsdon",
 			"cpdParkNo": 247,
-			"osmIds": ["way/1489993406", "way/1489993407"],
+			"osmIds": [
+				"way/1489993406",
+				"way/1489993407"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -1609,7 +1887,12 @@
 			"indoor": false,
 			"communityArea": "North Park",
 			"cpdParkNo": 452,
-			"osmIds": ["way/1147425215", "way/1147425216", "way/1147425217", "way/183375809"],
+			"osmIds": [
+				"way/1147425215",
+				"way/1147425216",
+				"way/1147425217",
+				"way/183375809"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -1624,7 +1907,9 @@
 			"indoor": false,
 			"communityArea": "South Lawndale",
 			"cpdParkNo": 230,
-			"osmIds": ["way/205111090"],
+			"osmIds": [
+				"way/205111090"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -1689,7 +1974,9 @@
 			"indoor": false,
 			"communityArea": "Ashburn",
 			"cpdParkNo": 33,
-			"osmIds": ["way/176408382"],
+			"osmIds": [
+				"way/176408382"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -1704,7 +1991,12 @@
 			"indoor": false,
 			"communityArea": "North Center",
 			"cpdParkNo": 185,
-			"osmIds": ["way/1140689780", "way/1140689781", "way/1140689782", "way/117201928"],
+			"osmIds": [
+				"way/1140689780",
+				"way/1140689781",
+				"way/1140689782",
+				"way/117201928"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -1719,7 +2011,10 @@
 			"indoor": false,
 			"communityArea": "Beverly",
 			"cpdParkNo": 175,
-			"osmIds": ["way/1489990258", "way/1489990259"],
+			"osmIds": [
+				"way/1489990258",
+				"way/1489990259"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -1781,7 +2076,9 @@
 			"indoor": false,
 			"communityArea": "Grand Boulevard",
 			"cpdParkNo": 271,
-			"osmIds": ["way/355517716"],
+			"osmIds": [
+				"way/355517716"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -1796,7 +2093,10 @@
 			"indoor": false,
 			"communityArea": "Washington Heights",
 			"cpdParkNo": 320,
-			"osmIds": ["way/1147429265", "way/352655449"],
+			"osmIds": [
+				"way/1147429265",
+				"way/352655449"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -1811,7 +2111,10 @@
 			"indoor": false,
 			"communityArea": "Rogers Park",
 			"cpdParkNo": 1262,
-			"osmIds": ["way/1299164114", "way/165567627"],
+			"osmIds": [
+				"way/1299164114",
+				"way/165567627"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -1826,7 +2129,12 @@
 			"indoor": false,
 			"communityArea": "West Ridge",
 			"cpdParkNo": 240,
-			"osmIds": ["way/1147251505", "way/1147251506", "way/1147251507", "way/1147251508"],
+			"osmIds": [
+				"way/1147251505",
+				"way/1147251506",
+				"way/1147251507",
+				"way/1147251508"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -1841,7 +2149,10 @@
 			"indoor": false,
 			"communityArea": "Loop",
 			"cpdParkNo": 466,
-			"osmIds": ["way/1144169594", "way/1144169595"],
+			"osmIds": [
+				"way/1144169594",
+				"way/1144169595"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -1856,7 +2167,9 @@
 			"indoor": false,
 			"communityArea": "Norwood Park",
 			"cpdParkNo": 91,
-			"osmIds": ["way/195437884"],
+			"osmIds": [
+				"way/195437884"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -1871,7 +2184,10 @@
 			"indoor": false,
 			"communityArea": "South Shore",
 			"cpdParkNo": 231,
-			"osmIds": ["way/1240529115", "way/1240529116"],
+			"osmIds": [
+				"way/1240529115",
+				"way/1240529116"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -1886,7 +2202,9 @@
 			"indoor": false,
 			"communityArea": "Montclare",
 			"cpdParkNo": 127,
-			"osmIds": ["way/154875608"],
+			"osmIds": [
+				"way/154875608"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -1901,7 +2219,10 @@
 			"indoor": false,
 			"communityArea": "Forest Glen",
 			"cpdParkNo": 195,
-			"osmIds": ["way/1141839561", "way/194537569"],
+			"osmIds": [
+				"way/1141839561",
+				"way/194537569"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -1916,7 +2237,9 @@
 			"indoor": false,
 			"communityArea": "Edgewater",
 			"cpdParkNo": 227,
-			"osmIds": ["way/183799433"],
+			"osmIds": [
+				"way/183799433"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -1952,7 +2275,11 @@
 			"indoor": false,
 			"communityArea": "Near West Side",
 			"cpdParkNo": 205,
-			"osmIds": ["way/1144169861", "way/1144169862", "way/32792518"],
+			"osmIds": [
+				"way/1144169861",
+				"way/1144169862",
+				"way/32792518"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -1967,7 +2294,10 @@
 			"indoor": false,
 			"communityArea": "New City",
 			"cpdParkNo": 7,
-			"osmIds": ["way/1281179501", "way/1281179502"],
+			"osmIds": [
+				"way/1281179501",
+				"way/1281179502"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -1982,7 +2312,10 @@
 			"indoor": false,
 			"communityArea": "Chatham",
 			"cpdParkNo": 289,
-			"osmIds": ["way/1489992973", "way/1489992974"],
+			"osmIds": [
+				"way/1489992973",
+				"way/1489992974"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -1997,7 +2330,12 @@
 			"indoor": false,
 			"communityArea": "Near West Side",
 			"cpdParkNo": 211,
-			"osmIds": ["way/1138572099", "way/1138572100", "way/1138572101", "way/179119869"],
+			"osmIds": [
+				"way/1138572099",
+				"way/1138572100",
+				"way/1138572101",
+				"way/179119869"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -2012,7 +2350,10 @@
 			"indoor": false,
 			"communityArea": "West Town",
 			"cpdParkNo": 1015,
-			"osmIds": ["way/1218035127", "way/1218035128"],
+			"osmIds": [
+				"way/1218035127",
+				"way/1218035128"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -2027,7 +2368,10 @@
 			"indoor": false,
 			"communityArea": "Rogers Park",
 			"cpdParkNo": 246,
-			"osmIds": ["way/1218919386", "way/210186991"],
+			"osmIds": [
+				"way/1218919386",
+				"way/210186991"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -2042,7 +2386,10 @@
 			"indoor": false,
 			"communityArea": "South Deering",
 			"cpdParkNo": 16,
-			"osmIds": ["way/1218918946", "way/218399158"],
+			"osmIds": [
+				"way/1218918946",
+				"way/218399158"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -2081,7 +2428,9 @@
 			"indoor": false,
 			"communityArea": "Near West Side",
 			"cpdParkNo": 210,
-			"osmIds": ["way/1060879186"],
+			"osmIds": [
+				"way/1060879186"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -2096,7 +2445,10 @@
 			"indoor": false,
 			"communityArea": "Garfield Ridge",
 			"cpdParkNo": 233,
-			"osmIds": ["way/1490215895", "way/1490215896"],
+			"osmIds": [
+				"way/1490215895",
+				"way/1490215896"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -2157,7 +2509,10 @@
 			"indoor": false,
 			"communityArea": "Washington Park",
 			"cpdParkNo": 21,
-			"osmIds": ["way/1215908350", "way/39139356"],
+			"osmIds": [
+				"way/1215908350",
+				"way/39139356"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -2195,7 +2550,11 @@
 			"indoor": false,
 			"communityArea": "Lincoln Square",
 			"cpdParkNo": 110,
-			"osmIds": ["way/1144168890", "way/1144168891", "way/31136596"],
+			"osmIds": [
+				"way/1144168890",
+				"way/1144168891",
+				"way/31136596"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -2210,7 +2569,10 @@
 			"indoor": false,
 			"communityArea": "Chatham",
 			"cpdParkNo": 249,
-			"osmIds": ["way/1147429414", "way/218866640"],
+			"osmIds": [
+				"way/1147429414",
+				"way/218866640"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -2246,7 +2608,10 @@
 			"indoor": false,
 			"communityArea": "Forest Glen",
 			"cpdParkNo": 257,
-			"osmIds": ["way/1147422469", "way/201367990"],
+			"osmIds": [
+				"way/1147422469",
+				"way/201367990"
+			],
 			"verifiedAt": "2026-10-25"
 		},
 		{
@@ -2261,7 +2626,10 @@
 			"indoor": false,
 			"communityArea": "Lincoln Square",
 			"cpdParkNo": 486,
-			"osmIds": ["way/116827401", "way/116827406"],
+			"osmIds": [
+				"way/116827401",
+				"way/116827406"
+			],
 			"verifiedAt": "2026-10-25"
 		}
 	]

@@ -1,26 +1,32 @@
 # Courts seed report
 
-Generated 2026-10-25T15:00:50Z from OpenStreetMap (data as of 2026-10-25T14:55:50Z) and City of Chicago datasets eix4-gf83, igwz-8jzy, unjd-c2ca.
+Generated 2026-10-25T15:14:46Z from OpenStreetMap (data as of 2026-10-25T14:55:50Z) and City of Chicago datasets eix4-gf83, igwz-8jzy, unjd-c2ca.
 
 ## Totals
 
 - OSM tennis courts in Chicago: 653 (43 private/no access, skipped)
 - Court sites (clusters): 175
-- **Park District locations kept: 134** (472 courts)
+- **Park District locations kept: 135** (473 courts)
 - Kept because inside a Park District park, though not on the 2016 tennis list: 4
 - Excluded, not a Park District site (no 2016 CPD tennis point within 150 m, not inside a CPD park): 41
 - Excluded, outside community areas: 0
-- CPD parks with tennis (2016): 130; matched: 124; **unmatched: 6**
-- Field coverage: lights known 11%, surface known 22%
+- CPD parks with tennis (2016, by park number): 129; matched: 124; added by hand: 1; confirmed removed: 4; **still unexplained: 0**
+- Field coverage: lights known 11%, surface known 21%
 
-## CPD parks with tennis in 2016 but no OSM courts matched (check: removed, or missing from OSM?)
+## CPD parks with tennis in 2016, no OSM courts, not yet curated (check: removed, or missing from OSM?)
 
-- Bell (George,jr.)
-- Cornell (Paul) Square
-- Hiawatha
-- Marquette (Jacques)
-- Ogden (William)
-- Valley Forge
+- none
+
+## Added by hand (data/courts.curation.json)
+
+- Bell Park (1 court(s)): Court exists but is not mapped in OpenStreetMap. Location from the 2016 CPD tennis points for this park. Verified 2026-10-25 by project owner.
+
+## Confirmed removed (data/courts.curation.json)
+
+- Cornell (Paul) Square: No tennis courts any more (removed or converted to futsal). Verified 2026-10-25 by project owner.
+- Hiawatha: No tennis courts any more (removed or converted to futsal). Verified 2026-10-25 by project owner.
+- Ogden (William): No tennis courts any more (removed or converted to futsal). Verified 2026-10-25 by project owner.
+- Valley Forge: No tennis courts any more (removed or converted to futsal). Verified 2026-10-25 by project owner.
 
 ## Kept: inside a Park District park but not on the 2016 tennis list (newer courts? please spot-check)
 

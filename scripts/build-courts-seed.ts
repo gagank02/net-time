@@ -20,7 +20,7 @@ import {
 	type Polygon,
 	type Ring
 } from './courts-transform.ts';
-import { AreasSeed, CourtsSeed } from './seed-schema.ts';
+import { AreasSeed, CourtsSeed, CurationSeed } from './seed-schema.ts';
 
 const userAgent = 'net-time-seed/0.1 (+https://github.com/gagank02/net-time)';
 const refreshArg = process.argv.find((a) => a.startsWith('--refresh'));
@@ -179,10 +179,15 @@ const zips = Features.parse(await fetchCached('zips')).features.map((f) => ({
 	polygons: polygonsOf(f.geometry)
 }));
 
+const curation = CurationSeed.parse(
+	JSON.parse(await readFile('data/courts.curation.json', 'utf8'))
+);
+
 const { courts, areas, report } = buildCourtsSeed({
 	...osm,
 	cpdCourts,
 	cpdFacilities,
+	curation,
 	communityAreas,
 	zips,
 	generatedAt: new Date().toISOString().replace(/\.\d+Z$/, 'Z')

@@ -1,6 +1,8 @@
 // Pure transform: raw OSM + City of Chicago data → reviewed-seed shape + a human-readable report.
 // No network here; build-courts-seed.ts fetches (politely, cached) and calls buildCourtsSeed().
+import type { z } from 'zod';
 import { distanceMeters, type LatLng } from '../src/lib/geo.ts';
+import type { CurationSeed } from './seed-schema.ts';
 
 export type Ring = [number, number][]; // [lng, lat] pairs, closed
 export type Polygon = Ring[]; // outer ring, then holes
@@ -18,6 +20,7 @@ export type Input = {
 	cpdFacilities: CpdCourt[]; // every 2016 Park District facility point (fieldhouses, playgrounds, …)
 	communityAreas: Area[];
 	zips: Zip[];
+	curation: z.infer<typeof CurationSeed>;
 	generatedAt: string; // ISO datetime
 	osmTimestamp: string;
 };
@@ -273,46 +276,107 @@ export function buildCourtsSeed(input: Input) {
 	const usedSlugs = new Map<string, number>();
 	const collisions: string[] = [];
 
-	const locations = kept
-		.map((k) => {
-			const displayName = labelOf.get(k)!;
-			let slug = slugify(displayName);
-			const n = (usedSlugs.get(slug) ?? 0) + 1;
-			usedSlugs.set(slug, n);
-			if (n > 1) {
-				collisions.push(`${slug} → ${slug}-${n}`);
-				slug = `${slug}-${n}`;
-			}
-			const lit = k.pitches.map((p) => p.tags.lit);
-			const surfaceVotes = k.pitches.map((p) => surfaces[p.tags.surface]).filter(Boolean);
-			const surface = surfaceVotes.length
-				? [...new Set(surfaceVotes)].sort(
-						(a, b) =>
-							surfaceVotes.filter((s) => s === b).length -
-							surfaceVotes.filter((s) => s === a).length
-					)[0]
-				: null;
-			return {
-				slug,
-				name: displayName,
-				address: null,
-				lat: round6(k.center.lat),
-				lng: round6(k.center.lng),
-				courtCount: Math.min(k.pitches.length, 40),
-				lights: lit.includes('yes')
-					? true
-					: lit.length && lit.every((v) => v === 'no')
-						? false
-						: null,
-				surface,
-				indoor: k.pitches.every((p) => p.tags.indoor === 'yes' || p.tags.building === 'yes'),
-				communityArea: k.area,
-				cpdParkNo: k.cpd.parkNo,
-				osmIds: k.pitches.map((p) => p.id).sort(),
-				verifiedAt
-			};
-		})
-		.sort((a, b) => a.slug.localeCompare(b.slug));
+	const locations = kept.map((k) => {
+		const displayName = labelOf.get(k)!;
+		let slug = slugify(displayName);
+		const n = (usedSlugs.get(slug) ?? 0) + 1;
+		usedSlugs.set(slug, n);
+		if (n > 1) {
+			collisions.push(`${slug} → ${slug}-${n}`);
+			slug = `${slug}-${n}`;
+		}
+		const lit = k.pitches.map((p) => p.tags.lit);
+		const surfaceVotes = k.pitches.map((p) => surfaces[p.tags.surface]).filter(Boolean);
+		const surface = surfaceVotes.length
+			? [...new Set(surfaceVotes)].sort(
+					(a, b) =>
+						surfaceVotes.filter((s) => s === b).length - surfaceVotes.filter((s) => s === a).length
+				)[0]
+			: null;
+		return {
+			slug,
+			name: displayName,
+			address: null,
+			lat: round6(k.center.lat),
+			lng: round6(k.center.lng),
+			courtCount: Math.min(k.pitches.length, 40),
+			lights: lit.includes('yes')
+				? true
+				: lit.length && lit.every((v) => v === 'no')
+					? false
+					: null,
+			surface,
+			indoor: k.pitches.every((p) => p.tags.indoor === 'yes' || p.tags.building === 'yes'),
+			communityArea: k.area,
+			cpdParkNo: k.cpd.parkNo,
+			osmIds: k.pitches.map((p) => p.id).sort(),
+			verifiedAt
+		};
+	});
+
+	// 4b. Human curation: courts missing from OSM, and parks confirmed to have no courts.
+	// CPD parks are keyed by park number: the City data spells some names two ways
+	// (e.g. "MARQUETTE (JACQUES)" and "MARQUETTE (jACQUES)").
+	const parkKey = (c: CpdCourt) => (c.parkNo !== null ? `#${c.parkNo}` : c.park.toUpperCase());
+	const tennisParks = new Map<string, string>();
+	for (const c of input.cpdCourts)
+		if (!tennisParks.has(parkKey(c))) tennisParks.set(parkKey(c), c.park);
+	const matched = new Set(kept.map((k) => parkKey(k.cpd)).filter((key) => tennisParks.has(key)));
+
+	const added: string[] = [];
+	const curationWarnings: string[] = [];
+	for (const a of input.curation.additions) {
+		if (matched.has(`#${a.cpdParkNo}`)) {
+			curationWarnings.push(
+				`addition ${a.slug}: OSM now has courts for park #${a.cpdParkNo}; remove the addition`
+			);
+			continue;
+		}
+		const points = input.cpdCourts.filter((c) => c.parkNo === a.cpdParkNo);
+		if (!points.length)
+			throw new Error(`curation addition ${a.slug}: no CPD tennis points for park #${a.cpdParkNo}`);
+		if (locations.some((l) => l.slug === a.slug))
+			throw new Error(`curation addition ${a.slug}: slug already used`);
+		const at = mean(points);
+		const area = areaOf(at);
+		if (!area) throw new Error(`curation addition ${a.slug}: outside community areas`);
+		locations.push({
+			slug: a.slug,
+			name: a.name,
+			address: null,
+			lat: round6(at.lat),
+			lng: round6(at.lng),
+			courtCount: a.courtCount,
+			lights: a.lights,
+			surface: a.surface,
+			indoor: a.indoor,
+			communityArea: titleCase(area),
+			cpdParkNo: a.cpdParkNo,
+			osmIds: [],
+			verifiedAt: a.verifiedAt
+		});
+		matched.add(`#${a.cpdParkNo}`);
+		added.push(
+			`- ${a.name} (${a.courtCount} court(s)): ${a.note} Verified ${a.verifiedAt} by ${a.verifiedBy}.`
+		);
+	}
+
+	const removed = new Set<string>();
+	const removedLines: string[] = [];
+	for (const r of input.curation.removed) {
+		const key = `#${r.cpdParkNo}`;
+		if (matched.has(key))
+			curationWarnings.push(
+				`removed ${r.park}: OSM still has courts matched to park #${r.cpdParkNo}; check`
+			);
+		removed.add(key);
+		removedLines.push(`- ${r.park}: ${r.note} Verified ${r.verifiedAt} by ${r.verifiedBy}.`);
+	}
+	const missingCpd = [...tennisParks]
+		.filter(([key]) => !matched.has(key) && !removed.has(key))
+		.map(([, name]) => titleCase(name))
+		.sort();
+	locations.sort((a, b) => a.slug.localeCompare(b.slug));
 
 	// 5. Community area and ZIP centroids for on-device "near me" without location permission.
 	const areas = {
@@ -326,11 +390,6 @@ export function buildCourtsSeed(input: Input) {
 		zips: mergeZips(input.zips)
 	};
 
-	const matchedCpdParks = new Set(
-		kept.map((k) => k.cpd.park).filter((p) => input.cpdCourts.some((c) => c.park === p))
-	);
-	const cpdParks = [...new Set(input.cpdCourts.map((c) => c.park))];
-	const missingCpd = cpdParks.filter((p) => !matchedCpdParks.has(p)).sort();
 	const splitParks = [...perName]
 		.filter(([, n]) => n > 1)
 		.map(([name, n]) => `- ${name}: ${n} sites`);
@@ -349,12 +408,23 @@ export function buildCourtsSeed(input: Input) {
 		`- Kept because inside a Park District park, though not on the 2016 tennis list: ${byParkOnly.length}`,
 		`- Excluded, not a Park District site (no 2016 CPD tennis point within ${cpdMatchMeters} m, not inside a CPD park): ${excluded.length}`,
 		`- Excluded, outside community areas: ${outsideCity.length}`,
-		`- CPD parks with tennis (2016): ${cpdParks.length}; matched: ${matchedCpdParks.size}; **unmatched: ${missingCpd.length}**`,
+		`- CPD parks with tennis (2016, by park number): ${tennisParks.size}; matched: ${matched.size - added.length}; added by hand: ${added.length}; confirmed removed: ${removed.size}; **still unexplained: ${missingCpd.length}**`,
 		`- Field coverage: lights known ${pct(locations.filter((l) => l.lights !== null).length)}, surface known ${pct(locations.filter((l) => l.surface).length)}`,
 		``,
-		`## CPD parks with tennis in 2016 but no OSM courts matched (check: removed, or missing from OSM?)`,
+		...(curationWarnings.length
+			? ['## ⚠ Curation warnings', '', ...curationWarnings.map((w) => `- ${w}`), '']
+			: []),
+		`## CPD parks with tennis in 2016, no OSM courts, not yet curated (check: removed, or missing from OSM?)`,
 		``,
-		...(missingCpd.length ? missingCpd.map((p) => `- ${titleCase(p)}`) : ['- none']),
+		...(missingCpd.length ? missingCpd.map((p) => `- ${p}`) : ['- none']),
+		``,
+		`## Added by hand (data/courts.curation.json)`,
+		``,
+		...(added.length ? added : ['- none']),
+		``,
+		`## Confirmed removed (data/courts.curation.json)`,
+		``,
+		...(removedLines.length ? removedLines : ['- none']),
 		``,
 		`## Kept: inside a Park District park but not on the 2016 tennis list (newer courts? please spot-check)`,
 		``,

@@ -135,3 +135,34 @@ export const defaultHours: z.infer<typeof HoursSeed>[] = Array.from(
 		closes: '23:00'
 	})
 );
+
+/**
+ * Human corrections applied by build-courts-seed (data/courts.curation.json): courts missing from
+ * OSM, and 2016 CPD tennis parks confirmed to have no courts any more. Each entry records who
+ * verified it and when, so a later --refresh keeps the corrections and their provenance.
+ */
+export const CurationSeed = z.strictObject({
+	additions: z.array(
+		z.strictObject({
+			slug,
+			name: safeText(120),
+			cpdParkNo: z.int().positive(),
+			courtCount: z.int().min(1).max(40),
+			lights: z.boolean().nullable(),
+			surface: z.enum(['hard', 'clay', 'grass', 'other']).nullable(),
+			indoor: z.boolean(),
+			note: safeText(300),
+			verifiedAt: isoDate,
+			verifiedBy: safeText(80)
+		})
+	),
+	removed: z.array(
+		z.strictObject({
+			cpdParkNo: z.int().positive(),
+			park: safeText(120),
+			note: safeText(300),
+			verifiedAt: isoDate,
+			verifiedBy: safeText(80)
+		})
+	)
+});

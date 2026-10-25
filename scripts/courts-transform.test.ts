@@ -36,6 +36,7 @@ const base = (): Input => ({
 	parks: [],
 	cpdCourts: [],
 	cpdFacilities: [],
+	curation: { additions: [], removed: [] },
 	communityAreas: [
 		{ name: 'LINCOLN PARK', polygons: [square(41.92, -87.65, 0.05)[0]].map((r) => [r]) }
 	],
@@ -206,6 +207,75 @@ describe('buildCourtsSeed', () => {
 		expect(courts.locations).toHaveLength(0);
 		expect(report).toContain('(1 private/no access, skipped)');
 		expect(report).toContain('Excluded, outside community areas: 1');
+	});
+
+	it('treats CPD name variants of one park number as the same park', () => {
+		const input = base();
+		input.pitches = [pitch(1, 41.92, -87.65)];
+		input.cpdCourts = [
+			{ park: 'MARQUETTE (JACQUES)', parkNo: 10, lat: 41.92, lng: -87.65 },
+			{ park: 'MARQUETTE (jACQUES)', parkNo: 10, lat: 41.9201, lng: -87.6501 }
+		];
+		expect(buildCourtsSeed(input).report).toContain('still unexplained: 0**');
+	});
+
+	it('applies curation: adds missing courts at CPD points, records confirmed removals', () => {
+		const input = base();
+		input.cpdCourts = [
+			{ park: 'BELL (GEORGE,JR.)', parkNo: 121, lat: 41.93, lng: -87.66 },
+			{ park: 'BELL (GEORGE,JR.)', parkNo: 121, lat: 41.932, lng: -87.66 },
+			{ park: 'HIAWATHA', parkNo: 229, lat: 41.94, lng: -87.66 },
+			{ park: 'MYSTERY', parkNo: 999, lat: 41.95, lng: -87.66 }
+		];
+		const by = { verifiedAt: '2026-10-25', verifiedBy: 'project owner' };
+		input.curation = {
+			additions: [
+				{
+					slug: 'bell-park',
+					name: 'Bell Park',
+					cpdParkNo: 121,
+					courtCount: 1,
+					lights: null,
+					surface: null,
+					indoor: false,
+					note: 'Missing from OSM.',
+					...by
+				}
+			],
+			removed: [{ cpdParkNo: 229, park: 'Hiawatha', note: 'Converted to futsal.', ...by }]
+		};
+		const { courts, report } = buildCourtsSeed(input);
+		expect(courts.locations).toEqual([
+			expect.objectContaining({
+				slug: 'bell-park',
+				lat: 41.931,
+				lng: -87.66,
+				courtCount: 1,
+				osmIds: [],
+				cpdParkNo: 121
+			})
+		]);
+		expect(report).toContain('added by hand: 1; confirmed removed: 1; **still unexplained: 1**');
+		expect(report).toContain(
+			'- Hiawatha: Converted to futsal. Verified 2026-10-25 by project owner.'
+		);
+		expect(report).toContain('- Mystery');
+		expect(CourtsSeed.safeParse(courts).success).toBe(true);
+	});
+
+	it('warns when curation contradicts OSM', () => {
+		const input = base();
+		input.pitches = [pitch(1, 41.92, -87.65)];
+		input.cpdCourts = [{ park: 'OZ', parkNo: 1, lat: 41.92, lng: -87.65 }];
+		input.curation = {
+			additions: [],
+			removed: [
+				{ cpdParkNo: 1, park: 'Oz', note: 'Gone?', verifiedAt: '2026-10-25', verifiedBy: 'x' }
+			]
+		};
+		expect(buildCourtsSeed(input).report).toContain(
+			'OSM still has courts matched to park #1; check'
+		);
 	});
 
 	it('builds valid community area and ZIP centroids', () => {
