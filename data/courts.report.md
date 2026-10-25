@@ -1,16 +1,16 @@
 # Courts seed report
 
-Generated 2026-10-25T15:14:46Z from OpenStreetMap (data as of 2026-10-25T14:55:50Z) and City of Chicago datasets eix4-gf83, igwz-8jzy, unjd-c2ca.
+Generated 2026-10-25T15:54:20Z from OpenStreetMap (data as of 2026-10-25T14:55:50Z) and City of Chicago datasets eix4-gf83, igwz-8jzy, unjd-c2ca.
 
 ## Totals
 
 - OSM tennis courts in Chicago: 653 (43 private/no access, skipped)
 - Court sites (clusters): 175
-- **Park District locations kept: 135** (473 courts)
+- **Park District locations kept: 133** (462 courts)
 - Kept because inside a Park District park, though not on the 2016 tennis list: 4
 - Excluded, not a Park District site (no 2016 CPD tennis point within 150 m, not inside a CPD park): 41
 - Excluded, outside community areas: 0
-- CPD parks with tennis (2016, by park number): 129; matched: 124; added by hand: 1; confirmed removed: 4; **still unexplained: 0**
+- CPD parks with tennis (2016, by park number): 129; matched: 123; added by hand: 1; confirmed removed: 5; **still unexplained: 0**
 - Field coverage: lights known 11%, surface known 21%
 
 ## CPD parks with tennis in 2016, no OSM courts, not yet curated (check: removed, or missing from OSM?)
@@ -25,6 +25,9 @@ Generated 2026-10-25T15:14:46Z from OpenStreetMap (data as of 2026-10-25T14:55:5
 
 - Cornell (Paul) Square: No tennis courts any more (removed or converted to futsal). Verified 2026-10-25 by project owner.
 - Hiawatha: No tennis courts any more (removed or converted to futsal). Verified 2026-10-25 by project owner.
+- Marquette (Jacques): No tennis courts any more at either site (OSM still maps 11; OSM is out of date here). Verified 2026-10-25 by project owner.
+  - dropped OSM site Marquette Park – Chicago Lawn (south) (6 court(s), way/1281192091 way/1281192092 way/1281192093 way/1281192094 way/1281192095 way/1281192096): consider updating OSM
+  - dropped OSM site Marquette Park – Chicago Lawn (north) (5 court(s), way/1141844941 way/1141844942 way/1141844943 way/1141844944 way/173521034): consider updating OSM
 - Ogden (William): No tennis courts any more (removed or converted to futsal). Verified 2026-10-25 by project owner.
 - Valley Forge: No tennis courts any more (removed or converted to futsal). Verified 2026-10-25 by project owner.
 

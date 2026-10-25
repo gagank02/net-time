@@ -29,6 +29,13 @@
 			"verifiedBy": "project owner"
 		},
 		{
+			"cpdParkNo": 10,
+			"park": "Marquette (Jacques)",
+			"note": "No tennis courts any more at either site (OSM still maps 11; OSM is out of date here).",
+			"verifiedAt": "2026-10-25",
+			"verifiedBy": "project owner"
+		},
+		{
 			"cpdParkNo": 8,
 			"park": "Ogden (William)",
 			"note": "No tennis courts any more (removed or converted to futsal).",

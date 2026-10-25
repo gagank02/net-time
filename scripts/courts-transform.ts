@@ -361,16 +361,22 @@ export function buildCourtsSeed(input: Input) {
 		);
 	}
 
+	// Owner verification overrides OSM: drop sites OSM still maps for parks confirmed to have no courts.
 	const removed = new Set<string>();
 	const removedLines: string[] = [];
 	for (const r of input.curation.removed) {
 		const key = `#${r.cpdParkNo}`;
-		if (matched.has(key))
-			curationWarnings.push(
-				`removed ${r.park}: OSM still has courts matched to park #${r.cpdParkNo}; check`
-			);
 		removed.add(key);
 		removedLines.push(`- ${r.park}: ${r.note} Verified ${r.verifiedAt} by ${r.verifiedBy}.`);
+		for (let i = locations.length - 1; i >= 0; i--) {
+			const l = locations[i];
+			if (l.cpdParkNo !== r.cpdParkNo) continue;
+			locations.splice(i, 1);
+			removedLines.push(
+				`  - dropped OSM site ${l.name} (${l.courtCount} court(s), ${l.osmIds.join(' ')}): consider updating OSM`
+			);
+		}
+		matched.delete(key);
 	}
 	const missingCpd = [...tennisParks]
 		.filter(([key]) => !matched.has(key) && !removed.has(key))

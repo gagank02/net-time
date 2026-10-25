@@ -263,7 +263,7 @@ describe('buildCourtsSeed', () => {
 		expect(CourtsSeed.safeParse(courts).success).toBe(true);
 	});
 
-	it('warns when curation contradicts OSM', () => {
+	it('owner-verified removal overrides OSM and reports the dropped sites', () => {
 		const input = base();
 		input.pitches = [pitch(1, 41.92, -87.65)];
 		input.cpdCourts = [{ park: 'OZ', parkNo: 1, lat: 41.92, lng: -87.65 }];
@@ -273,9 +273,9 @@ describe('buildCourtsSeed', () => {
 				{ cpdParkNo: 1, park: 'Oz', note: 'Gone?', verifiedAt: '2026-10-25', verifiedBy: 'x' }
 			]
 		};
-		expect(buildCourtsSeed(input).report).toContain(
-			'OSM still has courts matched to park #1; check'
-		);
+		const { courts, report } = buildCourtsSeed(input);
+		expect(courts.locations).toHaveLength(0);
+		expect(report).toContain('dropped OSM site Oz Park (1 court(s), way/1): consider updating OSM');
 	});
 
 	it('builds valid community area and ZIP centroids', () => {

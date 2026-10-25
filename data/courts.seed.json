@@ -1,5 +1,5 @@
 {
-	"generatedAt": "2026-10-25T15:14:46Z",
+	"generatedAt": "2026-10-25T15:54:20Z",
 	"locations": [
 		{
 			"slug": "abbott-park",
@@ -1541,49 +1541,6 @@
 				"way/1482582631",
 				"way/1482582632",
 				"way/1482582633"
-			],
-			"verifiedAt": "2026-10-25"
-		},
-		{
-			"slug": "marquette-park-chicago-lawn-north",
-			"name": "Marquette Park – Chicago Lawn (north)",
-			"address": null,
-			"lat": 41.770599,
-			"lng": -87.710691,
-			"courtCount": 5,
-			"lights": null,
-			"surface": null,
-			"indoor": false,
-			"communityArea": "Chicago Lawn",
-			"cpdParkNo": 10,
-			"osmIds": [
-				"way/1141844941",
-				"way/1141844942",
-				"way/1141844943",
-				"way/1141844944",
-				"way/173521034"
-			],
-			"verifiedAt": "2026-10-25"
-		},
-		{
-			"slug": "marquette-park-chicago-lawn-south",
-			"name": "Marquette Park – Chicago Lawn (south)",
-			"address": null,
-			"lat": 41.770156,
-			"lng": -87.69414,
-			"courtCount": 6,
-			"lights": false,
-			"surface": "hard",
-			"indoor": false,
-			"communityArea": "Chicago Lawn",
-			"cpdParkNo": 10,
-			"osmIds": [
-				"way/1281192091",
-				"way/1281192092",
-				"way/1281192093",
-				"way/1281192094",
-				"way/1281192095",
-				"way/1281192096"
 			],
 			"verifiedAt": "2026-10-25"
 		},
