@@ -235,6 +235,8 @@ describe('buildCourtsSeed', () => {
 					slug: 'bell-park',
 					name: 'Bell Park',
 					cpdParkNo: 121,
+					access: 'free',
+					bookingUrl: null,
 					courtCount: 1,
 					lights: null,
 					surface: null,
@@ -261,6 +263,37 @@ describe('buildCourtsSeed', () => {
 			'- Hiawatha: Converted to futsal. Verified 2026-10-25 by project owner.'
 		);
 		expect(report).toContain('- Mystery');
+		expect(CourtsSeed.safeParse(courts).success).toBe(true);
+	});
+
+	it('adds a separate reservation-only site next to OSM courts of the same park', () => {
+		const input = base();
+		input.pitches = [pitch(1, 41.95, -87.6974)];
+		input.cpdCourts = [{ park: 'CALIFORNIA', parkNo: 189, lat: 41.95, lng: -87.6974 }];
+		input.curation.additions = [
+			{
+				slug: 'mcfetridge-sports-center',
+				name: 'McFetridge Sports Center (indoor)',
+				cpdParkNo: 189,
+				lat: 41.952,
+				lng: -87.697,
+				access: 'reservation',
+				bookingUrl: 'https://example.org/book',
+				courtCount: 6,
+				lights: true,
+				surface: null,
+				indoor: true,
+				note: 'Indoor.',
+				verifiedAt: '2026-10-25',
+				verifiedBy: 'owner'
+			}
+		];
+		const { courts, report } = buildCourtsSeed(input);
+		expect(courts.locations.map((l) => [l.slug, l.access, l.indoor])).toEqual([
+			['california-park', 'free', false],
+			['mcfetridge-sports-center', 'reservation', true]
+		]);
+		expect(report).not.toContain('remove the addition');
 		expect(CourtsSeed.safeParse(courts).success).toBe(true);
 	});
 

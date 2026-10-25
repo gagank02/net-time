@@ -30,6 +30,9 @@ export const courtLocations = pgTable(
 		lights: boolean('lights'),
 		surface: text('surface'),
 		indoor: boolean('indoor').notNull().default(false),
+		// 'free' = first come, first served; 'reservation' = book (and usually pay) ahead at bookingUrl.
+		access: text('access').notNull().default('free'),
+		bookingUrl: text('booking_url'),
 		communityArea: text('community_area').notNull(),
 		cpdParkNo: integer('cpd_park_no'),
 		osmIds: text('osm_ids')
@@ -42,7 +45,12 @@ export const courtLocations = pgTable(
 		check('court_locations_slug', sql`${t.slug} ~ '^[a-z0-9-]{1,80}$'`),
 		check('court_locations_name', sql`char_length(${t.name}) between 1 and 120`),
 		check('court_locations_court_count', sql`${t.courtCount} between 1 and 40`),
-		check('court_locations_surface', sql`${t.surface} in ('hard', 'clay', 'grass', 'other')`)
+		check('court_locations_surface', sql`${t.surface} in ('hard', 'clay', 'grass', 'other')`),
+		check('court_locations_access', sql`${t.access} in ('free', 'reservation')`),
+		check(
+			'court_locations_booking_url',
+			sql`${t.bookingUrl} is null or ${t.bookingUrl} like 'https://%'`
+		)
 	]
 );
 

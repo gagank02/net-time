@@ -32,6 +32,8 @@ export const CourtLocationSeed = z.strictObject({
 	lights: z.boolean().nullable(),
 	surface: z.enum(['hard', 'clay', 'grass', 'other']).nullable(),
 	indoor: z.boolean(),
+	access: z.enum(['free', 'reservation']),
+	bookingUrl: httpsUrl.nullable(),
 	communityArea: safeText(80),
 	cpdParkNo: z.int().positive().nullable(),
 	osmIds: z.array(z.string().regex(/^(node|way|relation)\/\d+$/)).max(50),
@@ -143,18 +145,26 @@ export const defaultHours: z.infer<typeof HoursSeed>[] = Array.from(
  */
 export const CurationSeed = z.strictObject({
 	additions: z.array(
-		z.strictObject({
-			slug,
-			name: safeText(120),
-			cpdParkNo: z.int().positive(),
-			courtCount: z.int().min(1).max(40),
-			lights: z.boolean().nullable(),
-			surface: z.enum(['hard', 'clay', 'grass', 'other']).nullable(),
-			indoor: z.boolean(),
-			note: safeText(300),
-			verifiedAt: isoDate,
-			verifiedBy: safeText(80)
-		})
+		z
+			.strictObject({
+				slug,
+				name: safeText(120),
+				cpdParkNo: z.int().positive(),
+				/** Set for a separate site (e.g. an indoor center); omit to place at the park's CPD tennis points. */
+				lat: lat.optional(),
+				lng: lng.optional(),
+				access: z.enum(['free', 'reservation']).default('free'),
+				bookingUrl: httpsUrl.nullable().default(null),
+				courtCount: z.int().min(1).max(40),
+				lights: z.boolean().nullable(),
+				surface: z.enum(['hard', 'clay', 'grass', 'other']).nullable(),
+				indoor: z.boolean(),
+				note: safeText(300),
+				sourceUrl: httpsUrl.optional(),
+				verifiedAt: isoDate,
+				verifiedBy: safeText(80)
+			})
+			.refine((a) => (a.lat === undefined) === (a.lng === undefined), 'lat and lng go together')
 	),
 	corrections: z.array(
 		z

@@ -307,6 +307,8 @@ export function buildCourtsSeed(input: Input) {
 					: null,
 			surface,
 			indoor: k.pitches.every((p) => p.tags.indoor === 'yes' || p.tags.building === 'yes'),
+			access: 'free' as 'free' | 'reservation',
+			bookingUrl: null as string | null,
 			communityArea: k.area,
 			cpdParkNo: k.cpd.parkNo,
 			osmIds: k.pitches.map((p) => p.id).sort(),
@@ -326,13 +328,18 @@ export function buildCourtsSeed(input: Input) {
 	const added: string[] = [];
 	const curationWarnings: string[] = [];
 	for (const a of input.curation.additions) {
-		if (matched.has(`#${a.cpdParkNo}`)) {
+		// An addition with its own coordinates is a separate site (e.g. an indoor center next to
+		// outdoor courts OSM already has); otherwise it fills in courts missing from OSM.
+		const separateSite = a.lat !== undefined && a.lng !== undefined;
+		if (!separateSite && matched.has(`#${a.cpdParkNo}`)) {
 			curationWarnings.push(
 				`addition ${a.slug}: OSM now has courts for park #${a.cpdParkNo}; remove the addition`
 			);
 			continue;
 		}
-		const points = input.cpdCourts.filter((c) => c.parkNo === a.cpdParkNo);
+		const points = separateSite
+			? [{ lat: a.lat!, lng: a.lng! }]
+			: input.cpdCourts.filter((c) => c.parkNo === a.cpdParkNo);
 		if (!points.length)
 			throw new Error(`curation addition ${a.slug}: no CPD tennis points for park #${a.cpdParkNo}`);
 		if (locations.some((l) => l.slug === a.slug))
@@ -350,6 +357,8 @@ export function buildCourtsSeed(input: Input) {
 			lights: a.lights,
 			surface: a.surface,
 			indoor: a.indoor,
+			access: a.access,
+			bookingUrl: a.bookingUrl,
 			communityArea: titleCase(area),
 			cpdParkNo: a.cpdParkNo,
 			osmIds: [],

@@ -11,16 +11,33 @@
 			"note": "Court exists but is not mapped in OpenStreetMap. Location from the 2016 CPD tennis points for this park.",
 			"verifiedAt": "2026-10-25",
 			"verifiedBy": "project owner"
+		},
+		{
+			"slug": "mcfetridge-sports-center",
+			"name": "McFetridge Sports Center (indoor)",
+			"cpdParkNo": 189,
+			"lat": 41.95207,
+			"lng": -87.697025,
+			"access": "reservation",
+			"bookingUrl": "https://www.mcfetridgesportscenter.com/tennis/book-court-time",
+			"courtCount": 6,
+			"lights": true,
+			"surface": null,
+			"indoor": true,
+			"note": "Six indoor courts (Park District page). Court time is booked online up to 6 days ahead and paid at booking (McFetridge site). Located at the McFetridge building; the 4 outdoor courts are listed as California Park.",
+			"sourceUrl": "https://www.chicagoparkdistrict.com/parks-facilities/mcfetridge-sports-center",
+			"verifiedAt": "2026-10-25",
+			"verifiedBy": "project owner"
 		}
 	],
 	"corrections": [
 		{
 			"slug": "maggie-daley-park",
 			"lights": true,
-			"note": "Park page: \"Tennis court lights will be on an hour before dusk.\"",
+			"note": "Park page: \"Tennis court lights will be on an hour before dusk.\" Court hours Monday–Sunday 7:00 am–9:00 pm.",
 			"sourceUrl": "https://www.maggiedaleypark.com/things-to-do-see/tennis-courts",
 			"verifiedAt": "2026-10-25",
-			"verifiedBy": "Claude (web check), pending owner review"
+			"verifiedBy": "project owner"
 		}
 	],
 	"removed": [

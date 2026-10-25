@@ -1,17 +1,17 @@
 # Courts seed report
 
-Generated 2026-10-25T15:58:35Z from OpenStreetMap (data as of 2026-10-25T14:55:50Z) and City of Chicago datasets eix4-gf83, igwz-8jzy, unjd-c2ca.
+Generated 2026-10-25T16:03:56Z from OpenStreetMap (data as of 2026-10-25T14:55:50Z) and City of Chicago datasets eix4-gf83, igwz-8jzy, unjd-c2ca.
 
 ## Totals
 
 - OSM tennis courts in Chicago: 653 (43 private/no access, skipped)
 - Court sites (clusters): 175
-- **Park District locations kept: 133** (462 courts)
+- **Park District locations kept: 134** (468 courts)
 - Kept because inside a Park District park, though not on the 2016 tennis list: 4
 - Excluded, not a Park District site (no 2016 CPD tennis point within 150 m, not inside a CPD park): 41
 - Excluded, outside community areas: 0
-- CPD parks with tennis (2016, by park number): 129; matched: 123; added by hand: 1; confirmed removed: 5; **still unexplained: 0**
-- Field coverage: lights known 11%, surface known 21%
+- CPD parks with tennis (2016, by park number): 129; matched: 122; added by hand: 2; confirmed removed: 5; **still unexplained: 0**
+- Field coverage: lights known 12%, surface known 21%
 
 ## CPD parks with tennis in 2016, no OSM courts, not yet curated (check: removed, or missing from OSM?)
 
@@ -20,10 +20,11 @@ Generated 2026-10-25T15:58:35Z from OpenStreetMap (data as of 2026-10-25T14:55:5
 ## Added by hand (data/courts.curation.json)
 
 - Bell Park (1 court(s)): Court exists but is not mapped in OpenStreetMap. Location from the 2016 CPD tennis points for this park. Verified 2026-10-25 by project owner.
+- McFetridge Sports Center (indoor) (6 court(s)): Six indoor courts (Park District page). Court time is booked online up to 6 days ahead and paid at booking (McFetridge site). Located at the McFetridge building; the 4 outdoor courts are listed as California Park. Verified 2026-10-25 by project owner.
 
 ## Corrected from verified sources (data/courts.curation.json)
 
-- Maggie Daley Park: lights null → true. Park page: "Tennis court lights will be on an hour before dusk." Source: https://www.maggiedaleypark.com/things-to-do-see/tennis-courts. Verified 2026-10-25 by Claude (web check), pending owner review.
+- Maggie Daley Park: lights null → true. Park page: "Tennis court lights will be on an hour before dusk." Court hours Monday–Sunday 7:00 am–9:00 pm. Source: https://www.maggiedaleypark.com/things-to-do-see/tennis-courts. Verified 2026-10-25 by project owner.
 
 ## Confirmed removed (data/courts.curation.json)
 

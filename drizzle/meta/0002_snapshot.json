@@ -1,0 +1,467 @@
+{
+  "id": "1610803a-3d6d-4392-bfe1-69a73f5323f0",
+  "prevId": "43170a94-a298-4522-b4d2-6c285bcd904f",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.class_blocks": {
+      "name": "class_blocks",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "location_id": {
+          "name": "location_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "title": {
+          "name": "title",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "weekday": {
+          "name": "weekday",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "starts": {
+          "name": "starts",
+          "type": "time",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "ends": {
+          "name": "ends",
+          "type": "time",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "courts_used": {
+          "name": "courts_used",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "season_start": {
+          "name": "season_start",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "season_end": {
+          "name": "season_end",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "source_url": {
+          "name": "source_url",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "verified_at": {
+          "name": "verified_at",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {
+        "class_blocks_location": {
+          "name": "class_blocks_location",
+          "columns": [
+            {
+              "expression": "location_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "class_blocks_location_id_court_locations_id_fk": {
+          "name": "class_blocks_location_id_court_locations_id_fk",
+          "tableFrom": "class_blocks",
+          "tableTo": "court_locations",
+          "columnsFrom": [
+            "location_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {
+        "class_blocks_title": {
+          "name": "class_blocks_title",
+          "value": "char_length(\"class_blocks\".\"title\") between 1 and 120"
+        },
+        "class_blocks_weekday": {
+          "name": "class_blocks_weekday",
+          "value": "\"class_blocks\".\"weekday\" between 0 and 6"
+        },
+        "class_blocks_order": {
+          "name": "class_blocks_order",
+          "value": "\"class_blocks\".\"ends\" > \"class_blocks\".\"starts\""
+        },
+        "class_blocks_courts": {
+          "name": "class_blocks_courts",
+          "value": "\"class_blocks\".\"courts_used\" between 1 and 40"
+        },
+        "class_blocks_season": {
+          "name": "class_blocks_season",
+          "value": "\"class_blocks\".\"season_end\" >= \"class_blocks\".\"season_start\""
+        },
+        "class_blocks_source": {
+          "name": "class_blocks_source",
+          "value": "\"class_blocks\".\"source_url\" like 'https://%'"
+        }
+      },
+      "isRLSEnabled": false
+    },
+    "public.community_areas": {
+      "name": "community_areas",
+      "schema": "",
+      "columns": {
+        "slug": {
+          "name": "slug",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "centroid": {
+          "name": "centroid",
+          "type": "geometry(point)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "community_areas_name_unique": {
+          "name": "community_areas_name_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "name"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {
+        "community_areas_slug": {
+          "name": "community_areas_slug",
+          "value": "\"community_areas\".\"slug\" ~ '^[a-z0-9-]{1,80}$'"
+        }
+      },
+      "isRLSEnabled": false
+    },
+    "public.court_locations": {
+      "name": "court_locations",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "slug": {
+          "name": "slug",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "address": {
+          "name": "address",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "location": {
+          "name": "location",
+          "type": "geometry(point)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "court_count": {
+          "name": "court_count",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "lights": {
+          "name": "lights",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "surface": {
+          "name": "surface",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "indoor": {
+          "name": "indoor",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": false
+        },
+        "access": {
+          "name": "access",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'free'"
+        },
+        "booking_url": {
+          "name": "booking_url",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "community_area": {
+          "name": "community_area",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "cpd_park_no": {
+          "name": "cpd_park_no",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "osm_ids": {
+          "name": "osm_ids",
+          "type": "text[]",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'{}'::text[]"
+        },
+        "verified_at": {
+          "name": "verified_at",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "court_locations_slug_unique": {
+          "name": "court_locations_slug_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "slug"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {
+        "court_locations_slug": {
+          "name": "court_locations_slug",
+          "value": "\"court_locations\".\"slug\" ~ '^[a-z0-9-]{1,80}$'"
+        },
+        "court_locations_name": {
+          "name": "court_locations_name",
+          "value": "char_length(\"court_locations\".\"name\") between 1 and 120"
+        },
+        "court_locations_court_count": {
+          "name": "court_locations_court_count",
+          "value": "\"court_locations\".\"court_count\" between 1 and 40"
+        },
+        "court_locations_surface": {
+          "name": "court_locations_surface",
+          "value": "\"court_locations\".\"surface\" in ('hard', 'clay', 'grass', 'other')"
+        },
+        "court_locations_access": {
+          "name": "court_locations_access",
+          "value": "\"court_locations\".\"access\" in ('free', 'reservation')"
+        },
+        "court_locations_booking_url": {
+          "name": "court_locations_booking_url",
+          "value": "\"court_locations\".\"booking_url\" is null or \"court_locations\".\"booking_url\" like 'https://%'"
+        }
+      },
+      "isRLSEnabled": false
+    },
+    "public.location_hours": {
+      "name": "location_hours",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "location_id": {
+          "name": "location_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "weekday": {
+          "name": "weekday",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "opens": {
+          "name": "opens",
+          "type": "time",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "closes": {
+          "name": "closes",
+          "type": "time",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "season_start": {
+          "name": "season_start",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "season_end": {
+          "name": "season_end",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {
+        "location_hours_location": {
+          "name": "location_hours_location",
+          "columns": [
+            {
+              "expression": "location_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "location_hours_location_id_court_locations_id_fk": {
+          "name": "location_hours_location_id_court_locations_id_fk",
+          "tableFrom": "location_hours",
+          "tableTo": "court_locations",
+          "columnsFrom": [
+            "location_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {
+        "location_hours_weekday": {
+          "name": "location_hours_weekday",
+          "value": "\"location_hours\".\"weekday\" between 0 and 6"
+        },
+        "location_hours_order": {
+          "name": "location_hours_order",
+          "value": "\"location_hours\".\"closes\" > \"location_hours\".\"opens\""
+        },
+        "location_hours_season": {
+          "name": "location_hours_season",
+          "value": "(\"location_hours\".\"season_start\" is null) = (\"location_hours\".\"season_end\" is null) and (\"location_hours\".\"season_end\" is null or \"location_hours\".\"season_end\" >= \"location_hours\".\"season_start\")"
+        }
+      },
+      "isRLSEnabled": false
+    },
+    "public.zip_codes": {
+      "name": "zip_codes",
+      "schema": "",
+      "columns": {
+        "zip": {
+          "name": "zip",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "centroid": {
+          "name": "centroid",
+          "type": "geometry(point)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {
+        "zip_codes_zip": {
+          "name": "zip_codes_zip",
+          "value": "\"zip_codes\".\"zip\" ~ '^[0-9]{5}$'"
+        }
+      },
+      "isRLSEnabled": false
+    }
+  },
+  "enums": {},
+  "schemas": {},
+  "sequences": {},
+  "roles": {},
+  "policies": {},
+  "views": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}

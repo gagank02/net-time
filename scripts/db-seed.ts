@@ -81,6 +81,8 @@ try {
 				lights: l.lights,
 				surface: l.surface,
 				indoor: l.indoor,
+				access: l.access,
+				bookingUrl: l.bookingUrl,
 				communityArea: l.communityArea,
 				cpdParkNo: l.cpdParkNo,
 				osmIds: l.osmIds,
