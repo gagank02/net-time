@@ -1,6 +1,11 @@
 import { sql } from 'drizzle-orm';
+import { cached } from '#lib/server/cache.js';
 import { withDb } from '#lib/server/db/client.js';
 import type { Area, CourtDetail, CourtListItem, Zip } from '#lib/courts/types.js';
+
+// Court data changes only on re-seed, so an hour stale is fine; keyed by Chicago date so a new
+// day drops ended class seasons. Matches the Hyperdrive config's max_age (3600 s).
+const dataTtl = 3600;
 
 export type CourtsPage = { courts: CourtListItem[]; areas: Area[]; zips: Zip[] };
 
@@ -10,8 +15,9 @@ export type CourtsPage = { courts: CourtListItem[]; areas: Area[]; zips: Zip[] }
  * `today` is the Chicago date (YYYY-MM-DD) so past seasons are left out.
  */
 export function listCourts(today: string): Promise<CourtsPage> {
-	return withDb(async (db) => {
-		const { rows } = await db.execute(sql`
+	return cached(`courts/${today}`, dataTtl, () =>
+		withDb(async (db) => {
+			const { rows } = await db.execute(sql`
 			select
 			(select coalesce(json_agg(c order by c.name), '[]'::json) from (
 			select
@@ -60,16 +66,18 @@ export function listCourts(today: string): Promise<CourtsPage> {
 				'zip', z.zip, 'lat', st_y(z.centroid), 'lng', st_x(z.centroid)
 			) order by z.zip), '[]'::json) from zip_codes z) as zips
 		`);
-		return rows[0] as CourtsPage;
-	});
+			return rows[0] as CourtsPage;
+		})
+	);
 }
 
 export const slugPattern = /^[a-z0-9-]{1,80}$/;
 
 /** One court with everything the detail page shows, or null. Caller validates the slug first. */
 export function getCourt(slug: string, today: string): Promise<CourtDetail | null> {
-	return withDb(async (db) => {
-		const { rows } = await db.execute(sql`
+	return cached(`court/${slug}/${today}`, dataTtl, () =>
+		withDb(async (db) => {
+			const { rows } = await db.execute(sql`
 			select
 				l.slug,
 				l.name,
@@ -116,6 +124,7 @@ export function getCourt(slug: string, today: string): Promise<CourtDetail | nul
 			from court_locations l
 			where l.slug = ${slug}
 		`);
-		return (rows[0] as CourtDetail | undefined) ?? null;
-	});
+			return (rows[0] as CourtDetail | undefined) ?? null;
+		})
+	);
 }
