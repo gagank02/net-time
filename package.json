@@ -21,7 +21,8 @@
 		"db:setup": "psql -v ON_ERROR_STOP=1 -d postgres -f scripts/db-setup.sql",
 		"db:generate": "drizzle-kit generate",
 		"db:migrate": "drizzle-kit migrate",
-		"db:seed": "node scripts/db-seed.ts"
+		"db:seed": "node scripts/db-seed.ts",
+		"courts:build-seed": "node scripts/build-courts-seed.ts"
 	},
 	"devDependencies": {
 		"@axe-core/playwright": "^4.14.0",

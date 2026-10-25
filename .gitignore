@@ -32,3 +32,6 @@ coverage
 
 # Planning docs (local only)
 planning/
+
+# Raw third-party downloads cached by scripts (re-fetch only with --refresh)
+.cache/

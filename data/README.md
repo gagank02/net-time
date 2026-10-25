@@ -20,6 +20,15 @@ Required by the [City of Chicago Data Terms of Use](https://www.chicago.gov/city
 
 `courts.seed.json` is a derived database of OpenStreetMap data and is made available under the **ODbL 1.0**.
 
+## How the seed is built (and third-party fair use)
+
+`npm run courts:build-seed` downloads four sources **once** and caches the raw responses in `.cache/` (gitignored, never redistributed). Re-runs use the cache; `--refresh` (or `--refresh=cpd`) re-downloads, which should be rare (e.g. once a season).
+
+- **Overpass API** (overpass-api.de), following its [usage policy](https://wiki.openstreetmap.org/wiki/Overpass_API): one simple query with no per-element loops (spatial joins happen locally), an identifying User-Agent, a 60 s server timeout, one request at a time, a 30 s+ pause after 429/406/5xx, at most 3 attempts. The app never calls Overpass at runtime. For commercial use, switch to a [Geofabrik](https://download.geofabrik.de/) extract processed locally or a paid/self-hosted Overpass.
+- **City of Chicago Data Portal**: three plain dataset downloads under the Data Terms of Use above.
+
+Matching rules: a court site is a Park District location if a 2016 CPD tennis point is within 150 m, or it sits inside an OSM park that contains any CPD facility. Courts are named after the largest containing park, using everyday names ("Lincoln Park", not "Lincoln (Abraham) Park"). `courts.report.md` lists everything included only by the second rule and everything excluded, for human review.
+
 ## Obligations we follow
 
 - Show the City disclaimer above, verbatim, in the app (`/data`, linked from every page footer) and here.

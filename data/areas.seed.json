@@ -1,0 +1,763 @@
+{
+	"communityAreas": [
+		{
+			"slug": "albany-park",
+			"name": "Albany Park",
+			"lat": 41.968069,
+			"lng": -87.72156
+		},
+		{
+			"slug": "archer-heights",
+			"name": "Archer Heights",
+			"lat": 41.81088,
+			"lng": -87.726363
+		},
+		{
+			"slug": "armour-square",
+			"name": "Armour Square",
+			"lat": 41.842077,
+			"lng": -87.633974
+		},
+		{
+			"slug": "ashburn",
+			"name": "Ashburn",
+			"lat": 41.745757,
+			"lng": -87.708365
+		},
+		{
+			"slug": "auburn-gresham",
+			"name": "Auburn Gresham",
+			"lat": 41.744205,
+			"lng": -87.656307
+		},
+		{
+			"slug": "austin",
+			"name": "Austin",
+			"lat": 41.894101,
+			"lng": -87.763112
+		},
+		{
+			"slug": "avalon-park",
+			"name": "Avalon Park",
+			"lat": 41.7442,
+			"lng": -87.586349
+		},
+		{
+			"slug": "avondale",
+			"name": "Avondale",
+			"lat": 41.938666,
+			"lng": -87.711211
+		},
+		{
+			"slug": "belmont-cragin",
+			"name": "Belmont Cragin",
+			"lat": 41.927261,
+			"lng": -87.765502
+		},
+		{
+			"slug": "beverly",
+			"name": "Beverly",
+			"lat": 41.71315,
+			"lng": -87.675075
+		},
+		{
+			"slug": "bridgeport",
+			"name": "Bridgeport",
+			"lat": 41.836151,
+			"lng": -87.648788
+		},
+		{
+			"slug": "brighton-park",
+			"name": "Brighton Park",
+			"lat": 41.817367,
+			"lng": -87.698861
+		},
+		{
+			"slug": "burnside",
+			"name": "Burnside",
+			"lat": 41.728182,
+			"lng": -87.596476
+		},
+		{
+			"slug": "calumet-heights",
+			"name": "Calumet Heights",
+			"lat": 41.729676,
+			"lng": -87.572718
+		},
+		{
+			"slug": "chatham",
+			"name": "Chatham",
+			"lat": 41.740206,
+			"lng": -87.61597
+		},
+		{
+			"slug": "chicago-lawn",
+			"name": "Chicago Lawn",
+			"lat": 41.771849,
+			"lng": -87.695666
+		},
+		{
+			"slug": "clearing",
+			"name": "Clearing",
+			"lat": 41.779581,
+			"lng": -87.768511
+		},
+		{
+			"slug": "douglas",
+			"name": "Douglas",
+			"lat": 41.835118,
+			"lng": -87.618678
+		},
+		{
+			"slug": "dunning",
+			"name": "Dunning",
+			"lat": 41.946511,
+			"lng": -87.80602
+		},
+		{
+			"slug": "east-garfield-park",
+			"name": "East Garfield Park",
+			"lat": 41.878915,
+			"lng": -87.705897
+		},
+		{
+			"slug": "east-side",
+			"name": "East Side",
+			"lat": 41.707314,
+			"lng": -87.534902
+		},
+		{
+			"slug": "edgewater",
+			"name": "Edgewater",
+			"lat": 41.986712,
+			"lng": -87.663416
+		},
+		{
+			"slug": "edison-park",
+			"name": "Edison Park",
+			"lat": 42.007613,
+			"lng": -87.813781
+		},
+		{
+			"slug": "englewood",
+			"name": "Englewood",
+			"lat": 41.777198,
+			"lng": -87.642497
+		},
+		{
+			"slug": "forest-glen",
+			"name": "Forest Glen",
+			"lat": 41.993931,
+			"lng": -87.758356
+		},
+		{
+			"slug": "fuller-park",
+			"name": "Fuller Park",
+			"lat": 41.809086,
+			"lng": -87.632425
+		},
+		{
+			"slug": "gage-park",
+			"name": "Gage Park",
+			"lat": 41.795431,
+			"lng": -87.696435
+		},
+		{
+			"slug": "garfield-ridge",
+			"name": "Garfield Ridge",
+			"lat": 41.796186,
+			"lng": -87.76424
+		},
+		{
+			"slug": "grand-boulevard",
+			"name": "Grand Boulevard",
+			"lat": 41.812949,
+			"lng": -87.61786
+		},
+		{
+			"slug": "greater-grand-crossing",
+			"name": "Greater Grand Crossing",
+			"lat": 41.763247,
+			"lng": -87.616134
+		},
+		{
+			"slug": "hegewisch",
+			"name": "Hegewisch",
+			"lat": 41.660535,
+			"lng": -87.546575
+		},
+		{
+			"slug": "hermosa",
+			"name": "Hermosa",
+			"lat": 41.924348,
+			"lng": -87.73474
+		},
+		{
+			"slug": "humboldt-park",
+			"name": "Humboldt Park",
+			"lat": 41.90007,
+			"lng": -87.720919
+		},
+		{
+			"slug": "hyde-park",
+			"name": "Hyde Park",
+			"lat": 41.79409,
+			"lng": -87.592311
+		},
+		{
+			"slug": "irving-park",
+			"name": "Irving Park",
+			"lat": 41.953582,
+			"lng": -87.723452
+		},
+		{
+			"slug": "jefferson-park",
+			"name": "Jefferson Park",
+			"lat": 41.97883,
+			"lng": -87.771167
+		},
+		{
+			"slug": "kenwood",
+			"name": "Kenwood",
+			"lat": 41.808916,
+			"lng": -87.596183
+		},
+		{
+			"slug": "lake-view",
+			"name": "Lake View",
+			"lat": 41.944227,
+			"lng": -87.655999
+		},
+		{
+			"slug": "lincoln-park",
+			"name": "Lincoln Park",
+			"lat": 41.922686,
+			"lng": -87.64949
+		},
+		{
+			"slug": "lincoln-square",
+			"name": "Lincoln Square",
+			"lat": 41.975171,
+			"lng": -87.687515
+		},
+		{
+			"slug": "logan-square",
+			"name": "Logan Square",
+			"lat": 41.92276,
+			"lng": -87.699156
+		},
+		{
+			"slug": "loop",
+			"name": "Loop",
+			"lat": 41.878866,
+			"lng": -87.625192
+		},
+		{
+			"slug": "lower-west-side",
+			"name": "Lower West Side",
+			"lat": 41.850266,
+			"lng": -87.667568
+		},
+		{
+			"slug": "mckinley-park",
+			"name": "McKinley Park",
+			"lat": 41.829922,
+			"lng": -87.672503
+		},
+		{
+			"slug": "montclare",
+			"name": "Montclare",
+			"lat": 41.929298,
+			"lng": -87.798033
+		},
+		{
+			"slug": "morgan-park",
+			"name": "Morgan Park",
+			"lat": 41.68973,
+			"lng": -87.669054
+		},
+		{
+			"slug": "mount-greenwood",
+			"name": "Mount Greenwood",
+			"lat": 41.69488,
+			"lng": -87.713192
+		},
+		{
+			"slug": "near-north-side",
+			"name": "Near North Side",
+			"lat": 41.899602,
+			"lng": -87.633309
+		},
+		{
+			"slug": "near-south-side",
+			"name": "Near South Side",
+			"lat": 41.857184,
+			"lng": -87.620335
+		},
+		{
+			"slug": "near-west-side",
+			"name": "Near West Side",
+			"lat": 41.874005,
+			"lng": -87.663518
+		},
+		{
+			"slug": "new-city",
+			"name": "New City",
+			"lat": 41.809019,
+			"lng": -87.659167
+		},
+		{
+			"slug": "north-center",
+			"name": "North Center",
+			"lat": 41.947792,
+			"lng": -87.683835
+		},
+		{
+			"slug": "north-lawndale",
+			"name": "North Lawndale",
+			"lat": 41.86019,
+			"lng": -87.717219
+		},
+		{
+			"slug": "north-park",
+			"name": "North Park",
+			"lat": 41.983636,
+			"lng": -87.723583
+		},
+		{
+			"slug": "norwood-park",
+			"name": "Norwood Park",
+			"lat": 41.985015,
+			"lng": -87.804531
+		},
+		{
+			"slug": "oakland",
+			"name": "Oakland",
+			"lat": 41.82375,
+			"lng": -87.603216
+		},
+		{
+			"slug": "ohare",
+			"name": "Ohare",
+			"lat": 41.975555,
+			"lng": -87.893495
+		},
+		{
+			"slug": "portage-park",
+			"name": "Portage Park",
+			"lat": 41.954028,
+			"lng": -87.7634
+		},
+		{
+			"slug": "pullman",
+			"name": "Pullman",
+			"lat": 41.706127,
+			"lng": -87.598255
+		},
+		{
+			"slug": "riverdale",
+			"name": "Riverdale",
+			"lat": 41.660137,
+			"lng": -87.602849
+		},
+		{
+			"slug": "rogers-park",
+			"name": "Rogers Park",
+			"lat": 42.009624,
+			"lng": -87.670168
+		},
+		{
+			"slug": "roseland",
+			"name": "Roseland",
+			"lat": 41.70659,
+			"lng": -87.623366
+		},
+		{
+			"slug": "south-chicago",
+			"name": "South Chicago",
+			"lat": 41.741243,
+			"lng": -87.551429
+		},
+		{
+			"slug": "south-deering",
+			"name": "South Deering",
+			"lat": 41.690637,
+			"lng": -87.570057
+		},
+		{
+			"slug": "south-lawndale",
+			"name": "South Lawndale",
+			"lat": 41.839087,
+			"lng": -87.714002
+		},
+		{
+			"slug": "south-shore",
+			"name": "South Shore",
+			"lat": 41.761578,
+			"lng": -87.572783
+		},
+		{
+			"slug": "uptown",
+			"name": "Uptown",
+			"lat": 41.965812,
+			"lng": -87.655879
+		},
+		{
+			"slug": "washington-heights",
+			"name": "Washington Heights",
+			"lat": 41.717494,
+			"lng": -87.648896
+		},
+		{
+			"slug": "washington-park",
+			"name": "Washington Park",
+			"lat": 41.792358,
+			"lng": -87.617931
+		},
+		{
+			"slug": "west-elsdon",
+			"name": "West Elsdon",
+			"lat": 41.792982,
+			"lng": -87.724208
+		},
+		{
+			"slug": "west-englewood",
+			"name": "West Englewood",
+			"lat": 41.77593,
+			"lng": -87.666596
+		},
+		{
+			"slug": "west-garfield-park",
+			"name": "West Garfield Park",
+			"lat": 41.878595,
+			"lng": -87.730232
+		},
+		{
+			"slug": "west-lawn",
+			"name": "West Lawn",
+			"lat": 41.769779,
+			"lng": -87.726929
+		},
+		{
+			"slug": "west-pullman",
+			"name": "West Pullman",
+			"lat": 41.67382,
+			"lng": -87.63574
+		},
+		{
+			"slug": "west-ridge",
+			"name": "West Ridge",
+			"lat": 42.001572,
+			"lng": -87.695013
+		},
+		{
+			"slug": "west-town",
+			"name": "West Town",
+			"lat": 41.901207,
+			"lng": -87.676357
+		},
+		{
+			"slug": "woodlawn",
+			"name": "Woodlawn",
+			"lat": 41.778876,
+			"lng": -87.594925
+		}
+	],
+	"zips": [
+		{
+			"zip": "60601",
+			"lat": 41.886405,
+			"lng": -87.621022
+		},
+		{
+			"zip": "60602",
+			"lat": 41.883318,
+			"lng": -87.623661
+		},
+		{
+			"zip": "60603",
+			"lat": 41.880647,
+			"lng": -87.624471
+		},
+		{
+			"zip": "60604",
+			"lat": 41.878365,
+			"lng": -87.62559
+		},
+		{
+			"zip": "60605",
+			"lat": 41.867276,
+			"lng": -87.621978
+		},
+		{
+			"zip": "60606",
+			"lat": 41.882648,
+			"lng": -87.636893
+		},
+		{
+			"zip": "60607",
+			"lat": 41.874688,
+			"lng": -87.651235
+		},
+		{
+			"zip": "60608",
+			"lat": 41.84865,
+			"lng": -87.670918
+		},
+		{
+			"zip": "60609",
+			"lat": 41.812234,
+			"lng": -87.655354
+		},
+		{
+			"zip": "60610",
+			"lat": 41.904143,
+			"lng": -87.637022
+		},
+		{
+			"zip": "60611",
+			"lat": 41.894361,
+			"lng": -87.618277
+		},
+		{
+			"zip": "60612",
+			"lat": 41.88047,
+			"lng": -87.687413
+		},
+		{
+			"zip": "60613",
+			"lat": 41.954445,
+			"lng": -87.660056
+		},
+		{
+			"zip": "60614",
+			"lat": 41.922522,
+			"lng": -87.650825
+		},
+		{
+			"zip": "60615",
+			"lat": 41.801898,
+			"lng": -87.603497
+		},
+		{
+			"zip": "60616",
+			"lat": 41.845019,
+			"lng": -87.627383
+		},
+		{
+			"zip": "60617",
+			"lat": 41.712097,
+			"lng": -87.555648
+		},
+		{
+			"zip": "60618",
+			"lat": 41.946627,
+			"lng": -87.702977
+		},
+		{
+			"zip": "60619",
+			"lat": 41.743948,
+			"lng": -87.605077
+		},
+		{
+			"zip": "60620",
+			"lat": 41.740924,
+			"lng": -87.651028
+		},
+		{
+			"zip": "60621",
+			"lat": 41.775983,
+			"lng": -87.639818
+		},
+		{
+			"zip": "60622",
+			"lat": 41.903126,
+			"lng": -87.684211
+		},
+		{
+			"zip": "60623",
+			"lat": 41.848458,
+			"lng": -87.716915
+		},
+		{
+			"zip": "60624",
+			"lat": 41.880799,
+			"lng": -87.723289
+		},
+		{
+			"zip": "60625",
+			"lat": 41.972133,
+			"lng": -87.703723
+		},
+		{
+			"zip": "60626",
+			"lat": 42.009033,
+			"lng": -87.669589
+		},
+		{
+			"zip": "60628",
+			"lat": 41.691688,
+			"lng": -87.614367
+		},
+		{
+			"zip": "60629",
+			"lat": 41.775196,
+			"lng": -87.712752
+		},
+		{
+			"zip": "60630",
+			"lat": 41.971758,
+			"lng": -87.758028
+		},
+		{
+			"zip": "60631",
+			"lat": 41.994531,
+			"lng": -87.813848
+		},
+		{
+			"zip": "60632",
+			"lat": 41.81171,
+			"lng": -87.713645
+		},
+		{
+			"zip": "60633",
+			"lat": 41.659821,
+			"lng": -87.557658
+		},
+		{
+			"zip": "60634",
+			"lat": 41.945955,
+			"lng": -87.805672
+		},
+		{
+			"zip": "60636",
+			"lat": 41.775653,
+			"lng": -87.668962
+		},
+		{
+			"zip": "60637",
+			"lat": 41.781003,
+			"lng": -87.60305
+		},
+		{
+			"zip": "60638",
+			"lat": 41.789169,
+			"lng": -87.769366
+		},
+		{
+			"zip": "60639",
+			"lat": 41.920456,
+			"lng": -87.755996
+		},
+		{
+			"zip": "60640",
+			"lat": 41.971575,
+			"lng": -87.660868
+		},
+		{
+			"zip": "60641",
+			"lat": 41.946134,
+			"lng": -87.747081
+		},
+		{
+			"zip": "60642",
+			"lat": 41.901507,
+			"lng": -87.658327
+		},
+		{
+			"zip": "60643",
+			"lat": 41.700584,
+			"lng": -87.662609
+		},
+		{
+			"zip": "60644",
+			"lat": 41.880296,
+			"lng": -87.757565
+		},
+		{
+			"zip": "60645",
+			"lat": 42.008466,
+			"lng": -87.694885
+		},
+		{
+			"zip": "60646",
+			"lat": 41.993928,
+			"lng": -87.762694
+		},
+		{
+			"zip": "60647",
+			"lat": 41.921098,
+			"lng": -87.702259
+		},
+		{
+			"zip": "60649",
+			"lat": 41.763148,
+			"lng": -87.570228
+		},
+		{
+			"zip": "60651",
+			"lat": 41.90241,
+			"lng": -87.741081
+		},
+		{
+			"zip": "60652",
+			"lat": 41.746057,
+			"lng": -87.712085
+		},
+		{
+			"zip": "60653",
+			"lat": 41.819529,
+			"lng": -87.610372
+		},
+		{
+			"zip": "60654",
+			"lat": 41.892414,
+			"lng": -87.637347
+		},
+		{
+			"zip": "60655",
+			"lat": 41.695557,
+			"lng": -87.704007
+		},
+		{
+			"zip": "60656",
+			"lat": 41.973992,
+			"lng": -87.826297
+		},
+		{
+			"zip": "60657",
+			"lat": 41.939823,
+			"lng": -87.656371
+		},
+		{
+			"zip": "60659",
+			"lat": 41.990281,
+			"lng": -87.704059
+		},
+		{
+			"zip": "60660",
+			"lat": 41.990661,
+			"lng": -87.666646
+		},
+		{
+			"zip": "60661",
+			"lat": 41.882872,
+			"lng": -87.643572
+		},
+		{
+			"zip": "60666",
+			"lat": 41.979376,
+			"lng": -87.908449
+		},
+		{
+			"zip": "60707",
+			"lat": 41.919948,
+			"lng": -87.795738
+		},
+		{
+			"zip": "60827",
+			"lat": 41.652003,
+			"lng": -87.60154
+		}
+	]
+}
