@@ -47,8 +47,21 @@ export default defineConfig({
 		passWithNoTests: true,
 		coverage: {
 			provider: 'v8',
-			include: ['src/**/*.{ts,svelte}'],
-			exclude: ['src/**/*.d.ts', 'src/**/*.e2e.ts']
+			// Unit coverage measures logic. Pages, components and DB queries are verified by
+			// Playwright against the real Worker + Postgres (e2e/), which v8 can't instrument.
+			include: ['src/**/*.ts'],
+			exclude: [
+				'src/**/*.d.ts',
+				'src/**/*.e2e.ts',
+				'src/test/**',
+				'src/routes/**',
+				'src/lib/server/db/**',
+				'src/lib/server/courts/**'
+			],
+			thresholds: {
+				lines: 70,
+				'src/lib/server/security/**': { lines: 90 }
+			}
 		},
 		projects: [
 			{

@@ -68,7 +68,8 @@
 		const url = new URL(page.url.href);
 		url.searchParams.delete('area');
 		url.searchParams.delete('zip');
-		goto(url.pathname + url.search, { reset: false });
+		// eslint-disable-next-line svelte/no-navigation-without-resolve -- resolved path plus our own query
+		goto(`${resolve('/courts')}${url.search}`, { reset: false });
 	}
 
 	const rows = $derived(

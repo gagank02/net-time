@@ -8,3 +8,7 @@ bun.lockb
 # Miscellaneous
 /static/
 worker-configuration.d.ts
+
+# Generated (drizzle-kit, courts:build-seed)
+drizzle/meta/
+data/courts.seed.json

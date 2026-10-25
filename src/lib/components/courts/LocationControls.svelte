@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import type { Area } from '#lib/courts/types.js';
 
 	let {
@@ -24,9 +25,7 @@
 
 	let areaSelect: HTMLSelectElement | undefined = $state();
 	let hydrated = $state(false);
-	$effect(() => {
-		hydrated = true;
-	});
+	onMount(() => (hydrated = true));
 
 	// After a blocked/failed location request, move focus to the alternative.
 	$effect(() => {

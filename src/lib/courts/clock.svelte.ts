@@ -1,3 +1,4 @@
+/* eslint-disable svelte/prefer-svelte-reactivity -- each tick assigns a new Date, none is mutated */
 /**
  * A "now" that starts at the server's time (so SSR and hydration agree) and then ticks every minute
  * in the browser, so open/closed statuses stay right in a tab left open. Call during component init.

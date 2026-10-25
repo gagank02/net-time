@@ -7,6 +7,7 @@
 
 	// The same block on several days collapses into one line ("Mon–Fri 9 AM – Noon").
 	const blocks = $derived.by(() => {
+		// eslint-disable-next-line svelte/prefer-svelte-reactivity -- scratch map, rebuilt on each run
 		const groups = new Map<string, { c: ClassDetail; days: number[] }>();
 		for (const c of classes) {
 			const key = [
