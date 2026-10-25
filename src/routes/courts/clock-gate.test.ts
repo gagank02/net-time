@@ -3,7 +3,9 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import { listCourts } from '#lib/server/courts/queries.js';
 import { load } from './+page.server';
 
-vi.mock('#lib/server/courts/queries.js', () => ({ listCourts: vi.fn(async () => []) }));
+vi.mock('#lib/server/courts/queries.js', () => ({
+	listCourts: vi.fn(async () => ({ courts: [], areas: [], zips: [] }))
+}));
 
 const vars = env as unknown as Record<string, unknown>;
 const run = (query: string) =>

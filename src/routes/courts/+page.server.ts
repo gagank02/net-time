@@ -15,6 +15,6 @@ function serverNow(url: URL): Date {
 
 export const load: PageServerLoad = async ({ url }) => {
 	const now = serverNow(url);
-	const courts = await listCourts(chicagoTime(now).date);
-	return { courts, now: now.toISOString() };
+	const { courts, areas, zips } = await listCourts(chicagoTime(now).date);
+	return { courts, areas, zips, now: now.toISOString() };
 };

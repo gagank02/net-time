@@ -1,8 +1,11 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
 	import { page } from '$app/state';
+	import { goto } from '$app/navigation';
 	import CourtRow from '#lib/components/courts/CourtRow.svelte';
+	import LocationControls from '#lib/components/courts/LocationControls.svelte';
 	import { courtStatus, formatClock } from '#lib/courts/status.js';
+	import { distanceMeters, formatDistance, type LatLng } from '#lib/geo.js';
 	import type { PageProps } from './$types';
 
 	let { data }: PageProps = $props();
@@ -17,17 +20,71 @@
 
 	const openOnly = $derived(page.url.searchParams.get('open') === '1');
 	const lightsOnly = $derived(page.url.searchParams.get('lights') === '1');
+	const areaParam = $derived(page.url.searchParams.get('area') ?? '');
+	const zipParam = $derived(page.url.searchParams.get('zip')?.trim() ?? '');
+
+	// Device position lives only in this component's memory: never in the URL, storage, or a request.
+	let device = $state<LatLng | null>(null);
+	let locating = $state(false);
+	let locError = $state('');
+
+	function locate() {
+		if (!('geolocation' in navigator)) {
+			locError = "This browser can't share your location. Pick a neighborhood or enter a ZIP.";
+			return;
+		}
+		locating = true;
+		locError = '';
+		navigator.geolocation.getCurrentPosition(
+			(pos) => {
+				device = { lat: pos.coords.latitude, lng: pos.coords.longitude };
+				locating = false;
+			},
+			(err) => {
+				locating = false;
+				locError =
+					err.code === err.PERMISSION_DENIED
+						? 'Location is blocked for this site. Pick a neighborhood or enter a ZIP instead.'
+						: "Couldn't get your location. Pick a neighborhood or enter a ZIP instead.";
+			},
+			{ enableHighAccuracy: false, maximumAge: 5 * 60_000, timeout: 10_000 }
+		);
+	}
+
+	const area = $derived(data.areas.find((a) => a.slug === areaParam));
+	const zip = $derived(data.zips.find((z) => z.zip === zipParam));
+	const origin = $derived.by((): (LatLng & { label: string }) | null => {
+		if (device) return { ...device, label: 'your location' };
+		if (area) return { ...area, label: area.name };
+		if (zip) return { ...zip, label: zip.zip };
+		return null;
+	});
+	const zipError = $derived(
+		zipParam && !zip && !device && !area
+			? `${zipParam} isn't a Chicago ZIP we know. Try a neighborhood.`
+			: ''
+	);
+
+	function clearLocation() {
+		device = null;
+		const url = new URL(page.url.href);
+		url.searchParams.delete('area');
+		url.searchParams.delete('zip');
+		goto(url.pathname + url.search, { reset: false });
+	}
 
 	const rows = $derived(
 		data.courts
 			.map((court) => ({
 				court,
-				status: courtStatus(court.courtCount, court.hours, court.classes, now)
+				status: courtStatus(court.courtCount, court.hours, court.classes, now),
+				meters: origin ? distanceMeters(origin, court) : null
 			}))
 			.filter(
 				({ court, status }) =>
 					(!openOnly || status.state !== 'closed') && (!lightsOnly || court.lights)
 			)
+			.sort((a, b) => (a.meters ?? 0) - (b.meters ?? 0))
 	);
 
 	const asOf = $derived(
@@ -57,6 +114,16 @@
 </p>
 
 <form method="GET" class="filters" data-sveltekit-keepfocus data-sveltekit-noscroll>
+	<LocationControls
+		areas={data.areas}
+		area={areaParam}
+		zip={zipParam}
+		usingDevice={device !== null}
+		{locating}
+		error={locError || zipError}
+		onlocate={locate}
+		onchoose={() => (device = null)}
+	/>
 	<fieldset>
 		<legend class="visually-hidden">Filter courts</legend>
 		<label class="chip">
@@ -84,6 +151,10 @@
 </form>
 
 <p class="count" aria-live="polite">
+	{#if origin}
+		Nearest to {origin.label} ·
+		<button type="button" class="link" onclick={clearLocation}>Clear location</button> ·
+	{/if}
 	{#if rows.length === data.courts.length}
 		Showing all {rows.length}
 	{:else}
@@ -94,8 +165,14 @@
 
 {#if rows.length}
 	<ul class="grouped" role="list">
-		{#each rows as { court, status } (court.slug)}
-			<li><CourtRow {court} {status} /></li>
+		{#each rows as { court, status, meters } (court.slug)}
+			<li>
+				<CourtRow
+					{court}
+					{status}
+					distance={meters === null ? undefined : formatDistance(meters)}
+				/>
+			</li>
 		{/each}
 	</ul>
 {:else}
@@ -115,7 +192,19 @@
 	}
 
 	.filters {
+		display: grid;
+		gap: var(--space-4);
 		margin-top: var(--space-5);
+	}
+
+	.link {
+		padding: 0;
+		border: 0;
+		background: none;
+		color: var(--link);
+		font: inherit;
+		text-decoration: underline;
+		cursor: pointer;
 	}
 
 	fieldset {

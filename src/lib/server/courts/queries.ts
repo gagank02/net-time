@@ -1,14 +1,19 @@
 import { sql } from 'drizzle-orm';
 import { withDb } from '#lib/server/db/client.js';
-import type { CourtListItem } from '#lib/courts/types.js';
+import type { Area, CourtListItem, Zip } from '#lib/courts/types.js';
+
+export type CourtsPage = { courts: CourtListItem[]; areas: Area[]; zips: Zip[] };
 
 /**
- * Every court location with its hours and not-yet-ended classes, in ONE query (JSON aggregation).
+ * Everything /courts needs in ONE query (JSON aggregation): every court location with its hours and
+ * not-yet-ended classes, plus community-area and ZIP centroids for on-device "near me".
  * `today` is the Chicago date (YYYY-MM-DD) so past seasons are left out.
  */
-export function listCourts(today: string): Promise<CourtListItem[]> {
+export function listCourts(today: string): Promise<CourtsPage> {
 	return withDb(async (db) => {
 		const { rows } = await db.execute(sql`
+			select
+			(select coalesce(json_agg(c order by c.name), '[]'::json) from (
 			select
 				l.slug,
 				l.name,
@@ -47,8 +52,14 @@ export function listCourts(today: string): Promise<CourtListItem[]> {
 					where c.location_id = l.id and c.season_end >= ${today}::date
 				), '[]'::json) as classes
 			from court_locations l
-			order by l.name
+			) c) as courts,
+			(select coalesce(json_agg(json_build_object(
+				'slug', a.slug, 'name', a.name, 'lat', st_y(a.centroid), 'lng', st_x(a.centroid)
+			) order by a.name), '[]'::json) from community_areas a) as areas,
+			(select coalesce(json_agg(json_build_object(
+				'zip', z.zip, 'lat', st_y(z.centroid), 'lng', st_x(z.centroid)
+			) order by z.zip), '[]'::json) from zip_codes z) as zips
 		`);
-		return rows as CourtListItem[];
+		return rows[0] as CourtsPage;
 	});
 }
