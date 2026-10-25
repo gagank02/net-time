@@ -24,9 +24,14 @@ export default defineConfig({
 						'https://static.cloudflareinsights.com'
 					],
 					'style-src': ['self', 'unsafe-inline'],
-					'img-src': ['self', 'data:', 'blob:'],
+					// OpenFreeMap (map style, tiles, fonts, sprites): one origin, loaded only after "Show map".
+					'img-src': ['self', 'data:', 'blob:', 'https://tiles.openfreemap.org'],
 					'font-src': ['self'],
-					'connect-src': ['self', 'https://cloudflareinsights.com'],
+					'connect-src': [
+						'self',
+						'https://cloudflareinsights.com',
+						'https://tiles.openfreemap.org'
+					],
 					'frame-src': ['https://challenges.cloudflare.com'],
 					'worker-src': ['self', 'blob:'],
 					'object-src': ['none'],

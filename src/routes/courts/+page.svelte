@@ -2,6 +2,7 @@
 	import { resolve } from '$app/paths';
 	import { page } from '$app/state';
 	import { goto } from '$app/navigation';
+	import CourtMap from '#lib/components/courts/CourtMap.svelte';
 	import CourtRow from '#lib/components/courts/CourtRow.svelte';
 	import LocationControls from '#lib/components/courts/LocationControls.svelte';
 	import { liveNow } from '#lib/courts/clock.svelte.js';
@@ -12,6 +13,7 @@
 	let { data }: PageProps = $props();
 
 	const clock = liveNow(() => data.now);
+	let showMap = $state(false);
 	const now = $derived(clock.current);
 
 	const openOnly = $derived(page.url.searchParams.get('open') === '1');
@@ -159,6 +161,21 @@
 	{/if}
 </p>
 
+<button
+	type="button"
+	class="map-toggle"
+	aria-expanded={showMap}
+	aria-controls="courts-map"
+	onclick={() => (showMap = !showMap)}
+>
+	{showMap ? 'Hide map' : 'Show map'}
+</button>
+<div id="courts-map">
+	{#if showMap}
+		<CourtMap {rows} />
+	{/if}
+</div>
+
 {#if rows.length}
 	<ul class="grouped" role="list">
 		{#each rows as { court, status, meters } (court.slug)}
@@ -248,6 +265,23 @@
 		margin: var(--space-4) var(--space-4) var(--space-2);
 		color: var(--label-2);
 		font-size: var(--text-footnote);
+	}
+
+	.map-toggle {
+		min-height: var(--target);
+		margin: 0 0 var(--space-3);
+		padding: 0 var(--space-4);
+		border: 0;
+		border-radius: var(--radius-control);
+		background: var(--fill);
+		color: var(--link);
+		font-size: var(--text-subhead);
+		font-weight: 600;
+		cursor: pointer;
+	}
+
+	#courts-map:not(:empty) {
+		margin-bottom: var(--space-4);
 	}
 
 	.grouped {
