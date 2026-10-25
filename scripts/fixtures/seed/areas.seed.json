@@ -1,0 +1,10 @@
+{
+	"communityAreas": [
+		{ "slug": "lincoln-park", "name": "Lincoln Park", "lat": 41.9214, "lng": -87.6513 },
+		{ "slug": "loop", "name": "Loop", "lat": 41.8786, "lng": -87.6251 }
+	],
+	"zips": [
+		{ "zip": "60614", "lat": 41.9224, "lng": -87.6512 },
+		{ "zip": "60601", "lat": 41.8858, "lng": -87.6229 }
+	]
+}

@@ -1,0 +1,35 @@
+{
+	"generatedAt": "2026-10-25T00:00:00Z",
+	"locations": [
+		{
+			"slug": "oz-park",
+			"name": "Oz Park",
+			"address": "2021 N Burling St",
+			"lat": 41.9195,
+			"lng": -87.6455,
+			"courtCount": 4,
+			"lights": true,
+			"surface": "hard",
+			"indoor": false,
+			"communityArea": "Lincoln Park",
+			"cpdParkNo": 1,
+			"osmIds": ["way/1"],
+			"verifiedAt": "2026-10-25"
+		},
+		{
+			"slug": "maggie-daley-park",
+			"name": "Maggie Daley Park",
+			"address": "337 E Randolph St",
+			"lat": 41.8826,
+			"lng": -87.6197,
+			"courtCount": 2,
+			"lights": null,
+			"surface": null,
+			"indoor": false,
+			"communityArea": "Loop",
+			"cpdParkNo": null,
+			"osmIds": [],
+			"verifiedAt": "2026-10-25"
+		}
+	]
+}

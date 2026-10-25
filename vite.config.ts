@@ -69,7 +69,7 @@ export default defineConfig({
 						'cloudflare:workers': new URL('./src/test/cloudflare-workers.ts', import.meta.url)
 							.pathname
 					},
-					include: ['src/**/*.{test,spec}.{js,ts}'],
+					include: ['src/**/*.{test,spec}.{js,ts}', 'scripts/**/*.{test,spec}.ts'],
 					exclude: ['src/**/*.svelte.{test,spec}.{js,ts}']
 				}
 			}
