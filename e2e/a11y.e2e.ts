@@ -4,6 +4,7 @@ import { expect, mockTiles, test, type Page } from './fixtures';
 const pages = [
 	{ name: 'home', path: '/' },
 	{ name: 'data', path: '/data' },
+	{ name: 'privacy', path: '/privacy' },
 	{ name: 'courts list', path: '/courts' },
 	{ name: 'court detail', path: '/courts/maggie-daley-park' },
 	{ name: '404', path: '/no-such-page' },

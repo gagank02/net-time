@@ -4,7 +4,7 @@ import { securityHeaders } from '../src/lib/server/security/headers';
 // Prerendered pages and files are served by Cloudflare static assets (headers from /_headers);
 // the rest is the Worker (headers from hooks.server.ts).
 const workerRoutes = ['/healthz', '/does-not-exist', '/courts/no-such-park'];
-const staticRoutes = ['/', '/data', '/courts', '/courts/oz-park', '/robots.txt'];
+const staticRoutes = ['/', '/data', '/privacy', '/courts', '/courts/oz-park', '/robots.txt'];
 const staticPages = staticRoutes.filter((p) => p !== '/robots.txt');
 
 const parse = (csp: string) =>

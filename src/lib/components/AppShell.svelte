@@ -48,6 +48,8 @@
 		<ExternalLink href="https://data.cityofchicago.org">City of Chicago Data Portal</ExternalLink>,
 		modified for use here. We provide it as is, and it can be incomplete or out of date.
 		<a href={resolve('/data')}>Data sources and disclaimer</a>
+		<span aria-hidden="true">·</span>
+		<a href={resolve('/privacy')}>Privacy</a>
 	</p>
 </footer>
 

@@ -25,22 +25,15 @@ export default defineConfig({
 				mode: 'auto',
 				directives: {
 					'default-src': ['self'],
-					'script-src': [
-						'self',
-						themeScriptHash,
-						'https://challenges.cloudflare.com',
-						'https://static.cloudflareinsights.com'
-					],
+					// Third-party origins are added only when a feature uses them (Turnstile and
+					// Cloudflare Web Analytics were removed until then; see /privacy).
+					'script-src': ['self', themeScriptHash],
 					'style-src': ['self', 'unsafe-inline'],
 					// OpenFreeMap (map style, tiles, fonts, sprites): one origin, loaded only after "Show map".
 					'img-src': ['self', 'data:', 'blob:', 'https://tiles.openfreemap.org'],
 					'font-src': ['self'],
-					'connect-src': [
-						'self',
-						'https://cloudflareinsights.com',
-						'https://tiles.openfreemap.org'
-					],
-					'frame-src': ['https://challenges.cloudflare.com'],
+					'connect-src': ['self', 'https://tiles.openfreemap.org'],
+					'frame-src': ['none'],
 					'worker-src': ['self', 'blob:'],
 					'object-src': ['none'],
 					'base-uri': ['self'],
