@@ -2,15 +2,13 @@
 	import '../app.css';
 	import favicon from '#lib/assets/favicon.svg';
 	import AppShell from '#lib/components/AppShell.svelte';
-	import type { LayoutProps } from './$types';
-
-	let { data, children }: LayoutProps = $props();
+	let { children } = $props();
 </script>
 
 <svelte:head>
 	<link rel="icon" href={favicon} />
 </svelte:head>
 
-<AppShell theme={data.theme}>
+<AppShell>
 	{@render children()}
 </AppShell>

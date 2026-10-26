@@ -2,7 +2,7 @@ import { expect, test, type Page } from './fixtures';
 
 async function openAt(page: Page, path: string, iso: string) {
 	await page.clock.setFixedTime(new Date(iso));
-	await page.goto(`${path}?at=${encodeURIComponent(iso)}`);
+	await page.goto(path);
 }
 
 const fact = (page: Page, term: string) =>

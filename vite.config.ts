@@ -2,6 +2,13 @@ import { defineConfig } from 'vitest/config';
 import { playwright } from '@vitest/browser-playwright';
 import adapter from '@sveltejs/adapter-cloudflare';
 import { sveltekit } from '@sveltejs/kit/vite';
+import { createHash } from 'node:crypto';
+import { readFileSync } from 'node:fs';
+
+// The one hand-written inline script (theme before first paint, src/app.html), allowed by hash.
+const themeScript = readFileSync('src/app.html', 'utf8').match(/<script>(.*?)<\/script>/s)?.[1];
+if (!themeScript) throw new Error('src/app.html: theme script not found');
+const themeScriptHash: `sha256-${string}` = `sha256-${createHash('sha256').update(themeScript).digest('base64')}`;
 
 export default defineConfig({
 	plugins: [
@@ -20,6 +27,7 @@ export default defineConfig({
 					'default-src': ['self'],
 					'script-src': [
 						'self',
+						themeScriptHash,
 						'https://challenges.cloudflare.com',
 						'https://static.cloudflareinsights.com'
 					],
@@ -55,8 +63,7 @@ export default defineConfig({
 				'src/**/*.e2e.ts',
 				'src/test/**',
 				'src/routes/**',
-				'src/lib/server/db/**',
-				'src/lib/server/courts/**'
+				'src/lib/server/db/**'
 			],
 			thresholds: {
 				lines: 70,

@@ -2,10 +2,15 @@
 	import { describeStatus } from '#lib/courts/status.js';
 	import type { Access, CourtStatus } from '#lib/courts/types.js';
 
-	let { status, courtCount, access }: { status: CourtStatus; courtCount: number; access: Access } =
-		$props();
+	// status is null until the page hydrates (prerendered pages can't know the time).
+	let {
+		status,
+		courtCount,
+		access
+	}: { status: CourtStatus | null; courtCount: number; access: Access } = $props();
 
 	const text = $derived.by(() => {
+		if (!status) return null;
 		const { label, detail } = describeStatus(status, courtCount);
 		// A single block's own title ("Pickleball open play") says more than "Class in progress".
 		const named = status.state === 'class' && status.titles.length === 1 ? status.titles[0] : label;
@@ -14,22 +19,27 @@
 	});
 </script>
 
-<!-- Shape + text carry the status; colour is only a third cue (WCAG 1.4.1). -->
-<span class="status {status.state}">
-	<svg class="icon" viewBox="0 0 12 12" aria-hidden="true">
-		{#if status.state === 'open'}
-			<circle cx="6" cy="6" r="5" />
-		{:else if status.state === 'class'}
-			<path d="M6 1a5 5 0 1 0 0 10z" />
-			<circle cx="6" cy="6" r="4.25" fill="none" stroke-width="1.5" />
-		{:else}
-			<circle cx="6" cy="6" r="4.25" fill="none" stroke-width="1.5" />
-		{/if}
-	</svg>
-	<!-- The separator ends the label so a wrapped line never starts with "·". -->
-	<span class="label">{text.label}<span class="sep" aria-hidden="true">·</span></span>
-	<span class="detail">{text.detail}</span>
-</span>
+{#if status && text}
+	<!-- Shape + text carry the status; colour is only a third cue (WCAG 1.4.1). -->
+	<span class="status {status.state}">
+		<svg class="icon" viewBox="0 0 12 12" aria-hidden="true">
+			{#if status.state === 'open'}
+				<circle cx="6" cy="6" r="5" />
+			{:else if status.state === 'class'}
+				<path d="M6 1a5 5 0 1 0 0 10z" />
+				<circle cx="6" cy="6" r="4.25" fill="none" stroke-width="1.5" />
+			{:else}
+				<circle cx="6" cy="6" r="4.25" fill="none" stroke-width="1.5" />
+			{/if}
+		</svg>
+		<!-- The separator ends the label so a wrapped line never starts with "·". -->
+		<span class="label">{text.label}<span class="sep" aria-hidden="true">·</span></span>
+		<span class="detail">{text.detail}</span>
+	</span>
+{:else}
+	<!-- Same line height as a real status, so nothing shifts when it fills in. -->
+	<span class="status pending" aria-hidden="true">&nbsp;</span>
+{/if}
 
 <style>
 	.status {

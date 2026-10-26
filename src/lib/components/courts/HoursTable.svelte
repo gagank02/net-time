@@ -9,17 +9,22 @@
 	} from '#lib/courts/status.js';
 	import type { HoursRow } from '#lib/courts/types.js';
 
-	let { hours, now }: { hours: HoursRow[]; now: Date } = $props();
+	// now is null until hydration: show the week as of the build date, without a Today marker.
+	let { hours, now, builtAt }: { hours: HoursRow[]; now: Date | null; builtAt: string } = $props();
 
 	// The coming week's hours (seasonal rows apply on their actual dates), Sunday first, today marked.
 	const week = $derived.by(() => {
-		const today = chicagoTime(now);
+		const today = chicagoTime(now ?? new Date(builtAt));
 		return [0, 1, 2, 3, 4, 5, 6].map((weekday) => {
 			const date = addDays(today.date, (weekday - today.weekday + 7) % 7);
 			const spans = intervalsOn(hours, date, weekday).map(
 				(i) => `${formatClock(toClock(i.opens))} – ${formatClock(toClock(i.closes))}`
 			);
-			return { weekday, isToday: weekday === today.weekday, text: spans.join(', ') || 'Closed' };
+			return {
+				weekday,
+				isToday: now !== null && weekday === today.weekday,
+				text: spans.join(', ') || 'Closed'
+			};
 		});
 	});
 </script>

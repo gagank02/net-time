@@ -2,12 +2,11 @@
 	import type { Snippet } from 'svelte';
 	import { resolve } from '$app/paths';
 	import { page } from '$app/state';
-	import type { Theme } from '#lib/theme.js';
 	import ExternalLink from './ExternalLink.svelte';
 	import SkipLink from './SkipLink.svelte';
 	import ThemeToggle from './ThemeToggle.svelte';
 
-	let { theme, children }: { theme: Theme; children: Snippet } = $props();
+	let { children }: { children: Snippet } = $props();
 </script>
 
 <SkipLink />
@@ -34,7 +33,14 @@
 </main>
 
 <footer>
-	<ThemeToggle {theme} />
+	<ThemeToggle />
+	<noscript
+		><style>
+			.appearance {
+				display: none !important; /* beats the scoped component style */
+			}
+		</style></noscript
+	>
 	<p class="attribution">
 		Court and shop data ©
 		<ExternalLink href="https://www.openstreetmap.org/copyright">OpenStreetMap</ExternalLink>

@@ -1,10 +1,10 @@
 import { expect, test, type Page } from './fixtures';
 
-// Server clock via ?at= (honoured only with E2E_ROUTES=1); browser clock pinned to the same instant
-// so the client-side status refresh agrees. Runs against the real seeded local data.
+// The page is static; statuses come from the browser clock, pinned here. Runs against the real
+// seed data built into the page.
 async function openAt(page: Page, iso: string, query = '') {
 	await page.clock.setFixedTime(new Date(iso));
-	await page.goto(`/courts?at=${encodeURIComponent(iso)}${query}`);
+	await page.goto(`/courts${query}`);
 }
 
 const row = (page: Page, name: string | RegExp) =>
@@ -41,36 +41,50 @@ test('Open now and Lights filters narrow the list and work via the URL', async (
 	const items = () => page.getByRole('list', { name: 'Courts' }).getByRole('listitem');
 	const total = await items().count();
 
-	// Toggling submits the GET form (no ?at=), so re-apply the test clock to the resulting URL.
-	const keepClock = async () => {
-		const url = new URL(page.url());
-		url.searchParams.set('at', at);
-		await page.goto(url.pathname + url.search);
-	};
-
 	await page.getByRole('checkbox', { name: 'Open now' }).check();
 	await expect(page).toHaveURL(/open=1/);
-	await keepClock();
-	await expect(page.getByRole('button', { name: 'Use my location' })).toBeEnabled();
 	await expect(page.getByRole('checkbox', { name: 'Open now' })).toBeChecked();
 	await expect(row(page, /^Maggie Daley Park/)).toHaveCount(0);
 	expect(await items().count()).toBe(total - 1);
 
 	await page.getByRole('checkbox', { name: 'Lights' }).check();
 	await expect(page).toHaveURL(/open=1.*lights=1|lights=1.*open=1/);
-	await keepClock();
 	const lit = await items().count();
 	expect(lit).toBeGreaterThan(0);
 	expect(lit).toBeLessThan(total);
 
 	await page.getByRole('link', { name: 'Clear filters' }).click();
 	await expect(page).toHaveURL(/\/courts$/);
+
+	// A shared filtered link applies once the static page hydrates.
+	await page.goto('/courts?open=1');
+	await expect(page.getByText(`Showing ${total - 1} of ${total}`)).toBeVisible();
 });
 
-test('filters work without JavaScript', async ({ browser, extraHTTPHeaders }) => {
+test('static HTML never shows a stale status: placeholders until the browser fills them in', async ({
+	request
+}) => {
+	const html = await (await request.get('/courts')).text();
+	expect(html).toContain('status pending');
+	expect(html).not.toMatch(/class="label[^"]*">(Open now|Class in progress|Closed)/);
+});
+
+test('without JavaScript: every court is listed, inert controls are hidden', async ({
+	browser,
+	extraHTTPHeaders
+}) => {
 	const context = await browser.newContext({ extraHTTPHeaders, javaScriptEnabled: false });
 	const page = await context.newPage();
-	await page.goto('/courts?at=2026-10-26T23:30:00-05:00&open=1');
-	await expect(page.getByText('No courts match')).toBeVisible();
+	await page.goto('/courts?open=1');
+	// Playwright's text/role engines skip <noscript> content, so match it by class.
+	await expect(page.locator('.nojs')).toContainText(
+		'Sorting, filters and live status need JavaScript.'
+	);
+	expect(
+		await page.getByRole('list', { name: 'Courts' }).getByRole('listitem').count()
+	).toBeGreaterThan(100);
+	await expect(page.getByRole('checkbox', { name: 'Open now' })).toBeHidden();
+	await expect(page.getByLabel('ZIP')).toBeHidden();
+	await expect(page.getByRole('button', { name: 'Show map' })).toBeHidden();
 	await context.close();
 });

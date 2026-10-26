@@ -15,7 +15,6 @@ declare global {
 		}
 		interface Locals {
 			requestId: string;
-			theme: import('#lib/theme.js').Theme;
 		}
 		// interface PageData {}
 		// interface PageState {}

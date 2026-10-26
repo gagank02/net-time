@@ -45,10 +45,7 @@
 		<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M15 1 1 7.5l6 1.5 1.5 6z" /></svg>
 		{locating ? 'Finding you…' : usingDevice ? 'Using your location' : 'Use my location'}
 	</button>
-	<p class="hint">
-		Your location stays on this device. It's never sent or saved.
-		<noscript>Using your location needs JavaScript.</noscript>
-	</p>
+	<p class="hint">Your location stays on this device. It's never sent or saved.</p>
 	<p class="or" aria-hidden="true">or</p>
 
 	<div class="pickers">

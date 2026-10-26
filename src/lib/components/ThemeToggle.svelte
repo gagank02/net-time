@@ -1,47 +1,40 @@
 <script lang="ts">
-	import { resolve } from '$app/paths';
-	import { page } from '$app/state';
-	import { themes, type Theme } from '#lib/theme.js';
+	import { onMount } from 'svelte';
+	import { parseTheme, themeKey, themes, type Theme } from '#lib/theme.js';
 
-	let { theme }: { theme: Theme } = $props();
-
-	// Writable derived: follows the server value, overridden locally on click.
-	let current = $derived(theme);
+	// Pages are static, so the choice lives in this browser (localStorage), applied before first
+	// paint by app.html. "system" is the prerendered default; the real choice shows once mounted.
+	let current = $state<Theme>('system');
+	onMount(() => (current = parseTheme(document.documentElement.dataset.theme)));
 
 	const labels: Record<Theme, string> = { system: 'System', light: 'Light', dark: 'Dark' };
 
-	// Progressive enhancement: without JS the form posts and redirects back.
-	// With JS, switch instantly and save in the background.
-	async function choose(event: SubmitEvent) {
-		const value = (event.submitter as HTMLButtonElement | null)?.value as Theme | undefined;
-		if (!value) return;
-		event.preventDefault();
+	function choose(value: Theme) {
 		current = value;
 		document.documentElement.dataset.theme = value;
-		const body = new FormData();
-		body.set('theme', value);
-		await fetch(resolve('/theme'), {
-			method: 'POST',
-			body,
-			headers: { accept: 'application/json' }
-		}).catch(() => {});
+		try {
+			if (value === 'system') localStorage.removeItem(themeKey);
+			else localStorage.setItem(themeKey, value);
+		} catch {
+			// Storage blocked (private mode, policy): the choice lasts for this page only.
+		}
 	}
 </script>
 
-<form method="POST" action={resolve('/theme')} onsubmit={choose} aria-label="Appearance">
-	<input type="hidden" name="redirectTo" value={page.url.pathname + page.url.search} />
+<!-- Needs JavaScript; hidden without it (see AppShell), where the device setting applies. -->
+<div class="appearance" role="group" aria-label="Appearance">
 	<span class="label" aria-hidden="true">Appearance</span>
 	<div class="segmented">
 		{#each themes as option (option)}
-			<button type="submit" name="theme" value={option} aria-pressed={current === option}>
+			<button type="button" aria-pressed={current === option} onclick={() => choose(option)}>
 				{labels[option]}
 			</button>
 		{/each}
 	</div>
-</form>
+</div>
 
 <style>
-	form {
+	.appearance {
 		display: flex;
 		align-items: center;
 		gap: var(--space-3);

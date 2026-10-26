@@ -3,6 +3,8 @@ import { expect, test } from './fixtures';
 // SvelteKit's origin check (production builds only, so this runs against preview) rejects
 // cross-site POST/PUT/PATCH/DELETE with a form content type before any route code runs.
 // These are the content types a browser can send cross-site without a CORS preflight.
+// Targets a Worker route: prerendered pages are static files and never run route code.
+const path = '/healthz';
 const formBodies = [
 	{ type: 'application/x-www-form-urlencoded', data: 'a=1' },
 	{
@@ -14,7 +16,7 @@ const formBodies = [
 
 for (const { type, data } of formBodies) {
 	test(`cross-site ${type.split(';')[0]} POST is rejected with 403`, async ({ request }) => {
-		const res = await request.post('/', {
+		const res = await request.post(path, {
 			headers: { origin: 'https://evil.example', 'content-type': type },
 			data
 		});
@@ -24,7 +26,7 @@ for (const { type, data } of formBodies) {
 }
 
 test('form POST with no Origin header is rejected', async ({ request }) => {
-	const res = await request.fetch('/', {
+	const res = await request.fetch(path, {
 		method: 'POST',
 		headers: { 'content-type': 'application/x-www-form-urlencoded', origin: '' },
 		data: 'a=1'
@@ -34,10 +36,10 @@ test('form POST with no Origin header is rejected', async ({ request }) => {
 
 test('same-origin form POST is not blocked by CSRF', async ({ request, baseURL }) => {
 	const origin = new URL(baseURL ?? 'http://localhost:4173').origin;
-	const res = await request.post('/', {
+	const res = await request.post(path, {
 		headers: { origin, 'content-type': 'application/x-www-form-urlencoded' },
 		data: 'a=1'
 	});
-	// No action on `/` yet, so not 2xx, but crucially not the CSRF 403.
+	// GET-only route, so not 2xx, but crucially not the CSRF 403.
 	expect(res.status()).not.toBe(403);
 });

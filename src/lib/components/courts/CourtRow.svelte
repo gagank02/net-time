@@ -7,7 +7,7 @@
 		court,
 		status,
 		distance
-	}: { court: CourtListItem; status: CourtStatus; distance?: string } = $props();
+	}: { court: CourtListItem; status: CourtStatus | null; distance?: string } = $props();
 
 	const facts = $derived(
 		[

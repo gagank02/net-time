@@ -1,9 +1,9 @@
+import { building } from '$app/env';
 import { sequence } from '@sveltejs/kit/hooks';
 import type { Handle, HandleServerError } from '@sveltejs/kit/hooks';
 import { describeError, log } from '#lib/server/log.js';
 import { applySecurityHeaders } from '#lib/server/security/headers.js';
 import { checkLimit, ipPrefix, periodSeconds } from '#lib/server/security/ratelimit.js';
-import { parseTheme, themeCookie } from '#lib/theme.js';
 
 const requestContext: Handle = async ({ event, resolve }) => {
 	const start = Date.now();
@@ -26,6 +26,8 @@ const securityHeaders: Handle = async ({ event, resolve }) =>
 
 /** Global per-IP limit before any route code or DB access. Limiter outage → 503 (fail closed). */
 export const rateLimit: Handle = async ({ event, resolve }) => {
+	// Prerendering at build time has no client and no Cloudflare bindings.
+	if (building) return resolve(event);
 	let ip = 'unknown';
 	try {
 		ip = event.getClientAddress() || ip;
@@ -53,16 +55,7 @@ export const rateLimit: Handle = async ({ event, resolve }) => {
 			});
 };
 
-/** Server-renders the saved appearance onto <html data-theme>, so the first paint is already right. */
-const theme: Handle = ({ event, resolve }) => {
-	event.locals.theme = parseTheme(event.cookies.get(themeCookie));
-	return resolve(event, {
-		transformPageChunk: ({ html }) => html.replace('%net.theme%', event.locals.theme)
-	});
-};
-
-// Order matters: securityHeaders wraps rateLimit so 429/503 responses get headers too.
-export const handle = sequence(requestContext, securityHeaders, rateLimit, theme);
+export const handle = sequence(requestContext, securityHeaders, rateLimit);
 
 /** Unknown errors are logged in full server-side; the client only ever sees a generic message + id. */
 export const handleError: HandleServerError = ({ kind, error, event }) => {

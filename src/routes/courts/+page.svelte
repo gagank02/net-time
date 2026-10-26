@@ -6,20 +6,23 @@
 	import CourtRow from '#lib/components/courts/CourtRow.svelte';
 	import LocationControls from '#lib/components/courts/LocationControls.svelte';
 	import { liveNow } from '#lib/courts/clock.svelte.js';
-	import { courtStatus, formatClock } from '#lib/courts/status.js';
+	import { courtStatus } from '#lib/courts/status.js';
 	import { distanceMeters, formatDistance, type LatLng } from '#lib/geo.js';
 	import type { PageProps } from './$types';
 
 	let { data }: PageProps = $props();
 
-	const clock = liveNow(() => data.now);
+	const clock = liveNow();
 	let showMap = $state(false);
 	const now = $derived(clock.current);
 
-	const openOnly = $derived(page.url.searchParams.get('open') === '1');
-	const lightsOnly = $derived(page.url.searchParams.get('lights') === '1');
-	const areaParam = $derived(page.url.searchParams.get('area') ?? '');
-	const zipParam = $derived(page.url.searchParams.get('zip')?.trim() ?? '');
+	// The page is prerendered, so the query string is read only after hydration (now is set);
+	// the first client render matches the static HTML: every court, unfiltered, unsorted.
+	const params = $derived(now ? page.url.searchParams : new URLSearchParams());
+	const openOnly = $derived(params.get('open') === '1');
+	const lightsOnly = $derived(params.get('lights') === '1');
+	const areaParam = $derived(params.get('area') ?? '');
+	const zipParam = $derived(params.get('zip')?.trim() ?? '');
 
 	// Device position lives only in this component's memory: never in the URL, storage, or a request.
 	let device = $state<LatLng | null>(null);
@@ -76,25 +79,19 @@
 		data.courts
 			.map((court) => ({
 				court,
-				status: courtStatus(court.courtCount, court.hours, court.classes, now),
+				status: now ? courtStatus(court.courtCount, court.hours, court.classes, now) : null,
 				meters: origin ? distanceMeters(origin, court) : null
 			}))
 			.filter(
 				({ court, status }) =>
-					(!openOnly || status.state !== 'closed') && (!lightsOnly || court.lights)
+					(!openOnly || status?.state !== 'closed') && (!lightsOnly || court.lights)
 			)
 			.sort((a, b) => (a.meters ?? 0) - (b.meters ?? 0))
 	);
 
-	const asOf = $derived(
-		formatClock(
-			new Intl.DateTimeFormat('en-GB', {
-				timeZone: 'America/Chicago',
-				hour: '2-digit',
-				minute: '2-digit',
-				hourCycle: 'h23'
-			}).format(now)
-		)
+	// The map opens only after hydration, when every row has a status.
+	const mapRows = $derived(
+		rows.flatMap(({ court, status }) => (status ? [{ court, status }] : []))
 	);
 </script>
 
@@ -108,9 +105,22 @@
 
 <h1>Courts</h1>
 <p class="lede">
-	{data.courts.length} Chicago Park District locations. Status at {asOf}, based on posted hours and
-	classes. Other players can still fill the courts.
+	{data.courts.length} Chicago Park District locations. Status comes from posted hours and classes, so
+	other players can still fill the courts.
 </p>
+
+<noscript>
+	<p class="nojs">
+		Sorting, filters and live status need JavaScript. Every court and its hours are below.
+	</p>
+	<!-- Static page: these controls can't act without JavaScript, so hide them. -->
+	<style>
+		.filters,
+		.map-toggle {
+			display: none !important; /* beats the scoped component styles */
+		}
+	</style>
+</noscript>
 
 <form method="GET" class="filters" data-sveltekit-keepfocus data-sveltekit-noscroll>
 	<LocationControls
@@ -145,7 +155,6 @@
 			/>
 			<span>Lights</span>
 		</label>
-		<noscript><button type="submit">Apply</button></noscript>
 	</fieldset>
 </form>
 
@@ -173,7 +182,7 @@
 </button>
 <div id="courts-map">
 	{#if showMap}
-		<CourtMap {rows} />
+		<CourtMap rows={mapRows} />
 	{/if}
 </div>
 
@@ -203,6 +212,12 @@
 		margin-top: var(--space-1);
 		color: var(--label-2);
 		font-size: var(--text-subhead);
+	}
+
+	.nojs {
+		margin-top: var(--space-4);
+		color: var(--label-2);
+		font-size: var(--text-footnote);
 	}
 
 	.filters {

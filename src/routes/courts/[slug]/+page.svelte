@@ -10,8 +10,10 @@
 
 	let { data }: PageProps = $props();
 	const court = $derived(data.court);
-	const clock = liveNow(() => data.now);
-	const status = $derived(courtStatus(court.courtCount, court.hours, court.classes, clock.current));
+	const clock = liveNow();
+	const status = $derived(
+		clock.current ? courtStatus(court.courtCount, court.hours, court.classes, clock.current) : null
+	);
 
 	const yesNo = (v: boolean | null) => (v === null ? 'Not known' : v ? 'Yes' : 'No');
 	const surfaces = { hard: 'Hard court', clay: 'Clay', grass: 'Grass', other: 'Other' } as const;
@@ -82,7 +84,7 @@
 <section aria-labelledby="hours-h">
 	<h2 id="hours-h" class="section-title">Hours</h2>
 	<div class="card">
-		<HoursTable hours={court.hours} now={clock.current} />
+		<HoursTable hours={court.hours} now={clock.current} builtAt={data.builtAt} />
 	</div>
 	<p class="footnote">
 		{#if court.hoursSourceUrl}

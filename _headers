@@ -1,8 +1,11 @@
 # Security headers for static assets (served by Workers Assets, bypassing hooks.server.ts).
 # Must match src/lib/server/security/headers.ts; e2e/headers.e2e.ts checks both.
+# Prerendered pages carry their script/style CSP in a <meta> tag (hashes); meta can't set
+# frame-ancestors, so these directives go out as a real header. Browsers enforce both policies.
 /*
   Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: geolocation=(self), camera=(), microphone=(), payment=()
   Cross-Origin-Opener-Policy: same-origin
+  Content-Security-Policy: frame-ancestors 'none'; object-src 'none'; base-uri 'self'

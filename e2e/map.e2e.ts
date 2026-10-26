@@ -3,7 +3,7 @@ import { expect, mockTiles, test, type Page, type Request } from './fixtures';
 async function openCourts(page: Page, at: string) {
 	await mockTiles(page);
 	await page.clock.setFixedTime(new Date(at));
-	await page.goto(`/courts?at=${encodeURIComponent(at)}`);
+	await page.goto('/courts');
 	await expect(page.getByRole('button', { name: 'Use my location' })).toBeEnabled(); // hydrated
 }
 

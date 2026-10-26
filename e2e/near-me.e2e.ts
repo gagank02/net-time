@@ -80,14 +80,9 @@ test('neighborhood sorts nearest first and is shareable via the URL', async ({ p
 	await expect(page.getByText('Nearest to')).toHaveCount(0);
 });
 
-test('ZIP works without JavaScript; unknown ZIPs get a helpful message', async ({
-	browser,
-	extraHTTPHeaders
-}) => {
-	const context = await browser.newContext({ extraHTTPHeaders, javaScriptEnabled: false });
-	const page = await context.newPage();
+test('ZIP sorts nearest first; unknown ZIPs get a helpful message', async ({ page }) => {
 	await page.goto('/courts');
-	await expect(page.getByRole('button', { name: 'Use my location' })).toBeDisabled(); // needs JS
+	await expect(page.getByRole('button', { name: 'Use my location' })).toBeEnabled(); // hydrated
 	await page.getByLabel('ZIP').fill('60614');
 	await page.getByRole('button', { name: 'Go' }).click();
 	await expect(page).toHaveURL(/zip=60614/);
@@ -96,5 +91,4 @@ test('ZIP works without JavaScript; unknown ZIPs get a helpful message', async (
 
 	await page.goto('/courts?zip=10001');
 	await expect(page.getByRole('alert')).toContainText("10001 isn't a Chicago ZIP we know");
-	await context.close();
 });
