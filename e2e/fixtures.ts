@@ -2,7 +2,8 @@ import { test as base, type Page } from '@playwright/test';
 
 // Each test gets its own client IP (198.18.0.0/15 is reserved for benchmarking), so the global
 // rate limit (120 req/min per IP) applies per test, not across the whole suite or back-to-back runs.
-// Works only against local wrangler dev; in production Cloudflare overwrites CF-Connecting-IP.
+// Local wrangler dev only: Cloudflare's edge rejects client-sent CF-Connecting-IP (403, error 1000),
+// so against a deployed Worker (BASE_URL) tests share the runner's real IP and bucket.
 const run = Math.floor(Math.random() * 256);
 
 function ipFor(testId: string): string {
@@ -13,6 +14,7 @@ function ipFor(testId: string): string {
 
 export const test = base.extend({
 	extraHTTPHeaders: async ({ extraHTTPHeaders }, use, testInfo) => {
+		if (process.env.BASE_URL) return use(extraHTTPHeaders);
 		await use({ ...extraHTTPHeaders, 'cf-connecting-ip': ipFor(testInfo.testId) });
 	}
 });

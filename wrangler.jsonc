@@ -19,10 +19,12 @@
 	"hyperdrive": [
 		{
 			"binding": "HYPERDRIVE",
-			"id": "set-at-go-live",
+			"id": "9e9751f9d25b40268ae609f3fbd01444",
 			"localConnectionString": "postgres://net_time_app:local@localhost:5432/net_time"
 		}
 	],
+	// Workers Logs: free plan includes 200k events/day, 3-day retention. Logs are allowlisted JSON.
+	"observability": { "enabled": true },
 	"workers_dev": true,
 	"preview_urls": true
 }
