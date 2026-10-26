@@ -18,6 +18,7 @@ test('toggle switches instantly and persists across reloads with no flash', asyn
 	await page.emulateMedia({ colorScheme: 'light' });
 	await page.goto('/');
 	const dark = page.getByRole('button', { name: 'Dark' });
+	await expect(dark).toBeEnabled(); // hydrated
 	await dark.click();
 	await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
 	await expect(dark).toHaveAttribute('aria-pressed', 'true');
@@ -29,6 +30,7 @@ test('toggle switches instantly and persists across reloads with no flash', asyn
 	expect(await page.evaluate(() => document.documentElement.dataset.theme)).toBe('dark');
 	await expect(page.getByRole('button', { name: 'Dark' })).toHaveAttribute('aria-pressed', 'true');
 
+	await expect(page.getByRole('button', { name: 'System' })).toBeEnabled();
 	await page.getByRole('button', { name: 'System' }).click();
 	await page.reload();
 	await expect(page.locator('html')).toHaveAttribute('data-theme', 'system');

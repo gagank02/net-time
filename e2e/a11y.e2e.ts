@@ -70,6 +70,7 @@ test('keyboard: every interactive element is reachable with a visible focus ring
 	page
 }) => {
 	await page.goto('/');
+	await expect(page.getByRole('button', { name: 'System' })).toBeEnabled(); // hydrated
 	const interactive = await page
 		.locator('a[href], button, input:not([type="hidden"]), select, textarea')
 		.count();

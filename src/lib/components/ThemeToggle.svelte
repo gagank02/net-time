@@ -5,7 +5,12 @@
 	// Pages are static, so the choice lives in this browser (localStorage), applied before first
 	// paint by app.html. "system" is the prerendered default; the real choice shows once mounted.
 	let current = $state<Theme>('system');
-	onMount(() => (current = parseTheme(document.documentElement.dataset.theme)));
+	// Disabled until hydrated, so an early tap on the static page never silently does nothing.
+	let ready = $state(false);
+	onMount(() => {
+		current = parseTheme(document.documentElement.dataset.theme);
+		ready = true;
+	});
 
 	const labels: Record<Theme, string> = { system: 'System', light: 'Light', dark: 'Dark' };
 
@@ -26,7 +31,12 @@
 	<span class="label" aria-hidden="true">Appearance</span>
 	<div class="segmented">
 		{#each themes as option (option)}
-			<button type="button" aria-pressed={current === option} onclick={() => choose(option)}>
+			<button
+				type="button"
+				aria-pressed={current === option}
+				disabled={!ready}
+				onclick={() => choose(option)}
+			>
 				{labels[option]}
 			</button>
 		{/each}
