@@ -34,10 +34,20 @@ out tags center;
 (way["leisure"="park"](area.c);relation["leisure"="park"](area.c););
 out tags geom;`;
 
+// Named tennis areas (e.g. "Waveland Park Tennis Courts") give a court site its own name.
+const tennisAreasQuery = `[out:json][timeout:60];
+area["name"="Chicago"]["boundary"="administrative"]["admin_level"="8"]->.c;
+(way["sport"~"tennis"]["name"]["leisure"!="pitch"](area.c);relation["sport"~"tennis"]["name"]["leisure"!="pitch"](area.c););
+out tags geom;`;
+
 const sources = {
 	overpass: {
 		url: 'https://overpass-api.de/api/interpreter',
 		init: { method: 'POST', body: new URLSearchParams({ data: overpassQuery }) }
+	},
+	tennisAreas: {
+		url: 'https://overpass-api.de/api/interpreter',
+		init: { method: 'POST', body: new URLSearchParams({ data: tennisAreasQuery }) }
 	},
 	// All Park District facilities (not just tennis): a park containing any of them is a Park District park.
 	cpd: { url: 'https://data.cityofchicago.org/resource/eix4-gf83.json?$limit=10000' },
@@ -123,19 +133,32 @@ function parseOverpass(raw: unknown) {
 			const at = el.center ?? (el.lat !== undefined ? { lat: el.lat, lon: el.lon! } : null);
 			if (at) pitches.push({ id, lat: at.lat, lng: at.lon, tags: el.tags });
 		} else if (el.tags.leisure === 'park') {
-			let polygons: Polygon[] = [];
-			if (el.type === 'way' && el.geometry) polygons = [[toRing(el.geometry)]];
-			if (el.type === 'relation' && el.members) {
-				const ways = (role: string) =>
-					el.members!.filter((m) => m.role === role && m.geometry).map((m) => toRing(m.geometry!));
-				const holes = assembleRings(ways('inner'));
-				polygons = assembleRings(ways('outer')).map((outer) => [outer, ...holes]);
-			}
+			const polygons = polygonsOfElement(el);
 			if (polygons.length) parks.push({ id, name: el.tags.name ?? null, polygons });
 		}
 	}
 	return { pitches, parks, osmTimestamp: data.osm3s.timestamp_osm_base };
 }
+
+function polygonsOfElement(el: z.infer<typeof OsmElement>): Polygon[] {
+	if (el.type === 'way' && el.geometry) return [[toRing(el.geometry)]];
+	if (el.type === 'relation' && el.members) {
+		const ways = (role: string) =>
+			el.members!.filter((m) => m.role === role && m.geometry).map((m) => toRing(m.geometry!));
+		const holes = assembleRings(ways('inner'));
+		return assembleRings(ways('outer')).map((outer) => [outer, ...holes]);
+	}
+	return [];
+}
+
+const parseTennisAreas = (raw: unknown): Park[] =>
+	Overpass.parse(raw)
+		.elements.map((el) => ({
+			id: `${el.type}/${el.id}`,
+			name: el.tags.name ?? null,
+			polygons: polygonsOfElement(el)
+		}))
+		.filter((a) => a.name && a.polygons.length);
 
 const Cpd = z.array(
 	z.object({
@@ -161,6 +184,7 @@ const polygonsOf = (g: z.infer<typeof Feature>['geometry']): Polygon[] =>
 // ── main ───────────────────────────────────────────────────────────────────
 
 const osm = parseOverpass(await fetchCached('overpass'));
+const tennisAreas = parseTennisAreas(await fetchCached('tennisAreas'));
 const cpdRows = Cpd.parse(await fetchCached('cpd'));
 const toCpd = (r: (typeof cpdRows)[number]): CpdCourt => ({
 	park: r.park,
@@ -185,6 +209,7 @@ const curation = CurationSeed.parse(
 
 const { courts, areas, report } = buildCourtsSeed({
 	...osm,
+	tennisAreas,
 	cpdCourts,
 	cpdFacilities,
 	curation,

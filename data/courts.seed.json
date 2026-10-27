@@ -1,5 +1,5 @@
 {
-	"generatedAt": "2026-10-27T01:16:38Z",
+	"generatedAt": "2026-10-27T01:24:46Z",
 	"locations": [
 		{
 			"slug": "abbott-park",
@@ -576,8 +576,8 @@
 			"verifiedAt": "2026-10-25"
 		},
 		{
-			"slug": "douglass-park",
-			"name": "Douglass Park",
+			"slug": "douglass-tennis-courts",
+			"name": "Douglass Tennis Courts",
 			"address": null,
 			"lat": 41.860341,
 			"lng": -87.697075,
@@ -1311,6 +1311,28 @@
 			"verifiedAt": "2026-10-25"
 		},
 		{
+			"slug": "katrina-adams-tennis-courts",
+			"name": "Katrina Adams Tennis Courts",
+			"address": null,
+			"lat": 41.879768,
+			"lng": -87.663695,
+			"courtCount": 4,
+			"lights": null,
+			"surface": "hard",
+			"indoor": false,
+			"access": "free",
+			"bookingUrl": null,
+			"communityArea": "Near West Side",
+			"cpdParkNo": 211,
+			"osmIds": [
+				"way/1138572099",
+				"way/1138572100",
+				"way/1138572101",
+				"way/179119869"
+			],
+			"verifiedAt": "2026-10-25"
+		},
+		{
 			"slug": "kelvyn-park",
 			"name": "Kelvyn Park",
 			"address": null,
@@ -1509,8 +1531,8 @@
 			"verifiedAt": "2026-10-25"
 		},
 		{
-			"slug": "lincoln-park-lake-view-south",
-			"name": "Lincoln Park (Lake View, south)",
+			"slug": "lincoln-park",
+			"name": "Lincoln Park",
 			"address": null,
 			"lat": 41.934071,
 			"lng": -87.632991,
@@ -2489,28 +2511,6 @@
 			"verifiedAt": "2026-10-25"
 		},
 		{
-			"slug": "skinner-park",
-			"name": "Skinner Park",
-			"address": null,
-			"lat": 41.879768,
-			"lng": -87.663695,
-			"courtCount": 4,
-			"lights": null,
-			"surface": "hard",
-			"indoor": false,
-			"access": "free",
-			"bookingUrl": null,
-			"communityArea": "Near West Side",
-			"cpdParkNo": 211,
-			"osmIds": [
-				"way/1138572099",
-				"way/1138572100",
-				"way/1138572101",
-				"way/179119869"
-			],
-			"verifiedAt": "2026-10-25"
-		},
-		{
 			"slug": "smith-park",
 			"name": "Smith Park",
 			"address": null,
@@ -2766,7 +2766,7 @@
 				"way/950184395",
 				"way/950184396"
 			],
-			"verifiedAt": "2026-10-26"
+			"verifiedAt": "2026-10-25"
 		},
 		{
 			"slug": "welles-park",

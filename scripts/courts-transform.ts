@@ -16,6 +16,8 @@ export type Zip = { zip: string; polygons: Polygon[] };
 export type Input = {
 	pitches: Pitch[];
 	parks: Park[];
+	/** Named OSM tennis areas around courts (e.g. "Waveland Park Tennis Courts"). */
+	tennisAreas: Park[];
 	cpdCourts: CpdCourt[]; // 2016 tennis court points
 	cpdFacilities: CpdCourt[]; // every 2016 Park District facility point (fieldhouses, playgrounds, …)
 	communityAreas: Area[];
@@ -157,6 +159,17 @@ const surfaces: Record<string, 'hard' | 'clay' | 'grass' | 'other'> = {
 
 // ── transform ───────────────────────────────────────────────────────────────
 
+/** The name of the OSM tennis area holding most of a site's courts, if one holds more than half. */
+export function ownName(pitches: Pitch[], areas: Park[]): string | null {
+	const counts = new Map<string, number>();
+	for (const p of pitches) {
+		const area = areas.find((a) => inPolygons(p, a.polygons));
+		if (area?.name) counts.set(area.name, (counts.get(area.name) ?? 0) + 1);
+	}
+	const [best] = [...counts].sort((a, b) => b[1] - a[1]);
+	return best && best[1] * 2 > pitches.length ? best[0] : null;
+}
+
 type Cluster = { parkId: string | null; parkName: string | null; pitches: Pitch[] };
 
 function clusterByDistance(pitches: Pitch[]): Pitch[][] {
@@ -249,7 +262,9 @@ export function buildCourtsSeed(input: Input) {
 			continue;
 		}
 		if (!tennisMatch) byParkOnly.push(label);
-		const name = everydayName(c.parkName ?? `${titleCase(cpd.park)} Park`);
+		const name =
+			ownName(c.pitches, input.tennisAreas) ??
+			everydayName(c.parkName ?? `${titleCase(cpd.park)} Park`);
 		kept.push({ ...c, center, area: titleCase(area), cpd, name });
 	}
 
