@@ -116,20 +116,27 @@ function stripPlace(title: string, facility: string): string {
 	return m && key(m[1]) === key(facility) ? title.slice(0, m.index).trim() : title.trim();
 }
 
+/** One program's own record in the City dataset: the source link we show. */
+export const datasetRecordUrl = (id: string) =>
+	`https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=${encodeURIComponent(id)}`;
+
 export type ClassBlock = Schedule & {
 	location: string;
 	title: string;
+	courtsUsed: null; // the dataset doesn't say
 	ages: string | null;
 	fee: number | null;
 	signupUrl: string | null;
-	sourceId: string;
+	sourceUrl: string;
+	verifiedAt: string;
 };
 
 /** Tennis only (no table tennis or pickleball), cancelled rows dropped, matched to locations. */
 export function transformClasses(
 	rows: ActivityRow[],
 	locations: Location[],
-	curation: Record<string, string>
+	curation: Record<string, string>,
+	verifiedAt: string
 ): { classes: ClassBlock[]; report: string } {
 	const classes: ClassBlock[] = [];
 	const problems: string[] = [];
@@ -152,17 +159,19 @@ export function transformClasses(
 			// "Cardio Tennis at Gompers" → "Cardio Tennis": the park page already says where.
 			title: stripPlace(r.title, r.location_facility),
 			...schedule,
+			courtsUsed: null,
 			ages: r.age_range?.trim() || null,
 			fee: r.fee !== undefined && Number.isFinite(fee) ? fee : null,
 			signupUrl: r.information_link?.url.replace(/^http:\/\//, 'https://') ?? null,
-			sourceId: r.activity_id
+			sourceUrl: datasetRecordUrl(r.activity_id),
+			verifiedAt
 		});
 	}
 	classes.sort(
 		(a, b) =>
 			a.location.localeCompare(b.location) ||
 			a.seasonStart.localeCompare(b.seasonStart) ||
-			a.sourceId.localeCompare(b.sourceId)
+			a.sourceUrl.localeCompare(b.sourceUrl)
 	);
 	const perSite = new Map<string, number>();
 	for (const c of classes) perSite.set(c.location, (perSite.get(c.location) ?? 0) + 1);

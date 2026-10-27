@@ -96,7 +96,7 @@ describe('matchFacility', () => {
 
 describe('transformClasses', () => {
 	it('keeps tennis only, matches sites, cleans titles and links, and reports what it skipped', () => {
-		const { classes, report } = transformClasses(rows, locations, {});
+		const { classes, report } = transformClasses(rows, locations, {}, '2026-10-26');
 		expect(classes.map((c) => c.location)).toEqual([
 			'athletic-field-park',
 			'maggie-daley-park',
@@ -108,7 +108,8 @@ describe('transformClasses', () => {
 			ages: 'All Ages',
 			fee: 145,
 			signupUrl: 'https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/589646',
-			sourceId: '589646'
+			sourceUrl: 'https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=589646',
+			verifiedAt: '2026-10-26'
 		});
 		expect(classes[2]).toMatchObject({ ends: '24:00', except: ['2026-11-25'] });
 		expect(report).toContain('Tennis programs in the dataset: 4; matched: 3; skipped: 1.');
@@ -118,6 +119,6 @@ describe('transformClasses', () => {
 
 	it('drops cancelled programs', () => {
 		const cancelled = rows.map((r) => ({ ...r, event_cancelled: true }));
-		expect(transformClasses(cancelled, locations, {}).classes).toEqual([]);
+		expect(transformClasses(cancelled, locations, {}, '2026-10-26').classes).toEqual([]);
 	});
 });

@@ -12,6 +12,13 @@
 			use: 'finding which tennis courts belong to the Park District'
 		},
 		{
+			id: 'tn7v-6rnw',
+			name: 'Chicago Park District Activities',
+			owner: 'Chicago Park District',
+			license: 'City of Chicago Data Terms of Use',
+			use: 'class and program schedules, with sign-up links to the Park District registration site'
+		},
+		{
 			id: 'igwz-8jzy',
 			name: 'Boundaries - Community Areas',
 			owner: 'City of Chicago',

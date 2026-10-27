@@ -5,42 +5,34 @@
 
 	let { classes, courtCount }: { classes: ClassDetail[]; courtCount: number } = $props();
 
-	// The same block on several days collapses into one line ("Mon–Fri 9 AM – Noon").
-	const blocks = $derived.by(() => {
-		// eslint-disable-next-line svelte/prefer-svelte-reactivity -- scratch map, rebuilt on each run
-		const groups = new Map<string, { c: ClassDetail; days: number[] }>();
-		for (const c of classes) {
-			const key = [
-				c.title,
-				c.starts,
-				c.ends,
-				c.courtsUsed,
-				c.seasonStart,
-				c.seasonEnd,
-				c.sourceUrl
-			].join('|');
-			const g = groups.get(key);
-			if (g) g.days.push(c.weekday);
-			else groups.set(key, { c, days: [c.weekday] });
-		}
-		// Monday-first, matching the day ranges.
-		const order = (g: { days: number[] }) => Math.min(...g.days.map((d) => (d + 6) % 7));
-		return [...groups.values()].sort((a, b) => order(a) - order(b));
-	});
+	const shortDate = (date: string) => formatDate(date).replace(/, \d{4}$/, '');
+	const fee = (n: number) => (n === 0 ? 'Free' : `$${n}`);
 </script>
 
 <ul class="blocks" role="list">
-	{#each blocks as { c, days } (c.title + c.starts + days.join())}
+	{#each classes as c, i (i)}
 		<li>
-			<p class="when">{dayRanges(days)} · {formatClock(c.starts)} – {formatClock(c.ends)}</p>
+			<p class="when">{dayRanges(c.weekdays)} · {formatClock(c.starts)} – {formatClock(c.ends)}</p>
 			<p class="what">{c.title}</p>
 			<p class="meta">
-				Uses {Math.min(c.courtsUsed, courtCount)} of {courtCount}
-				{courtCount === 1 ? 'court' : 'courts'} · {formatDate(c.seasonStart)} – {formatDate(
-					c.seasonEnd
-				)}
+				{[
+					c.ages,
+					c.fee === null ? null : fee(c.fee),
+					`${formatDate(c.seasonStart)} – ${formatDate(c.seasonEnd)}`,
+					c.courtsUsed === null
+						? null
+						: `uses ${Math.min(c.courtsUsed, courtCount)} of ${courtCount} ${courtCount === 1 ? 'court' : 'courts'}`
+				]
+					.filter(Boolean)
+					.join(' · ')}
 			</p>
+			{#if c.except.length}
+				<p class="meta">No class {c.except.map(shortDate).join(', ')}</p>
+			{/if}
 			<p class="meta">
+				{#if c.signupUrl}
+					<ExternalLink href={c.signupUrl}>Details and sign-up</ExternalLink> ·
+				{/if}
 				<ExternalLink href={c.sourceUrl}>Source</ExternalLink> · checked {formatDate(c.verifiedAt)}
 			</p>
 		</li>

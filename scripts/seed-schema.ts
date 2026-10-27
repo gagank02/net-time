@@ -111,23 +111,43 @@ export const HoursOverridesSeed = z.strictObject({
 		.superRefine(uniqueBy((o) => o.slug, 'override slug'))
 });
 
+/** A class end time may be "24:00": some leagues run to midnight. */
+const endClock = z.string().regex(/^(([01]\d|2[0-3]):[0-5]\d|24:00)$/, 'time must be HH:MM (24h)');
+
+/**
+ * One recurring class block. Two files share this shape: data/classes.seed.json (hand-entered, with
+ * a known court count) and data/classes.cpd.json (generated from the City dataset by
+ * scripts/fetch-classes.ts, which doesn't say how many courts a class uses: courtsUsed null).
+ */
+export const ClassSeed = z
+	.strictObject({
+		location: slug,
+		title: safeText(120),
+		weekdays: z.array(weekday).min(1).max(7),
+		starts: clock,
+		ends: endClock,
+		...season,
+		/** Dates inside the season when it doesn't meet (holidays). */
+		except: z.array(isoDate).max(60).default([]),
+		courtsUsed: z.int().min(1).max(40).nullable(),
+		ages: safeText(40).nullable().default(null),
+		fee: z.number().min(0).max(10_000).nullable().default(null),
+		signupUrl: httpsUrl.nullable().default(null),
+		sourceUrl: httpsUrl,
+		verifiedAt: isoDate
+	})
+	.refine(ordered, 'ends must be after starts')
+	.refine(seasonOrdered, 'seasonEnd must be ≥ seasonStart');
+
 export const ClassesSeed = z.strictObject({
-	classes: z.array(
-		z
-			.strictObject({
-				location: slug,
-				title: safeText(120),
-				weekday,
-				starts: clock,
-				ends: clock,
-				courtsUsed: z.int().min(1).max(40),
-				...season,
-				sourceUrl: httpsUrl,
-				verifiedAt: isoDate
-			})
-			.refine(ordered, 'ends must be after starts')
-			.refine(seasonOrdered, 'seasonEnd must be ≥ seasonStart')
-	)
+	/** Set on the generated file: when the City dataset was read. */
+	fetchedAt: z.iso.datetime().optional(),
+	classes: z.array(ClassSeed)
+});
+
+/** facility name in the City dataset → court site, for parks with several sites (e.g. McKinley). */
+export const ClassesCurationSeed = z.strictObject({
+	facilities: z.record(safeText(120), slug)
 });
 
 /** Park District Code default when a park has no override: 6 AM–11 PM, every day. */

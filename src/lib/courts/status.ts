@@ -98,20 +98,27 @@ export function courtStatus(
 	}
 
 	const todaysClasses = classes
-		.filter((c) => c.weekday === local.weekday && inSeason(local.date, c.seasonStart, c.seasonEnd))
+		.filter(
+			(c) =>
+				c.weekdays.includes(local.weekday) &&
+				inSeason(local.date, c.seasonStart, c.seasonEnd) &&
+				!c.except.includes(local.date)
+		)
 		.map((c) => ({ ...c, from: toMinutes(c.starts), to: toMinutes(c.ends) }));
 	const active = todaysClasses.filter((c) => c.from <= m && m < c.to);
 
 	if (active.length) {
+		// Free courts only when every running class says how many it uses; never a guess.
+		const known = active.every((c) => c.courtsUsed !== null);
 		const used = Math.min(
-			active.reduce((sum, c) => sum + c.courtsUsed, 0),
+			active.reduce((sum, c) => sum + (c.courtsUsed ?? 0), 0),
 			courtCount
 		);
 		const until = Math.min(open.closes, ...active.map((c) => c.to));
 		return {
 			state: 'class',
 			until: toClock(until),
-			courtsFree: courtCount - used,
+			courtsFree: known ? courtCount - used : null,
 			titles: active.map((c) => c.title)
 		};
 	}
@@ -156,9 +163,11 @@ export function describeStatus(
 			return {
 				label: 'Class in progress',
 				detail:
-					s.courtsFree > 0
-						? `${s.courtsFree} of ${courtCount} courts free until ${formatClock(s.until)}`
-						: `all courts in use until ${formatClock(s.until)}`
+					s.courtsFree === null
+						? `some courts may be in use until ${formatClock(s.until)}`
+						: s.courtsFree > 0
+							? `${s.courtsFree} of ${courtCount} courts free until ${formatClock(s.until)}`
+							: `all courts in use until ${formatClock(s.until)}`
 			};
 		case 'closed': {
 			const seasonal = seasonNote !== null && (!s.nextOpen || s.nextOpen.inDays > 7);

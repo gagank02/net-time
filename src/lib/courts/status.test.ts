@@ -24,12 +24,13 @@ const everyDay = (opens = '06:00', closes = '23:00'): HoursRow[] =>
 // Tuesdays 4–6 PM, 2 courts, summer only.
 const juniors: ClassRow = {
 	title: 'Junior tennis',
-	weekday: 2,
+	weekdays: [2],
 	starts: '16:00',
 	ends: '18:00',
 	courtsUsed: 2,
 	seasonStart: '2026-06-01',
-	seasonEnd: '2026-08-31'
+	seasonEnd: '2026-08-31',
+	except: []
 };
 
 // Instants written with their Chicago offset (CDT −05:00 in summer, CST −06:00 in winter).
@@ -101,9 +102,39 @@ describe('courtStatus', () => {
 		});
 	});
 
-	it('classes only count in season and on their weekday', () => {
+	it('classes only count in season, on their weekdays, and not on skipped dates', () => {
 		expect(status('2026-09-01T16:30:00-05:00').state).toBe('open'); // Tue, after season
 		expect(status('2026-07-15T16:30:00-05:00').state).toBe('open'); // Wed
+		const twice = { ...juniors, weekdays: [2, 4], except: ['2026-07-14'] };
+		expect(status('2026-07-14T16:30:00-05:00', everyDay(), [twice]).state).toBe('open'); // skipped
+		expect(status('2026-07-16T16:30:00-05:00', everyDay(), [twice]).state).toBe('class'); // Thu
+	});
+
+	it('a class that does not say how many courts it uses never claims free courts', () => {
+		const city = { ...juniors, courtsUsed: null };
+		const s = status('2026-07-14T16:30:00-05:00', everyDay(), [city]);
+		expect(s).toEqual({
+			state: 'class',
+			until: '18:00',
+			courtsFree: null,
+			titles: ['Junior tennis']
+		});
+		expect(describeStatus(s, 4)).toEqual({
+			label: 'Class in progress',
+			detail: 'some courts may be in use until 6 PM'
+		});
+		// One known and one unknown block running together: still unknown.
+		expect(status('2026-07-14T16:30:00-05:00', everyDay(), [city, juniors])).toMatchObject({
+			courtsFree: null
+		});
+	});
+
+	it('a class running to midnight shows until closing', () => {
+		const league = { ...juniors, starts: '22:00', ends: '24:00' };
+		expect(status('2026-07-14T22:30:00-05:00', everyDay(), [league])).toMatchObject({
+			state: 'class',
+			until: '23:00'
+		});
 	});
 
 	it('closed before opening: opens later today', () => {

@@ -30,5 +30,12 @@ export const facilitySources = [
 	}
 ] as const;
 
-/** Credited on /data in their own entries. */
-export const datasetHosts = ['www.openstreetmap.org', 'data.cityofchicago.org'];
+/**
+ * Credited on /data in their own entries. apm.activecommunities.com is the Park District's
+ * registration site: the activities dataset's sign-up links, credited with that dataset.
+ */
+export const datasetHosts = [
+	'www.openstreetmap.org',
+	'data.cityofchicago.org',
+	'apm.activecommunities.com'
+];

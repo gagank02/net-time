@@ -1,4 +1,5 @@
 import { expect, mockTiles, test, type Page, type Request } from './fixtures';
+import { liveClass } from './live-class';
 
 async function openCourts(page: Page, at: string) {
 	await mockTiles(page);
@@ -39,21 +40,22 @@ test('map code and tiles load only after "Show map"', async ({ page }) => {
 test('one labelled pin per listed court, status shown by shape, popup links to the park', async ({
 	page
 }) => {
-	await openCourts(page, '2026-10-26T10:00:00-05:00'); // Monday 10 AM: Maggie Daley has pickleball
+	const c = liveClass(); // a moment when a City class is running at one site
+	await openCourts(page, c.iso);
 	const listed = await page.getByRole('list', { name: 'Courts' }).getByRole('listitem').count();
 	await page.getByRole('button', { name: 'Show map' }).click();
 	await expect(pins(page)).toHaveCount(listed);
 
 	// Pins are visual only (the list is the accessible equivalent): hidden from assistive tech.
 	await expect(pins(page).first()).toHaveAttribute('aria-hidden', 'true');
-	const maggie = page.locator('.pin[data-slug="maggie-daley-park"]');
-	await expect(maggie).toHaveClass(/\bclass\b/);
-	await expect(maggie).toHaveAttribute('title', /^Maggie Daley Park: Class in progress/);
-	await expect(page.locator('.pin[data-slug="oz-park"]')).toHaveClass(/\bopen\b/);
+	const pin = page.locator(`.pin[data-slug="${c.slug}"]`);
+	await expect(pin).toHaveClass(/\bclass\b/);
+	await expect(pin).toHaveAttribute('title', new RegExp(`^${c.name}: Class in progress`));
 
-	await maggie.click({ force: true }); // neighbouring pins may overlap at city zoom
-	const link = page.locator('.maplibregl-popup').getByRole('link', { name: 'Maggie Daley Park' });
-	await expect(link).toHaveAttribute('href', '/courts/maggie-daley-park');
+	// Pins may overlap, or sit outside a phone-size map at city zoom: click the pin itself.
+	await pin.dispatchEvent('click');
+	const link = page.locator('.maplibregl-popup').getByRole('link', { name: c.name, exact: true });
+	await expect(link).toHaveAttribute('href', `/courts/${c.slug}`);
 });
 
 test('filters update the pins; attribution links open safely in a new tab; no CSP violations', async ({

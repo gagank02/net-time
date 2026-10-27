@@ -23,14 +23,17 @@ describe('build-time court data', () => {
 		expect(maggie.hoursSourceUrl).toMatch(/^https:\/\//);
 	});
 
-	it('drops classes whose season has ended; the list omits sources, the detail keeps them', () => {
-		const during = getCourt('maggie-daley-park', '2026-11-01')!;
-		expect(during.classes.length).toBeGreaterThan(0);
-		expect(during.classes[0].sourceUrl).toMatch(/^https:\/\//);
-		expect(getCourt('maggie-daley-park', '2027-01-01')!.classes).toEqual([]);
+	it('merges City classes; drops ended ones; the list omits sources, the detail keeps them', () => {
+		// Whatever the current data holds: a site with a class, on a date before that class ends.
+		const site = listCourts('2000-01-01').courts.find((c) => c.classes.length)!;
+		const ends = site.classes[0].seasonEnd;
+		const detail = getCourt(site.slug, ends)!;
+		expect(detail.classes.length).toBeGreaterThan(0);
+		expect(detail.classes[0].sourceUrl).toMatch(/^https:\/\//);
+		expect(site.classes[0]).not.toHaveProperty('sourceUrl');
 
-		const listed = listCourts('2026-11-01').courts.find((c) => c.slug === 'maggie-daley-park')!;
-		expect(listed.classes[0]).not.toHaveProperty('sourceUrl');
+		const later = '9999-12-31';
+		expect(getCourt(site.slug, later)!.classes).toEqual([]);
 	});
 
 	it('returns null for an unknown slug', () => {
