@@ -1,6 +1,7 @@
 <script lang="ts">
 	import ExternalLink from '#lib/components/ExternalLink.svelte';
 	import { chicagoDataDisclaimer, chicagoTermsUrl, reportDataProblemUrl } from '#lib/legal.js';
+	import { facilitySources } from '#lib/sources.js';
 
 	const cityDatasets = [
 		{
@@ -66,14 +67,22 @@
 			<span class="meta">© OpenStreetMap contributors · Open Database License (ODbL)</span>
 			<span class="meta">Used for court locations, lights and surface</span>
 		</li>
-		<li>
-			<span class="title">Chicago Park District</span>
-			<span class="meta"
-				>Park hours and class schedules, entered by hand with a link to each source</span
-			>
-		</li>
+		{#each facilitySources as f (f.host)}
+			<li>
+				<span class="title">
+					<ExternalLink href="https://{f.host}">{f.name}</ExternalLink>
+				</span>
+				<span class="meta">{f.owner}</span>
+				<span class="meta">Used for {f.use}, entered by hand with a link to the page</span>
+			</li>
+		{/each}
 	</ul>
 </section>
+
+<p class="note">
+	From facility websites we take only facts, such as hours, seasons and fees, and write them in our
+	own words with a link to the page. We copy no text, photos or logos.
+</p>
 
 <section aria-labelledby="problems">
 	<h2 id="problems">Found a mistake?</h2>
