@@ -1,0 +1,72 @@
+[
+	{
+		"activity_id": "589646",
+		"title": "Tennis Partnership at Maggie Daley",
+		"category": "Sports - Tennis",
+		"date_notes": "From September 14, 2026 to October 26, 2026 Each Monday,Tuesday,Wednesday,Thursday from 5pm to 8pm",
+		"location_facility": "Maggie Daley Park",
+		"latitude": "41.8830427192",
+		"longitude": "-87.6183968782",
+		"age_range": "All Ages",
+		"fee": "145",
+		"information_link": {
+			"url": "http://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/589646"
+		}
+	},
+	{
+		"activity_id": "584691",
+		"title": "Cardio Tennis Partnership at Athletic Field",
+		"category": "Sports - Tennis",
+		"date_notes": "From October 30, 2026 to December 4, 2026 Each Friday from 7:30am to 8:30am",
+		"location_facility": "Athletic Field Park",
+		"latitude": "41.9467205",
+		"longitude": "-87.7169804",
+		"age_range": "Adult",
+		"fee": "82",
+		"information_link": {
+			"url": "http://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/584691"
+		}
+	},
+	{
+		"activity_id": "558965",
+		"title": "Veterans Tennis at McKinley",
+		"category": "Sports - Tennis",
+		"date_notes": "From April 9, 2026 to October 29, 2026 Each Thursday from 10am to 11:30am Except the following dates: Thursday, Apr 23, 2026 Thursday, Apr 23, 2026 Thursday, Apr 23, 2026 Thursday, Apr 23, 2026 Thursday, May 7, 2026 Thursday, May 7, 2026 Thursday, May 7, 2026 Thursday, May 7, 2026 Thursday, Jun 4, 2026 Thursday, Jun 4, 2026 Thursday, Jun 4, 2026 Thursday, Jun 4, 2026",
+		"location_facility": "McKinley (William) Park",
+		"latitude": "41.8237382",
+		"longitude": "-87.6824446",
+		"age_range": "Adult",
+		"fee": "0",
+		"information_link": {
+			"url": "http://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/558965"
+		}
+	},
+	{
+		"activity_id": "593354",
+		"title": "Indoor Tennis League Mens 3.5 Singles at McFetridge",
+		"category": "Sports - Tennis",
+		"date_notes": "From September 16, 2026 to December 9, 2026 Each Wednesday from 10pm to 12am Except the following dates: Wednesday, Nov 25, 2026 Wednesday, Nov 25, 2026 Wednesday, Nov 25, 2026",
+		"location_facility": "McFetridge Sports Center",
+		"latitude": "41.9517076",
+		"longitude": "-87.6970874",
+		"age_range": "Adult",
+		"fee": "288",
+		"information_link": {
+			"url": "http://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/593354"
+		}
+	},
+	{
+		"activity_id": "586230",
+		"title": "Table Tennis at Hollywood",
+		"category": "Sports - Table Tennis",
+		"date_notes": "From September 8, 2026 to December 11, 2026 Each Monday,Tuesday,Wednesday,Thursday,Friday from 1pm to 4pm Except the following dates: Monday, Oct 12, 2026 Monday, Oct 26, 2026 Tuesday, Oct 27, 2026 Wednesday, Oct 28, 2026 Thursday, Oct 29, 2026 Friday, Oct 30, 2026 Wednesday, Nov 11, 2026 Monday, Nov 23, 2026 Tuesday, Nov 24, 2026 Wednesday, Nov 25, 2026 Thursday, Nov 26, 2026 Friday, Nov 27, 2026",
+		"location_facility": "Hollywood Park",
+		"latitude": "41.989173",
+		"longitude": "-87.711896",
+		"age_range": "Senior",
+		"fee": "0",
+		"information_link": {
+			"url": "http://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/586230"
+		}
+	}
+]
