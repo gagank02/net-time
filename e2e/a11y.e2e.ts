@@ -77,7 +77,7 @@ test('keyboard: every interactive element is reachable with a visible focus ring
 	// Phones have no Tab key (and iOS Safari skips links on Tab).
 	test.skip(isMobile, 'keyboard navigation is a desktop check');
 	await page.goto('/');
-	await expect(page.getByRole('button', { name: 'System' })).toBeEnabled(); // hydrated
+	await expect(page.getByRole('button', { name: 'Dark appearance' })).toBeEnabled(); // hydrated
 	const interactive = await page
 		.locator('a[href], button, input:not([type="hidden"]), select, textarea')
 		.count();

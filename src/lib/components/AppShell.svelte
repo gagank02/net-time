@@ -25,6 +25,14 @@
 				>
 			</li>
 		</ul>
+		<ThemeToggle />
+		<noscript
+			><style>
+				.theme {
+					display: none !important; /* beats the scoped component style */
+				}
+			</style></noscript
+		>
 	</nav>
 </header>
 
@@ -33,14 +41,6 @@
 </main>
 
 <footer>
-	<ThemeToggle />
-	<noscript
-		><style>
-			.appearance {
-				display: none !important; /* beats the scoped component style */
-			}
-		</style></noscript
-	>
 	<p class="attribution">
 		Court and shop data ©
 		<ExternalLink href="https://www.openstreetmap.org/copyright">OpenStreetMap</ExternalLink>
@@ -69,7 +69,7 @@
 	nav {
 		display: flex;
 		align-items: center;
-		justify-content: space-between;
+		gap: var(--space-1);
 		max-width: var(--content-width);
 		min-height: var(--target);
 		margin: 0 auto;
@@ -81,6 +81,7 @@
 		align-items: center;
 		gap: var(--space-2);
 		min-height: var(--target);
+		margin-right: auto;
 		color: var(--label);
 		font-size: var(--text-body);
 		font-weight: 700;
