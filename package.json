@@ -14,7 +14,7 @@
 		"format": "prettier --write .",
 		"test:unit": "vitest",
 		"test": "vitest run --coverage",
-		"test:e2e": "playwright install chromium && playwright test",
+		"test:e2e": "playwright install chromium webkit && playwright test",
 		"gen": "wrangler types --env-file .dev.vars.example",
 		"deploy": "npm run build && wrangler deploy",
 		"audit": "npm audit --audit-level=high",
