@@ -1,0 +1,32 @@
+{
+	"$schema": "./node_modules/wrangler/config-schema.json",
+	"name": "net-time",
+	"compatibility_date": "2026-10-24",
+	// Not a secret; lets CI deploy without listing the token's accounts.
+	"account_id": "2f843c11af6ce1f9896fd9852ef2d9ee",
+	"compatibility_flags": ["nodejs_compat"],
+	"main": ".svelte-kit/cloudflare/_worker.js",
+	"assets": {
+		"binding": "ASSETS",
+		"directory": ".svelte-kit/cloudflare"
+	},
+	// Spec rate-limit buckets. period must be 10 or 60; counts are per Cloudflare location, eventually consistent.
+	"ratelimits": [
+		{ "name": "RL_GLOBAL", "namespace_id": "1001", "simple": { "limit": 120, "period": 60 } },
+		{ "name": "RL_WRITE", "namespace_id": "1002", "simple": { "limit": 20, "period": 60 } },
+		{ "name": "RL_AUTH", "namespace_id": "1003", "simple": { "limit": 10, "period": 60 } }
+	],
+	// Prod points at Neon (id set at go-live). Locally connects straight to Postgres as the app role.
+	// Wrangler requires a password; local Homebrew Postgres trusts localhost, so "local" is ignored. Not a secret.
+	"hyperdrive": [
+		{
+			"binding": "HYPERDRIVE",
+			"id": "9e9751f9d25b40268ae609f3fbd01444",
+			"localConnectionString": "postgres://net_time_app:local@localhost:5432/net_time"
+		}
+	],
+	// Workers Logs: free plan includes 200k events/day, 3-day retention. Logs are allowlisted JSON.
+	"observability": { "enabled": true },
+	"workers_dev": true,
+	"preview_urls": true
+}

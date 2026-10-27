@@ -1,0 +1,111 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  # Never cancel a run on main mid-deploy.
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    services:
+      postgres:
+        # Same major versions as local dev (Postgres 17 + PostGIS 3.6). Pinned by digest.
+        image: postgis/postgis:17-3.6@sha256:5cf98659a260df8b9a5123ea9a9150e317c34d8669045f0f937941c6dadb1f64
+        env:
+          POSTGRES_PASSWORD: ci
+          # Throwaway database on a throwaway runner; matches local Homebrew trust auth.
+          POSTGRES_HOST_AUTH_METHOD: trust
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd pg_isready --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      WRANGLER_SEND_METRICS: 'false'
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: npm run audit
+      - run: npm run lint
+      # Build first: wrangler types includes the built Worker's entry point when it exists.
+      - run: npm run build
+      - run: npm run check
+      - run: npx playwright install --with-deps chromium
+      - name: Unit tests with coverage thresholds
+        run: npm test
+      - name: Database (roles, migrations, seed)
+        env:
+          PGHOST: localhost
+          PGUSER: postgres
+        run: |
+          npm run db:setup
+          npm run db:migrate
+          npm run db:seed
+      - name: E2E against the built Worker
+        run: |
+          cp .dev.vars.example .dev.vars
+          npx playwright test
+      - if: failure()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: playwright-results
+          path: test-results/
+          retention-days: 7
+
+  secrets:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: gitleaks/gitleaks-action@e0c47f4f8be36e29cdc102c57e68cb5cbf0e8d1e # v3.0.0
+        env:
+          # Lets the action read PR commits; it needs no license on a personal account.
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Findings fail the job; PR comments would need write permission.
+          GITLEAKS_ENABLE_COMMENTS: 'false'
+
+  deploy:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: [test, secrets]
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    # The token lives only in this environment, which only main can use.
+    environment:
+      name: production
+      url: https://net-time.gagan-kadadevarmath.workers.dev
+    env:
+      WRANGLER_SEND_METRICS: 'false'
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - name: Build and deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: npm run deploy
+      - name: Smoke check
+        run: |
+          curl -fsS --retry 3 --retry-delay 5 -o /dev/null https://net-time.gagan-kadadevarmath.workers.dev/courts
+          curl -fsS --retry 3 --retry-delay 5 -o /dev/null https://net-time.gagan-kadadevarmath.workers.dev/healthz

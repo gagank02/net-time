@@ -1,0 +1,18 @@
+{
+	"overrides": [
+		{
+			"slug": "maggie-daley-park",
+			"hours": [
+				{ "weekday": 0, "opens": "07:00", "closes": "21:00" },
+				{ "weekday": 1, "opens": "07:00", "closes": "21:00" },
+				{ "weekday": 2, "opens": "07:00", "closes": "21:00" },
+				{ "weekday": 3, "opens": "07:00", "closes": "21:00" },
+				{ "weekday": 4, "opens": "07:00", "closes": "21:00" },
+				{ "weekday": 5, "opens": "07:00", "closes": "21:00" },
+				{ "weekday": 6, "opens": "07:00", "closes": "21:00" }
+			],
+			"sourceUrl": "https://www.maggiedaleypark.com/things-to-do-see/tennis-courts",
+			"verifiedAt": "2026-10-25"
+		}
+	]
+}

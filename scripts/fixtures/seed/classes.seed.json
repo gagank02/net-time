@@ -1,0 +1,16 @@
+{
+	"classes": [
+		{
+			"location": "oz-park",
+			"title": "Test fixture: Junior tennis",
+			"weekday": 2,
+			"starts": "16:00",
+			"ends": "18:00",
+			"courtsUsed": 2,
+			"seasonStart": "2026-06-01",
+			"seasonEnd": "2026-08-31",
+			"sourceUrl": "https://www.chicagoparkdistrict.com/",
+			"verifiedAt": "2026-10-25"
+		}
+	]
+}
