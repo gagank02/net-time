@@ -38,6 +38,15 @@
 			"sourceUrl": "https://www.maggiedaleypark.com/things-to-do-see/tennis-courts",
 			"verifiedAt": "2026-10-25",
 			"verifiedBy": "project owner"
+		},
+		{
+			"slug": "lincoln-park",
+			"name": "Diversey Tennis Center",
+			"surface": "clay",
+			"note": "Run by the Lincoln Park Tennis Association at the east end of Diversey Parkway: Har-Tru clay courts, open mid-May to mid-October (association listing).",
+			"sourceUrl": "https://www.mycoachingtree.com/company/27617/lincoln-park-tennis-association/",
+			"verifiedAt": "2026-10-26",
+			"verifiedBy": "project owner"
 		}
 	],
 	"removed": [

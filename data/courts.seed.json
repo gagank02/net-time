@@ -1,5 +1,5 @@
 {
-	"generatedAt": "2026-10-27T01:24:46Z",
+	"generatedAt": "2026-10-27T01:31:25Z",
 	"locations": [
 		{
 			"slug": "abbott-park",
@@ -574,6 +574,34 @@
 				"way/226046084"
 			],
 			"verifiedAt": "2026-10-25"
+		},
+		{
+			"slug": "diversey-tennis-center",
+			"name": "Diversey Tennis Center",
+			"address": null,
+			"lat": 41.934071,
+			"lng": -87.632991,
+			"courtCount": 10,
+			"lights": null,
+			"surface": "clay",
+			"indoor": false,
+			"access": "free",
+			"bookingUrl": null,
+			"communityArea": "Lake View",
+			"cpdParkNo": 100,
+			"osmIds": [
+				"way/1144196023",
+				"way/1144196024",
+				"way/1144196025",
+				"way/1144196026",
+				"way/1144196027",
+				"way/1169279651",
+				"way/211087377",
+				"way/23921848",
+				"way/779573870",
+				"way/779573872"
+			],
+			"verifiedAt": "2026-10-26"
 		},
 		{
 			"slug": "douglass-tennis-courts",
@@ -1527,34 +1555,6 @@
 			"osmIds": [
 				"way/1489980115",
 				"way/1489980116"
-			],
-			"verifiedAt": "2026-10-25"
-		},
-		{
-			"slug": "lincoln-park",
-			"name": "Lincoln Park",
-			"address": null,
-			"lat": 41.934071,
-			"lng": -87.632991,
-			"courtCount": 10,
-			"lights": null,
-			"surface": null,
-			"indoor": false,
-			"access": "free",
-			"bookingUrl": null,
-			"communityArea": "Lake View",
-			"cpdParkNo": 100,
-			"osmIds": [
-				"way/1144196023",
-				"way/1144196024",
-				"way/1144196025",
-				"way/1144196026",
-				"way/1144196027",
-				"way/1169279651",
-				"way/211087377",
-				"way/23921848",
-				"way/779573870",
-				"way/779573872"
 			],
 			"verifiedAt": "2026-10-25"
 		},
