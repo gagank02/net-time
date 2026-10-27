@@ -3,6 +3,8 @@ import { expect, test } from './fixtures';
 test('unhandled error shows a generic page with a reference id and no internals', async ({
 	page
 }) => {
+	// /__e2e/* routes exist only in local preview builds (E2E_ROUTES).
+	test.skip(!!process.env.BASE_URL, 'needs the local-only test routes');
 	const res = await page.goto('/__e2e/throw');
 	expect(res?.status()).toBe(500);
 
