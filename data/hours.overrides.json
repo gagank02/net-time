@@ -83,6 +83,63 @@
 			],
 			"sourceUrl": "https://www.chicagoparkdistrict.com/parks-facilities/mcfetridge-sports-center",
 			"verifiedAt": "2026-10-25"
+		},
+		{
+			"slug": "diversey-tennis-center",
+			"hours": [
+				{
+					"weekday": 0,
+					"opens": "06:00",
+					"closes": "23:00",
+					"seasonStart": "2026-05-18",
+					"seasonEnd": "2026-10-12"
+				},
+				{
+					"weekday": 1,
+					"opens": "06:00",
+					"closes": "23:00",
+					"seasonStart": "2026-05-18",
+					"seasonEnd": "2026-10-12"
+				},
+				{
+					"weekday": 2,
+					"opens": "06:00",
+					"closes": "23:00",
+					"seasonStart": "2026-05-18",
+					"seasonEnd": "2026-10-12"
+				},
+				{
+					"weekday": 3,
+					"opens": "06:00",
+					"closes": "23:00",
+					"seasonStart": "2026-05-18",
+					"seasonEnd": "2026-10-12"
+				},
+				{
+					"weekday": 4,
+					"opens": "06:00",
+					"closes": "23:00",
+					"seasonStart": "2026-05-18",
+					"seasonEnd": "2026-10-12"
+				},
+				{
+					"weekday": 5,
+					"opens": "06:00",
+					"closes": "23:00",
+					"seasonStart": "2026-05-18",
+					"seasonEnd": "2026-10-12"
+				},
+				{
+					"weekday": 6,
+					"opens": "06:00",
+					"closes": "23:00",
+					"seasonStart": "2026-05-18",
+					"seasonEnd": "2026-10-12"
+				}
+			],
+			"seasonNote": "open mid-May to mid-October",
+			"sourceUrl": "https://jobs.rspa.net/job/996/tennis-teaching-professional/",
+			"verifiedAt": "2026-10-26"
 		}
 	]
 }

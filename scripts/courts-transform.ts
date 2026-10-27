@@ -328,7 +328,7 @@ export function buildCourtsSeed(input: Input) {
 					: null,
 			surface,
 			indoor: k.pitches.every((p) => p.tags.indoor === 'yes' || p.tags.building === 'yes'),
-			access: 'free' as 'free' | 'reservation',
+			access: 'free' as 'free' | 'reservation' | 'fee',
 			bookingUrl: null as string | null,
 			communityArea: k.area,
 			cpdParkNo: k.cpd.parkNo,
@@ -424,7 +424,7 @@ export function buildCourtsSeed(input: Input) {
 			if (locations.some((x) => x !== l && x.slug === l.slug))
 				curationWarnings.push(`correction ${c.slug}: renamed slug ${l.slug} is taken`);
 		}
-		for (const key of ['lights', 'surface', 'courtCount', 'indoor'] as const) {
+		for (const key of ['lights', 'surface', 'courtCount', 'indoor', 'access'] as const) {
 			if (c[key] === undefined) continue;
 			changes.push(`${key} ${String(l[key])} → ${String(c[key])}`);
 			Object.assign(l, { [key]: c[key] });

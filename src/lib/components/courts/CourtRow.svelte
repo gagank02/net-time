@@ -22,7 +22,12 @@
 
 <a class="row" href={resolve('/courts/[slug]', { slug: court.slug })}>
 	<span class="name">{court.name}</span>
-	<StatusBadge {status} courtCount={court.courtCount} access={court.access} />
+	<StatusBadge
+		{status}
+		courtCount={court.courtCount}
+		access={court.access}
+		seasonNote={court.seasonNote}
+	/>
 	<span class="facts">{facts.join(' · ')}</span>
 	<svg class="chevron" viewBox="0 0 8 14" aria-hidden="true"
 		><path d="M1 1l6 6-6 6" fill="none" stroke-width="2" /></svg

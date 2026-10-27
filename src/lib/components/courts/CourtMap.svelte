@@ -84,7 +84,7 @@
 		if (!map || !maplibre) return;
 		const lib = maplibre;
 		const markers: Marker[] = rows.map(({ court, status }) => {
-			const { label, detail } = describeStatus(status, court.courtCount);
+			const { label, detail } = describeStatus(status, court.courtCount, court.seasonNote);
 			// Pins are a visual aid for pointer/touch users: the list below is the accessible
 			// equivalent (same courts, statuses and links), so pins stay out of the tab order.
 			const el = document.createElement('div');

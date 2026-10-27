@@ -1,6 +1,6 @@
 # Courts seed report
 
-Generated 2026-10-27T01:31:25Z from OpenStreetMap (data as of 2026-10-25T14:55:50Z) and City of Chicago datasets eix4-gf83, igwz-8jzy, unjd-c2ca.
+Generated 2026-10-27T01:35:55Z from OpenStreetMap (data as of 2026-10-25T14:55:50Z) and City of Chicago datasets eix4-gf83, igwz-8jzy, unjd-c2ca.
 
 ## Totals
 
@@ -25,7 +25,7 @@ Generated 2026-10-27T01:31:25Z from OpenStreetMap (data as of 2026-10-25T14:55:5
 ## Corrected from verified sources (data/courts.curation.json)
 
 - Maggie Daley Park: lights null → true. Park page: "Tennis court lights will be on an hour before dusk." Court hours Monday–Sunday 7:00 am–9:00 pm. Source: https://www.maggiedaleypark.com/things-to-do-see/tennis-courts. Verified 2026-10-25 by project owner.
-- Diversey Tennis Center: name Lincoln Park → Diversey Tennis Center, surface null → clay. Run by the Lincoln Park Tennis Association at the east end of Diversey Parkway: Har-Tru clay courts, open mid-May to mid-October (association listing). Source: https://www.mycoachingtree.com/company/27617/lincoln-park-tennis-association/. Verified 2026-10-26 by project owner.
+- Diversey Tennis Center: name Lincoln Park → Diversey Tennis Center, surface null → clay, access free → fee. Run by the Lincoln Park Tennis Association at the east end of Diversey Parkway: Har-Tru clay courts, open mid-May to mid-October, paid play (association listing; city tennis guide). Source: https://www.mycoachingtree.com/company/27617/lincoln-park-tennis-association/. Verified 2026-10-26 by project owner.
 
 ## Confirmed removed (data/courts.curation.json)
 

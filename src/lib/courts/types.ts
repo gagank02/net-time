@@ -20,9 +20,13 @@ export type ClassRow = {
 export type CourtStatus =
 	| { state: 'open'; until: string; nextClassAt: string | null }
 	| { state: 'class'; until: string; courtsFree: number; titles: string[] }
-	| { state: 'closed'; nextOpen: { time: string; inDays: number; weekday: number } | null };
+	| {
+			state: 'closed';
+			nextOpen: { time: string; inDays: number; weekday: number; date: string } | null;
+	  };
 
-export type Access = 'free' | 'reservation';
+// 'fee' = pay to play on site (e.g. Diversey's clay courts); 'reservation' = book ahead at bookingUrl.
+export type Access = 'free' | 'reservation' | 'fee';
 
 /** One row of the /courts list (also the shape the map and near-me sorting use). */
 export type CourtListItem = {
@@ -38,6 +42,8 @@ export type CourtListItem = {
 	bookingUrl: string | null;
 	communityArea: string;
 	hours: HoursRow[];
+	/** Seasonal courts only, e.g. "open mid-May to mid-October". */
+	seasonNote: string | null;
 	classes: ClassRow[];
 };
 

@@ -109,14 +109,14 @@ describe('courtStatus', () => {
 	it('closed before opening: opens later today', () => {
 		expect(status('2026-07-14T05:00:00-05:00')).toEqual({
 			state: 'closed',
-			nextOpen: { time: '06:00', inDays: 0, weekday: 2 }
+			nextOpen: { time: '06:00', inDays: 0, weekday: 2, date: '2026-07-14' }
 		});
 	});
 
 	it('closed after closing: opens tomorrow', () => {
 		expect(status('2026-07-14T23:30:00-05:00')).toEqual({
 			state: 'closed',
-			nextOpen: { time: '06:00', inDays: 1, weekday: 3 }
+			nextOpen: { time: '06:00', inDays: 1, weekday: 3, date: '2026-07-15' }
 		});
 	});
 
@@ -125,7 +125,7 @@ describe('courtStatus', () => {
 		// Saturday 11:30 PM → Sunday closed → Monday 6 AM.
 		expect(status('2026-07-18T23:30:00-05:00', noSunday)).toEqual({
 			state: 'closed',
-			nextOpen: { time: '06:00', inDays: 2, weekday: 1 }
+			nextOpen: { time: '06:00', inDays: 2, weekday: 1, date: '2026-07-20' }
 		});
 	});
 
@@ -145,6 +145,39 @@ describe('courtStatus', () => {
 		expect(intervalsOn(hours, '2026-07-14', 2)).toEqual([{ opens: 420, closes: 1260 }]);
 	});
 
+	it('seasonal courts: closed for the season, with the next season months ahead', () => {
+		// Diversey style: open only May 18 – Oct 12, 2027.
+		const summer = everyDay().map((h) => ({
+			...h,
+			seasonStart: '2027-05-18',
+			seasonEnd: '2027-10-12'
+		}));
+		const note = 'open mid-May to mid-October';
+		const winter = status('2026-12-01T12:00:00-06:00', summer, []);
+		expect(winter).toEqual({
+			state: 'closed',
+			nextOpen: { time: '06:00', inDays: 168, weekday: 2, date: '2027-05-18' }
+		});
+		expect(describeStatus(winter, 4, note)).toEqual({
+			label: 'Closed for the season',
+			detail: 'opens May 18'
+		});
+
+		// Next season not published yet: the note says when to expect it.
+		const after = status('2027-10-20T12:00:00-05:00', summer, []);
+		expect(describeStatus(after, 4, note)).toEqual({
+			label: 'Closed for the season',
+			detail: note
+		});
+
+		// In season, closed overnight is just "Closed".
+		const night = status('2027-06-01T23:30:00-05:00', summer, []);
+		expect(describeStatus(night, 4, note)).toEqual({
+			label: 'Closed',
+			detail: 'opens tomorrow 6 AM'
+		});
+	});
+
 	it('supports split days (e.g. closed midday)', () => {
 		const split: HoursRow[] = [
 			{ weekday: 2, opens: '06:00', closes: '12:00', seasonStart: null, seasonEnd: null },
@@ -152,7 +185,7 @@ describe('courtStatus', () => {
 		];
 		expect(status('2026-07-14T12:30:00-05:00', split, [])).toEqual({
 			state: 'closed',
-			nextOpen: { time: '13:00', inDays: 0, weekday: 2 }
+			nextOpen: { time: '13:00', inDays: 0, weekday: 2, date: '2026-07-14' }
 		});
 	});
 
@@ -172,7 +205,7 @@ describe('daylight saving', () => {
 		expect(chicagoTime(at('2026-03-08T08:30:00Z')).minutes).toBe(210); // 3:30 CDT (2:30 skipped)
 		expect(status('2026-03-08T08:30:00Z', everyDay(), [])).toEqual({
 			state: 'closed',
-			nextOpen: { time: '06:00', inDays: 0, weekday: 0 }
+			nextOpen: { time: '06:00', inDays: 0, weekday: 0, date: '2026-03-08' }
 		});
 		expect(status('2026-03-08T11:00:00Z', everyDay(), []).state).toBe('open'); // 6:00 CDT
 		expect(status('2026-03-08T10:30:00Z', everyDay(), []).state).toBe('closed'); // 5:30 CDT
@@ -185,7 +218,7 @@ describe('daylight saving', () => {
 		expect(status('2026-11-02T04:30:00Z', everyDay(), [])).toMatchObject({ state: 'open' }); // 10:30 PM CST Sun
 		expect(status('2026-11-02T05:30:00Z', everyDay(), [])).toEqual({
 			state: 'closed',
-			nextOpen: { time: '06:00', inDays: 1, weekday: 1 }
+			nextOpen: { time: '06:00', inDays: 1, weekday: 1, date: '2026-11-02' }
 		}); // 11:30 PM CST Sun
 	});
 });
@@ -217,12 +250,16 @@ describe('formatting', () => {
 			describeStatus({ state: 'class', until: '18:00', courtsFree: 0, titles: [] }, 4).detail
 		).toBe('all courts in use until 6 PM');
 		expect(
-			describeStatus({ state: 'closed', nextOpen: { time: '06:00', inDays: 1, weekday: 3 } }, 4)
-				.detail
+			describeStatus(
+				{ state: 'closed', nextOpen: { time: '06:00', inDays: 1, weekday: 3, date: '2026-07-15' } },
+				4
+			).detail
 		).toBe('opens tomorrow 6 AM');
 		expect(
-			describeStatus({ state: 'closed', nextOpen: { time: '06:00', inDays: 2, weekday: 1 } }, 4)
-				.detail
+			describeStatus(
+				{ state: 'closed', nextOpen: { time: '06:00', inDays: 2, weekday: 1, date: '2026-07-20' } },
+				4
+			).detail
 		).toBe('opens Mon 6 AM');
 		expect(describeStatus({ state: 'closed', nextOpen: null }, 4).detail).toBe('no upcoming hours');
 	});

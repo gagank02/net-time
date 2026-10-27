@@ -6,16 +6,24 @@
 	let {
 		status,
 		courtCount,
-		access
-	}: { status: CourtStatus | null; courtCount: number; access: Access } = $props();
+		access,
+		seasonNote = null
+	}: {
+		status: CourtStatus | null;
+		courtCount: number;
+		access: Access;
+		seasonNote?: string | null;
+	} = $props();
 
 	const text = $derived.by(() => {
 		if (!status) return null;
-		const { label, detail } = describeStatus(status, courtCount);
+		const { label, detail } = describeStatus(status, courtCount, seasonNote);
 		// A single block's own title ("Pickleball open play") says more than "Class in progress".
 		const named = status.state === 'class' && status.titles.length === 1 ? status.titles[0] : label;
-		const booked = access === 'reservation' && status.state !== 'closed';
-		return { label: booked ? `${named} · reservation required` : named, detail };
+		const note = { free: '', reservation: ' · reservation required', fee: ' · fee to play' }[
+			access
+		];
+		return { label: status.state === 'closed' ? named : named + note, detail };
 	});
 </script>
 

@@ -29,6 +29,13 @@
       "when": 1792945250111,
       "tag": "0003_hours_source",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1793064922110,
+      "tag": "0004_court_access_fee",
+      "breakpoints": true
     }
   ]
 }

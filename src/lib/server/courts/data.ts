@@ -85,6 +85,7 @@ function listItem(l: (typeof courtsSeed.locations)[number], today: string): Cour
 		bookingUrl: l.bookingUrl,
 		communityArea: l.communityArea,
 		hours: hoursFor(l.slug, today),
+		seasonNote: overrideBySlug.get(l.slug)?.seasonNote ?? null,
 		// The list needs only what status uses; sources and dates stay on the detail page.
 		classes: classesFor(l.slug, today).map((c) => ({
 			title: c.title,
