@@ -3,9 +3,7 @@
 		{
 			"location": "oz-park",
 			"title": "Test fixture: Junior tennis",
-			"weekdays": [
-				2
-			],
+			"weekdays": [2],
 			"starts": "16:00",
 			"ends": "18:00",
 			"seasonStart": "2026-06-01",
