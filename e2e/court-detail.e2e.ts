@@ -1,5 +1,5 @@
 import { expect, test, type Page } from './fixtures';
-import { liveClass } from './live-class';
+import { busyProgram, liveClass } from './live-class';
 
 async function openAt(page: Page, path: string, iso: string) {
 	await page.clock.setFixedTime(new Date(iso));
@@ -37,7 +37,7 @@ test('a park with City classes lists them with sign-up and source links in new t
 	await openAt(page, `/courts/${c.slug}`, c.iso);
 	const section = page.getByRole('region', { name: 'Classes and programs using the courts' });
 	await expect(section.getByText(c.title).first()).toBeVisible();
-	const signup = section.getByRole('link', { name: /Details and sign-up/ }).first();
+	const signup = section.getByRole('link', { name: /^Sign up/ }).first();
 	await expect(signup).toHaveAttribute('href', /^https:\/\/apm\.activecommunities\.com\//);
 	await expect(signup).toHaveAttribute('target', '_blank');
 	await expect(section.getByRole('link', { name: /^Source/ }).first()).toHaveAttribute(
@@ -45,7 +45,24 @@ test('a park with City classes lists them with sign-up and source links in new t
 		/^https:\/\/data\.cityofchicago\.org\/resource\/tn7v-6rnw\.json\?activity_id=/
 	);
 	// The City data doesn't say how many courts a class uses, so the page never claims a number.
-	await expect(section).not.toContainText(/uses \d+ of/);
+	await expect(section).not.toContainText(/uses \d+ of/i);
+	await expect(section).toContainText(/schedules checked/);
+});
+
+test('a program with many sessions is one entry, collapsed until opened', async ({ page }) => {
+	const p = busyProgram();
+	test.skip(!p, 'no program with more than 3 sessions in the current data');
+	await page.goto(`/courts/${p!.slug}`);
+	const entry = page
+		.getByRole('region', { name: 'Classes and programs using the courts' })
+		.getByRole('listitem')
+		.filter({ has: page.getByText(p!.title, { exact: true }) });
+	const summary = entry.locator('summary');
+	await expect(summary).toContainText(`${p!.sessions} sessions`);
+	await expect(entry.getByRole('link', { name: /^Sign up/ }).first()).toBeHidden();
+	await summary.click();
+	await expect(entry.getByRole('link', { name: /^Sign up/ })).toHaveCount(p!.sessions);
+	await expect(entry.getByRole('link', { name: /^Sign up/ }).first()).toBeVisible();
 });
 
 test('McFetridge: reservation access with a booking link in a new tab', async ({ page }) => {

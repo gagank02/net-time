@@ -18,12 +18,10 @@
 	const text = $derived.by(() => {
 		if (!status) return null;
 		const { label, detail } = describeStatus(status, courtCount, seasonNote);
-		// A single block's own title ("Pickleball open play") says more than "Class in progress".
-		const named = status.state === 'class' && status.titles.length === 1 ? status.titles[0] : label;
 		const note = { free: '', reservation: ' · reservation required', fee: ' · fee to play' }[
 			access
 		];
-		return { label: status.state === 'closed' ? named : named + note, detail };
+		return { label: status.state === 'closed' ? label : label + note, detail };
 	});
 </script>
 
@@ -40,30 +38,39 @@
 				<circle cx="6" cy="6" r="4.25" fill="none" stroke-width="1.5" />
 			{/if}
 		</svg>
-		<!-- The separator ends the label so a wrapped line never starts with "·". -->
-		<span class="label">{text.label}<span class="sep" aria-hidden="true">·</span></span>
+		<span class="label">{text.label}<span class="visually-hidden">.</span></span>
 		<span class="detail">{text.detail}</span>
 	</span>
 {:else}
-	<!-- Same line height as a real status, so nothing shifts when it fills in. -->
-	<span class="status pending" aria-hidden="true">&nbsp;</span>
+	<!-- Always two lines (label, then detail), so nothing shifts when the real status fills in. -->
+	<span class="status pending" aria-hidden="true">
+		<span class="label">&nbsp;</span><span class="detail">&nbsp;</span>
+	</span>
 {/if}
 
 <style>
+	/* Label over detail, one line each: a fixed height before and after hydration (no layout shift). */
 	.status {
-		display: inline-flex;
-		flex-wrap: wrap;
-		align-items: baseline;
-		column-gap: var(--space-1);
+		display: grid;
+		grid-template-columns: 0.75rem minmax(0, 1fr);
+		column-gap: var(--space-2);
+		align-items: center;
 		font-size: var(--text-subhead);
 	}
 
+	.label,
+	.detail {
+		grid-column: 2;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+	}
+
 	.icon {
-		flex: none;
-		align-self: center;
+		grid-row: 1;
+		grid-column: 1;
 		width: 0.75rem;
 		height: 0.75rem;
-		margin-right: 2px;
 	}
 
 	.open .icon {
@@ -87,11 +94,6 @@
 		color: var(--tint);
 	}
 
-	.sep {
-		margin-left: 0.25em;
-	}
-
-	.sep,
 	.detail {
 		color: var(--label-2);
 		font-weight: 400;

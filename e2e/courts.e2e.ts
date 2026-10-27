@@ -20,11 +20,11 @@ test('lists every seeded location with a status', async ({ page }) => {
 	await expect(row(page, /^Oz Park/)).toContainText('Open now');
 });
 
-test('a running City class shows its own title and never claims free courts', async ({ page }) => {
+test('a running City class shows as a class and never claims free courts', async ({ page }) => {
 	const c = liveClass();
 	await openAt(page, c.iso);
 	const site = row(page, c.name);
-	await expect(site).toContainText(c.title);
+	await expect(site).toContainText('Class in progress');
 	await expect(site).toContainText('some courts may be in use until');
 });
 

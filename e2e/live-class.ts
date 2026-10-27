@@ -41,6 +41,20 @@ const plus10 = (t: string) => {
 	return `${String(Math.floor(m / 60)).padStart(2, '0')}:${String(m % 60).padStart(2, '0')}`;
 };
 
+/** A program with more than 3 upcoming sessions at one site (shown collapsed), if any. */
+export function busyProgram(): { slug: string; title: string; sessions: number } | null {
+	const today = chicagoTime(new Date()).date;
+	const counts = new Map<string, number>();
+	for (const b of blocks.filter((b) => b.seasonEnd >= today)) {
+		const key = `${b.location}|${b.title}`;
+		counts.set(key, (counts.get(key) ?? 0) + 1);
+	}
+	const [key, sessions] = [...counts].find(([, n]) => n > 3) ?? [];
+	if (!key) return null;
+	const [slug, title] = key.split('|');
+	return { slug, title, sessions: sessions! };
+}
+
 export function liveClass(): { slug: string; name: string; title: string; iso: string } {
 	const today = chicagoTime(new Date()).date;
 	for (const b of blocks) {
