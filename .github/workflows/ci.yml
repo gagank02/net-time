@@ -10,7 +10,8 @@ permissions:
 
 concurrency:
   group: ci-${{ github.ref }}
-  cancel-in-progress: true
+  # Never cancel a run on main mid-deploy.
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   test:
@@ -79,3 +80,32 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           # Findings fail the job; PR comments would need write permission.
           GITLEAKS_ENABLE_COMMENTS: 'false'
+
+  deploy:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: [test, secrets]
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    # The token lives only in this environment, which only main can use.
+    environment:
+      name: production
+      url: https://net-time.gagan-kadadevarmath.workers.dev
+    env:
+      WRANGLER_SEND_METRICS: 'false'
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - name: Build and deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: npm run deploy
+      - name: Smoke check
+        run: |
+          curl -fsS --retry 3 --retry-delay 5 -o /dev/null https://net-time.gagan-kadadevarmath.workers.dev/courts
+          curl -fsS --retry 3 --retry-delay 5 -o /dev/null https://net-time.gagan-kadadevarmath.workers.dev/healthz

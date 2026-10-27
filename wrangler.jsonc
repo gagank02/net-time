@@ -2,6 +2,8 @@
 	"$schema": "./node_modules/wrangler/config-schema.json",
 	"name": "net-time",
 	"compatibility_date": "2026-10-24",
+	// Not a secret; lets CI deploy without listing the token's accounts.
+	"account_id": "2f843c11af6ce1f9896fd9852ef2d9ee",
 	"compatibility_flags": ["nodejs_compat"],
 	"main": ".svelte-kit/cloudflare/_worker.js",
 	"assets": {
