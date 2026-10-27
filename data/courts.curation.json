@@ -38,6 +38,14 @@
 			"sourceUrl": "https://www.maggiedaleypark.com/things-to-do-see/tennis-courts",
 			"verifiedAt": "2026-10-25",
 			"verifiedBy": "project owner"
+		},
+		{
+			"slug": "lincoln-park-lake-view-north",
+			"name": "Waveland Park Tennis Courts",
+			"note": "The 20 courts at 3700 N Recreation Drive are mapped in OSM as \"Waveland Park Tennis Courts\" (operator Chicago Park District).",
+			"sourceUrl": "https://www.openstreetmap.org/way/1296417571",
+			"verifiedAt": "2026-10-26",
+			"verifiedBy": "project owner"
 		}
 	],
 	"removed": [

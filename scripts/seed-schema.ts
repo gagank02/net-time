@@ -170,6 +170,8 @@ export const CurationSeed = z.strictObject({
 		z
 			.strictObject({
 				slug,
+				/** The courts' own name where OSM or the park names them; the slug follows it. */
+				name: safeText(120).optional(),
 				lights: z.boolean().optional(),
 				surface: z.enum(['hard', 'clay', 'grass', 'other']).optional(),
 				courtCount: z.int().min(1).max(40).optional(),
@@ -180,7 +182,7 @@ export const CurationSeed = z.strictObject({
 				verifiedBy: safeText(80)
 			})
 			.refine(
-				(c) => ['lights', 'surface', 'courtCount', 'indoor'].some((k) => k in c),
+				(c) => ['name', 'lights', 'surface', 'courtCount', 'indoor'].some((k) => k in c),
 				'a correction must change at least one field'
 			)
 	),

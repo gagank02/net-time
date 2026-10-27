@@ -1,5 +1,5 @@
 {
-	"generatedAt": "2026-10-25T22:39:10Z",
+	"generatedAt": "2026-10-27T01:16:38Z",
 	"locations": [
 		{
 			"slug": "abbott-park",
@@ -1509,44 +1509,6 @@
 			"verifiedAt": "2026-10-25"
 		},
 		{
-			"slug": "lincoln-park-lake-view-north",
-			"name": "Lincoln Park (Lake View, north)",
-			"address": null,
-			"lat": 41.951435,
-			"lng": -87.643167,
-			"courtCount": 20,
-			"lights": true,
-			"surface": "hard",
-			"indoor": false,
-			"access": "free",
-			"bookingUrl": null,
-			"communityArea": "Lake View",
-			"cpdParkNo": 100,
-			"osmIds": [
-				"way/950184372",
-				"way/950184373",
-				"way/950184374",
-				"way/950184375",
-				"way/950184376",
-				"way/950184379",
-				"way/950184380",
-				"way/950184381",
-				"way/950184382",
-				"way/950184383",
-				"way/950184387",
-				"way/950184388",
-				"way/950184389",
-				"way/950184390",
-				"way/950184391",
-				"way/950184392",
-				"way/950184393",
-				"way/950184394",
-				"way/950184395",
-				"way/950184396"
-			],
-			"verifiedAt": "2026-10-25"
-		},
-		{
 			"slug": "lincoln-park-lake-view-south",
 			"name": "Lincoln Park (Lake View, south)",
 			"address": null,
@@ -2767,6 +2729,44 @@
 				"way/226217593"
 			],
 			"verifiedAt": "2026-10-25"
+		},
+		{
+			"slug": "waveland-park-tennis-courts",
+			"name": "Waveland Park Tennis Courts",
+			"address": null,
+			"lat": 41.951435,
+			"lng": -87.643167,
+			"courtCount": 20,
+			"lights": true,
+			"surface": "hard",
+			"indoor": false,
+			"access": "free",
+			"bookingUrl": null,
+			"communityArea": "Lake View",
+			"cpdParkNo": 100,
+			"osmIds": [
+				"way/950184372",
+				"way/950184373",
+				"way/950184374",
+				"way/950184375",
+				"way/950184376",
+				"way/950184379",
+				"way/950184380",
+				"way/950184381",
+				"way/950184382",
+				"way/950184383",
+				"way/950184387",
+				"way/950184388",
+				"way/950184389",
+				"way/950184390",
+				"way/950184391",
+				"way/950184392",
+				"way/950184393",
+				"way/950184394",
+				"way/950184395",
+				"way/950184396"
+			],
+			"verifiedAt": "2026-10-26"
 		},
 		{
 			"slug": "welles-park",

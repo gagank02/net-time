@@ -345,6 +345,33 @@ describe('buildCourtsSeed', () => {
 		expect(report).toContain('correction nope: no such location');
 	});
 
+	it('renames a site to its own name, and its slug follows', () => {
+		const input = base();
+		input.pitches = [pitch(1, 41.92, -87.65)];
+		input.cpdCourts = [{ park: 'OZ', parkNo: 1, lat: 41.92, lng: -87.65 }];
+		input.curation = {
+			additions: [],
+			removed: [],
+			corrections: [
+				{
+					slug: 'oz-park',
+					name: 'Oz Park Tennis Center',
+					note: 'Named in OSM.',
+					sourceUrl: 'https://www.openstreetmap.org/way/1',
+					verifiedAt: '2026-10-26',
+					verifiedBy: 'owner'
+				}
+			]
+		};
+		const { courts, report } = buildCourtsSeed(input);
+		expect(courts.locations[0]).toMatchObject({
+			slug: 'oz-park-tennis-center',
+			name: 'Oz Park Tennis Center'
+		});
+		expect(report).toContain('- Oz Park Tennis Center: name Oz Park → Oz Park Tennis Center.');
+		expect(CourtsSeed.safeParse(courts).success).toBe(true);
+	});
+
 	it('builds valid community area and ZIP centroids', () => {
 		const { areas } = buildCourtsSeed(base());
 		expect(areas.communityAreas).toEqual([

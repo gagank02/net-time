@@ -178,7 +178,8 @@ const mean = (pts: LatLng[]): LatLng => ({
 const round6 = (n: number) => Math.round(n * 1e6) / 1e6;
 
 export function buildCourtsSeed(input: Input) {
-	const verifiedAt = input.generatedAt.slice(0, 10);
+	// The date of the OSM data read, not of this run: a rebuild from cached downloads re-verifies nothing.
+	const verifiedAt = input.osmTimestamp.slice(0, 10);
 	const publicPitches = input.pitches.filter((p) => !['private', 'no'].includes(p.tags.access));
 	const privateCount = input.pitches.length - publicPitches.length;
 
@@ -401,6 +402,13 @@ export function buildCourtsSeed(input: Input) {
 			continue;
 		}
 		const changes: string[] = [];
+		if (c.name !== undefined) {
+			changes.push(`name ${l.name} → ${c.name}`);
+			l.name = c.name;
+			l.slug = slugify(c.name);
+			if (locations.some((x) => x !== l && x.slug === l.slug))
+				curationWarnings.push(`correction ${c.slug}: renamed slug ${l.slug} is taken`);
+		}
 		for (const key of ['lights', 'surface', 'courtCount', 'indoor'] as const) {
 			if (c[key] === undefined) continue;
 			changes.push(`${key} ${String(l[key])} → ${String(c[key])}`);
