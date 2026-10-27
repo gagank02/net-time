@@ -14,40 +14,58 @@ test('follows the device setting by default', async ({ page }) => {
 	expect(await bg(page)).toBe(grouped);
 });
 
-test('toggle switches instantly and persists across reloads with no flash', async ({ page }) => {
+const toggle = (page: Page) => page.getByRole('button', { name: 'Dark appearance' });
+const stored = (page: Page) => page.evaluate(() => localStorage.getItem('theme'));
+
+test('header button switches instantly, persists with no flash, and can follow the device again', async ({
+	page
+}) => {
 	await page.emulateMedia({ colorScheme: 'light' });
 	await page.goto('/');
-	const dark = page.getByRole('button', { name: 'Dark' });
-	await expect(dark).toBeEnabled(); // hydrated
-	await dark.click();
+	await expect(toggle(page)).toBeEnabled(); // hydrated
+	await expect(toggle(page)).toHaveAttribute('aria-pressed', 'false');
+	await expect(page.locator('header .moon')).toBeVisible();
+
+	await toggle(page).click();
 	await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
-	await expect(dark).toHaveAttribute('aria-pressed', 'true');
+	await expect(toggle(page)).toHaveAttribute('aria-pressed', 'true');
+	await expect(page.locator('header .sun')).toBeVisible();
 	await expect.poll(() => bg(page)).toBe(black);
 
 	// The inline head script applies the saved choice before first paint: already dark at
-	// DOMContentLoaded, before the app's JS hydrates.
+	// DOMContentLoaded, before the app's JS hydrates, and the icon (pure CSS) already matches.
 	await page.reload({ waitUntil: 'domcontentloaded' });
 	expect(await page.evaluate(() => document.documentElement.dataset.theme)).toBe('dark');
-	await expect(page.getByRole('button', { name: 'Dark' })).toHaveAttribute('aria-pressed', 'true');
+	await expect(page.locator('header .sun')).toBeVisible();
 
-	await expect(page.getByRole('button', { name: 'System' })).toBeEnabled();
-	await page.getByRole('button', { name: 'System' }).click();
-	await page.reload();
+	// Back to light matches the device, so the site follows the device again.
+	await expect(toggle(page)).toBeEnabled();
+	await toggle(page).click();
 	await expect(page.locator('html')).toHaveAttribute('data-theme', 'system');
+	expect(await stored(page)).toBeNull();
 	expect(await bg(page)).toBe(grouped);
 });
 
+test('on a dark device the button shows a sun and switches to light', async ({ page }) => {
+	await page.emulateMedia({ colorScheme: 'dark' });
+	await page.goto('/');
+	await expect(page.locator('header .sun')).toBeVisible();
+	await expect(toggle(page)).toHaveAttribute('aria-pressed', 'true');
+	await toggle(page).click();
+	await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
+	expect(await stored(page)).toBe('light');
+	await expect.poll(() => bg(page)).toBe(grouped);
+});
+
 test('tampered storage falls back to the device setting', async ({ page }) => {
+	await page.emulateMedia({ colorScheme: 'light' });
 	await page.addInitScript(() => localStorage.setItem('theme', '"><img src=x onerror=alert(1)>'));
 	await page.goto('/');
 	await expect(page.locator('html')).toHaveAttribute('data-theme', 'system');
-	await expect(page.getByRole('button', { name: 'System' })).toHaveAttribute(
-		'aria-pressed',
-		'true'
-	);
+	await expect(toggle(page)).toHaveAttribute('aria-pressed', 'false');
 });
 
-test('without JavaScript the toggle is hidden and the device setting applies', async ({
+test('without JavaScript the button is hidden and the device setting applies', async ({
 	browser,
 	extraHTTPHeaders
 }) => {
@@ -58,7 +76,7 @@ test('without JavaScript the toggle is hidden and the device setting applies', a
 	});
 	const page = await context.newPage();
 	await page.goto('/');
-	await expect(page.getByRole('group', { name: 'Appearance' })).toBeHidden();
+	await expect(page.locator('header .theme')).toBeHidden();
 	expect(await bg(page)).toBe(black);
 	await context.close();
 });

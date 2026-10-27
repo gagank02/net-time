@@ -48,7 +48,7 @@ export const courtLocations = pgTable(
 		check('court_locations_name', sql`char_length(${t.name}) between 1 and 120`),
 		check('court_locations_court_count', sql`${t.courtCount} between 1 and 40`),
 		check('court_locations_surface', sql`${t.surface} in ('hard', 'clay', 'grass', 'other')`),
-		check('court_locations_access', sql`${t.access} in ('free', 'reservation')`),
+		check('court_locations_access', sql`${t.access} in ('free', 'reservation', 'fee')`),
 		check(
 			'court_locations_hours_source_url',
 			sql`${t.hoursSourceUrl} is null or ${t.hoursSourceUrl} like 'https://%'`

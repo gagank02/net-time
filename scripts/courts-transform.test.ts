@@ -34,6 +34,7 @@ const pitch = (id: number, lat: number, lng: number, tags: Record<string, string
 const base = (): Input => ({
 	pitches: [],
 	parks: [],
+	tennisAreas: [],
 	cpdCourts: [],
 	cpdFacilities: [],
 	curation: { additions: [], corrections: [], removed: [] },
@@ -343,6 +344,59 @@ describe('buildCourtsSeed', () => {
 		expect(courts.locations[0]).toMatchObject({ lights: true, verifiedAt: '2026-10-25' });
 		expect(report).toContain('- Oz Park: lights null → true. Park page says lit.');
 		expect(report).toContain('correction nope: no such location');
+	});
+
+	it('names a site after the OSM tennis area holding most of its courts', () => {
+		const input = base();
+		input.pitches = [pitch(1, 41.92, -87.65), pitch(2, 41.9201, -87.65), pitch(3, 41.9202, -87.65)];
+		input.cpdCourts = [{ park: 'LINCOLN', parkNo: 1, lat: 41.92, lng: -87.65 }];
+		input.parks = [
+			{ id: 'way/9', name: 'Lincoln (Abraham) Park', polygons: [square(41.92, -87.65, 0.01)] }
+		];
+		const area = (name: string, lat: number) => ({
+			id: name,
+			name,
+			polygons: [square(lat, -87.65, 0.00004)]
+		});
+		input.tennisAreas = [
+			area('Waveland Park Tennis Courts', 41.92),
+			area('Waveland Park Tennis Courts', 41.9201)
+		];
+		expect(buildCourtsSeed(input).courts.locations[0]).toMatchObject({
+			slug: 'waveland-park-tennis-courts',
+			name: 'Waveland Park Tennis Courts'
+		});
+
+		// One court of three inside a named area is not enough: the park name stays.
+		input.tennisAreas = [area('Corner Courts', 41.9202)];
+		expect(buildCourtsSeed(input).courts.locations[0].name).toBe('Lincoln Park');
+	});
+
+	it('renames a site to its own name, and its slug follows', () => {
+		const input = base();
+		input.pitches = [pitch(1, 41.92, -87.65)];
+		input.cpdCourts = [{ park: 'OZ', parkNo: 1, lat: 41.92, lng: -87.65 }];
+		input.curation = {
+			additions: [],
+			removed: [],
+			corrections: [
+				{
+					slug: 'oz-park',
+					name: 'Oz Park Tennis Center',
+					note: 'Named in OSM.',
+					sourceUrl: 'https://www.openstreetmap.org/way/1',
+					verifiedAt: '2026-10-26',
+					verifiedBy: 'owner'
+				}
+			]
+		};
+		const { courts, report } = buildCourtsSeed(input);
+		expect(courts.locations[0]).toMatchObject({
+			slug: 'oz-park-tennis-center',
+			name: 'Oz Park Tennis Center'
+		});
+		expect(report).toContain('- Oz Park Tennis Center: name Oz Park → Oz Park Tennis Center.');
+		expect(CourtsSeed.safeParse(courts).success).toBe(true);
 	});
 
 	it('builds valid community area and ZIP centroids', () => {

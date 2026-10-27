@@ -38,6 +38,17 @@
 			"sourceUrl": "https://www.maggiedaleypark.com/things-to-do-see/tennis-courts",
 			"verifiedAt": "2026-10-25",
 			"verifiedBy": "project owner"
+		},
+		{
+			"slug": "lincoln-park",
+			"name": "Diversey Tennis Center",
+			"surface": "clay",
+			"note": "Diversey Tennis Center, run by the Lincoln Park Tennis Association: Chicago's public clay courts at the east end of Diversey Parkway. $28 an hour, booked online up to 7 days ahead; walk-ins welcome.",
+			"sourceUrl": "https://www.diverseytenniscenter.com/rates-rules",
+			"verifiedAt": "2026-10-26",
+			"verifiedBy": "project owner",
+			"access": "fee",
+			"bookingUrl": "https://www.diverseytenniscenter.com/book-court"
 		}
 	],
 	"removed": [

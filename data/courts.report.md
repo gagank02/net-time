@@ -1,6 +1,6 @@
 # Courts seed report
 
-Generated 2026-10-25T22:39:10Z from OpenStreetMap (data as of 2026-10-25T14:55:50Z) and City of Chicago datasets eix4-gf83, igwz-8jzy, unjd-c2ca.
+Generated 2026-10-27T01:45:16Z from OpenStreetMap (data as of 2026-10-25T14:55:50Z) and City of Chicago datasets eix4-gf83, igwz-8jzy, unjd-c2ca.
 
 ## Totals
 
@@ -11,7 +11,7 @@ Generated 2026-10-25T22:39:10Z from OpenStreetMap (data as of 2026-10-25T14:55:5
 - Excluded, not a Park District site (no 2016 CPD tennis point within 150 m, not inside a CPD park): 41
 - Excluded, outside community areas: 0
 - CPD parks with tennis (2016, by park number): 129; matched: 122; added by hand: 2; confirmed removed: 5; **still unexplained: 0**
-- Field coverage: lights known 12%, surface known 21%
+- Field coverage: lights known 12%, surface known 22%
 
 ## CPD parks with tennis in 2016, no OSM courts, not yet curated (check: removed, or missing from OSM?)
 
@@ -25,6 +25,7 @@ Generated 2026-10-25T22:39:10Z from OpenStreetMap (data as of 2026-10-25T14:55:5
 ## Corrected from verified sources (data/courts.curation.json)
 
 - Maggie Daley Park: lights null → true. Park page: "Tennis court lights will be on an hour before dusk." Court hours Monday–Sunday 7:00 am–9:00 pm. Source: https://www.maggiedaleypark.com/things-to-do-see/tennis-courts. Verified 2026-10-25 by project owner.
+- Diversey Tennis Center: name Lincoln Park → Diversey Tennis Center, surface null → clay, access free → fee, bookingUrl null → https://www.diverseytenniscenter.com/book-court. Diversey Tennis Center, run by the Lincoln Park Tennis Association: Chicago's public clay courts at the east end of Diversey Parkway. $28 an hour, booked online up to 7 days ahead; walk-ins welcome. Source: https://www.diverseytenniscenter.com/rates-rules. Verified 2026-10-26 by project owner.
 
 ## Confirmed removed (data/courts.curation.json)
 
@@ -91,7 +92,6 @@ Generated 2026-10-25T22:39:10Z from OpenStreetMap (data as of 2026-10-25T14:55:5
 
 - Marquette Park: 2 sites
 - McKinley Park: 2 sites
-- Lincoln Park: 2 sites
 - Jackson Park: 2 sites
 - Washington Park: 3 sites
 

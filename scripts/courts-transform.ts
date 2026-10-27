@@ -16,6 +16,8 @@ export type Zip = { zip: string; polygons: Polygon[] };
 export type Input = {
 	pitches: Pitch[];
 	parks: Park[];
+	/** Named OSM tennis areas around courts (e.g. "Waveland Park Tennis Courts"). */
+	tennisAreas: Park[];
 	cpdCourts: CpdCourt[]; // 2016 tennis court points
 	cpdFacilities: CpdCourt[]; // every 2016 Park District facility point (fieldhouses, playgrounds, …)
 	communityAreas: Area[];
@@ -157,6 +159,17 @@ const surfaces: Record<string, 'hard' | 'clay' | 'grass' | 'other'> = {
 
 // ── transform ───────────────────────────────────────────────────────────────
 
+/** The name of the OSM tennis area holding most of a site's courts, if one holds more than half. */
+export function ownName(pitches: Pitch[], areas: Park[]): string | null {
+	const counts = new Map<string, number>();
+	for (const p of pitches) {
+		const area = areas.find((a) => inPolygons(p, a.polygons));
+		if (area?.name) counts.set(area.name, (counts.get(area.name) ?? 0) + 1);
+	}
+	const [best] = [...counts].sort((a, b) => b[1] - a[1]);
+	return best && best[1] * 2 > pitches.length ? best[0] : null;
+}
+
 type Cluster = { parkId: string | null; parkName: string | null; pitches: Pitch[] };
 
 function clusterByDistance(pitches: Pitch[]): Pitch[][] {
@@ -178,7 +191,8 @@ const mean = (pts: LatLng[]): LatLng => ({
 const round6 = (n: number) => Math.round(n * 1e6) / 1e6;
 
 export function buildCourtsSeed(input: Input) {
-	const verifiedAt = input.generatedAt.slice(0, 10);
+	// The date of the OSM data read, not of this run: a rebuild from cached downloads re-verifies nothing.
+	const verifiedAt = input.osmTimestamp.slice(0, 10);
 	const publicPitches = input.pitches.filter((p) => !['private', 'no'].includes(p.tags.access));
 	const privateCount = input.pitches.length - publicPitches.length;
 
@@ -248,7 +262,9 @@ export function buildCourtsSeed(input: Input) {
 			continue;
 		}
 		if (!tennisMatch) byParkOnly.push(label);
-		const name = everydayName(c.parkName ?? `${titleCase(cpd.park)} Park`);
+		const name =
+			ownName(c.pitches, input.tennisAreas) ??
+			everydayName(c.parkName ?? `${titleCase(cpd.park)} Park`);
 		kept.push({ ...c, center, area: titleCase(area), cpd, name });
 	}
 
@@ -312,7 +328,7 @@ export function buildCourtsSeed(input: Input) {
 					: null,
 			surface,
 			indoor: k.pitches.every((p) => p.tags.indoor === 'yes' || p.tags.building === 'yes'),
-			access: 'free' as 'free' | 'reservation',
+			access: 'free' as 'free' | 'reservation' | 'fee',
 			bookingUrl: null as string | null,
 			communityArea: k.area,
 			cpdParkNo: k.cpd.parkNo,
@@ -401,7 +417,21 @@ export function buildCourtsSeed(input: Input) {
 			continue;
 		}
 		const changes: string[] = [];
-		for (const key of ['lights', 'surface', 'courtCount', 'indoor'] as const) {
+		if (c.name !== undefined) {
+			changes.push(`name ${l.name} → ${c.name}`);
+			l.name = c.name;
+			l.slug = slugify(c.name);
+			if (locations.some((x) => x !== l && x.slug === l.slug))
+				curationWarnings.push(`correction ${c.slug}: renamed slug ${l.slug} is taken`);
+		}
+		for (const key of [
+			'lights',
+			'surface',
+			'courtCount',
+			'indoor',
+			'access',
+			'bookingUrl'
+		] as const) {
 			if (c[key] === undefined) continue;
 			changes.push(`${key} ${String(l[key])} → ${String(c[key])}`);
 			Object.assign(l, { [key]: c[key] });

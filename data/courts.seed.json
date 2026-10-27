@@ -1,5 +1,5 @@
 {
-	"generatedAt": "2026-10-25T22:39:10Z",
+	"generatedAt": "2026-10-27T01:45:16Z",
 	"locations": [
 		{
 			"slug": "abbott-park",
@@ -576,8 +576,36 @@
 			"verifiedAt": "2026-10-25"
 		},
 		{
-			"slug": "douglass-park",
-			"name": "Douglass Park",
+			"slug": "diversey-tennis-center",
+			"name": "Diversey Tennis Center",
+			"address": null,
+			"lat": 41.934071,
+			"lng": -87.632991,
+			"courtCount": 10,
+			"lights": null,
+			"surface": "clay",
+			"indoor": false,
+			"access": "fee",
+			"bookingUrl": "https://www.diverseytenniscenter.com/book-court",
+			"communityArea": "Lake View",
+			"cpdParkNo": 100,
+			"osmIds": [
+				"way/1144196023",
+				"way/1144196024",
+				"way/1144196025",
+				"way/1144196026",
+				"way/1144196027",
+				"way/1169279651",
+				"way/211087377",
+				"way/23921848",
+				"way/779573870",
+				"way/779573872"
+			],
+			"verifiedAt": "2026-10-26"
+		},
+		{
+			"slug": "douglass-tennis-courts",
+			"name": "Douglass Tennis Courts",
 			"address": null,
 			"lat": 41.860341,
 			"lng": -87.697075,
@@ -1311,6 +1339,28 @@
 			"verifiedAt": "2026-10-25"
 		},
 		{
+			"slug": "katrina-adams-tennis-courts",
+			"name": "Katrina Adams Tennis Courts",
+			"address": null,
+			"lat": 41.879768,
+			"lng": -87.663695,
+			"courtCount": 4,
+			"lights": null,
+			"surface": "hard",
+			"indoor": false,
+			"access": "free",
+			"bookingUrl": null,
+			"communityArea": "Near West Side",
+			"cpdParkNo": 211,
+			"osmIds": [
+				"way/1138572099",
+				"way/1138572100",
+				"way/1138572101",
+				"way/179119869"
+			],
+			"verifiedAt": "2026-10-25"
+		},
+		{
 			"slug": "kelvyn-park",
 			"name": "Kelvyn Park",
 			"address": null,
@@ -1505,72 +1555,6 @@
 			"osmIds": [
 				"way/1489980115",
 				"way/1489980116"
-			],
-			"verifiedAt": "2026-10-25"
-		},
-		{
-			"slug": "lincoln-park-lake-view-north",
-			"name": "Lincoln Park (Lake View, north)",
-			"address": null,
-			"lat": 41.951435,
-			"lng": -87.643167,
-			"courtCount": 20,
-			"lights": true,
-			"surface": "hard",
-			"indoor": false,
-			"access": "free",
-			"bookingUrl": null,
-			"communityArea": "Lake View",
-			"cpdParkNo": 100,
-			"osmIds": [
-				"way/950184372",
-				"way/950184373",
-				"way/950184374",
-				"way/950184375",
-				"way/950184376",
-				"way/950184379",
-				"way/950184380",
-				"way/950184381",
-				"way/950184382",
-				"way/950184383",
-				"way/950184387",
-				"way/950184388",
-				"way/950184389",
-				"way/950184390",
-				"way/950184391",
-				"way/950184392",
-				"way/950184393",
-				"way/950184394",
-				"way/950184395",
-				"way/950184396"
-			],
-			"verifiedAt": "2026-10-25"
-		},
-		{
-			"slug": "lincoln-park-lake-view-south",
-			"name": "Lincoln Park (Lake View, south)",
-			"address": null,
-			"lat": 41.934071,
-			"lng": -87.632991,
-			"courtCount": 10,
-			"lights": null,
-			"surface": null,
-			"indoor": false,
-			"access": "free",
-			"bookingUrl": null,
-			"communityArea": "Lake View",
-			"cpdParkNo": 100,
-			"osmIds": [
-				"way/1144196023",
-				"way/1144196024",
-				"way/1144196025",
-				"way/1144196026",
-				"way/1144196027",
-				"way/1169279651",
-				"way/211087377",
-				"way/23921848",
-				"way/779573870",
-				"way/779573872"
 			],
 			"verifiedAt": "2026-10-25"
 		},
@@ -2527,28 +2511,6 @@
 			"verifiedAt": "2026-10-25"
 		},
 		{
-			"slug": "skinner-park",
-			"name": "Skinner Park",
-			"address": null,
-			"lat": 41.879768,
-			"lng": -87.663695,
-			"courtCount": 4,
-			"lights": null,
-			"surface": "hard",
-			"indoor": false,
-			"access": "free",
-			"bookingUrl": null,
-			"communityArea": "Near West Side",
-			"cpdParkNo": 211,
-			"osmIds": [
-				"way/1138572099",
-				"way/1138572100",
-				"way/1138572101",
-				"way/179119869"
-			],
-			"verifiedAt": "2026-10-25"
-		},
-		{
 			"slug": "smith-park",
 			"name": "Smith Park",
 			"address": null,
@@ -2765,6 +2727,44 @@
 				"way/1141836765",
 				"way/226217578",
 				"way/226217593"
+			],
+			"verifiedAt": "2026-10-25"
+		},
+		{
+			"slug": "waveland-park-tennis-courts",
+			"name": "Waveland Park Tennis Courts",
+			"address": null,
+			"lat": 41.951435,
+			"lng": -87.643167,
+			"courtCount": 20,
+			"lights": true,
+			"surface": "hard",
+			"indoor": false,
+			"access": "free",
+			"bookingUrl": null,
+			"communityArea": "Lake View",
+			"cpdParkNo": 100,
+			"osmIds": [
+				"way/950184372",
+				"way/950184373",
+				"way/950184374",
+				"way/950184375",
+				"way/950184376",
+				"way/950184379",
+				"way/950184380",
+				"way/950184381",
+				"way/950184382",
+				"way/950184383",
+				"way/950184387",
+				"way/950184388",
+				"way/950184389",
+				"way/950184390",
+				"way/950184391",
+				"way/950184392",
+				"way/950184393",
+				"way/950184394",
+				"way/950184395",
+				"way/950184396"
 			],
 			"verifiedAt": "2026-10-25"
 		},

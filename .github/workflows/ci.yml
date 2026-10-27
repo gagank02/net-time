@@ -44,7 +44,7 @@ jobs:
       # Build first: wrangler types includes the built Worker's entry point when it exists.
       - run: npm run build
       - run: npm run check
-      - run: npx playwright install --with-deps chromium
+      - run: npx playwright install --with-deps chromium webkit
       - name: Unit tests with coverage thresholds
         run: npm test
       - name: Database (roles, migrations, seed)

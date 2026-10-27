@@ -33,6 +33,14 @@ test('reservation courts say so; closed courts say when they open', async ({ pag
 	await expect(row(page, /^Maggie Daley Park/)).toContainText('opens tomorrow 7 AM');
 });
 
+test('seasonal courts say closed for the season; fee courts say so when open', async ({ page }) => {
+	await openAt(page, '2026-10-26T13:00:00-05:00');
+	const diversey = row(page, /^Diversey Tennis Center/);
+	await expect(diversey).toContainText('Closed for the season');
+	await expect(diversey).toContainText('open mid-May to mid-October');
+	await expect(diversey).not.toContainText('fee to play');
+});
+
 test('Open now and Lights filters narrow the list and work via the URL', async ({ page }) => {
 	const at = '2026-10-26T21:30:00-05:00';
 	await openAt(page, at);
@@ -45,7 +53,8 @@ test('Open now and Lights filters narrow the list and work via the URL', async (
 	await expect(page).toHaveURL(/open=1/);
 	await expect(page.getByRole('checkbox', { name: 'Open now' })).toBeChecked();
 	await expect(row(page, /^Maggie Daley Park/)).toHaveCount(0);
-	expect(await items().count()).toBe(total - 1);
+	await expect(row(page, /^Diversey Tennis Center/)).toHaveCount(0); // closed for the season
+	expect(await items().count()).toBe(total - 2);
 
 	await page.getByRole('checkbox', { name: 'Lights' }).check();
 	await expect(page).toHaveURL(/open=1.*lights=1|lights=1.*open=1/);
@@ -58,7 +67,7 @@ test('Open now and Lights filters narrow the list and work via the URL', async (
 
 	// A shared filtered link applies once the static page hydrates.
 	await page.goto('/courts?open=1');
-	await expect(page.getByText(`Showing ${total - 1} of ${total}`)).toBeVisible();
+	await expect(page.getByText(`Showing ${total - 2} of ${total}`)).toBeVisible();
 });
 
 test('static HTML never shows a stale status: placeholders until the browser fills them in', async ({

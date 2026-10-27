@@ -32,7 +32,7 @@ export const CourtLocationSeed = z.strictObject({
 	lights: z.boolean().nullable(),
 	surface: z.enum(['hard', 'clay', 'grass', 'other']).nullable(),
 	indoor: z.boolean(),
-	access: z.enum(['free', 'reservation']),
+	access: z.enum(['free', 'reservation', 'fee']),
 	bookingUrl: httpsUrl.nullable(),
 	communityArea: safeText(80),
 	cpdParkNo: z.int().positive().nullable(),
@@ -102,6 +102,8 @@ export const HoursOverridesSeed = z.strictObject({
 			z.strictObject({
 				slug,
 				hours: z.array(HoursSeed).min(1).max(28),
+				/** Seasonal courts: shown when closed outside every season, e.g. "open mid-May to mid-October". */
+				seasonNote: safeText(80).optional(),
 				sourceUrl: httpsUrl,
 				verifiedAt: isoDate
 			})
@@ -153,7 +155,7 @@ export const CurationSeed = z.strictObject({
 				/** Set for a separate site (e.g. an indoor center); omit to place at the park's CPD tennis points. */
 				lat: lat.optional(),
 				lng: lng.optional(),
-				access: z.enum(['free', 'reservation']).default('free'),
+				access: z.enum(['free', 'reservation', 'fee']).default('free'),
 				bookingUrl: httpsUrl.nullable().default(null),
 				courtCount: z.int().min(1).max(40),
 				lights: z.boolean().nullable(),
@@ -170,17 +172,24 @@ export const CurationSeed = z.strictObject({
 		z
 			.strictObject({
 				slug,
+				/** The courts' own name where OSM or the park names them; the slug follows it. */
+				name: safeText(120).optional(),
 				lights: z.boolean().optional(),
 				surface: z.enum(['hard', 'clay', 'grass', 'other']).optional(),
 				courtCount: z.int().min(1).max(40).optional(),
 				indoor: z.boolean().optional(),
+				access: z.enum(['free', 'reservation', 'fee']).optional(),
+				bookingUrl: httpsUrl.optional(),
 				note: safeText(300),
 				sourceUrl: httpsUrl,
 				verifiedAt: isoDate,
 				verifiedBy: safeText(80)
 			})
 			.refine(
-				(c) => ['lights', 'surface', 'courtCount', 'indoor'].some((k) => k in c),
+				(c) =>
+					['name', 'lights', 'surface', 'courtCount', 'indoor', 'access', 'bookingUrl'].some(
+						(k) => k in c
+					),
 				'a correction must change at least one field'
 			)
 	),

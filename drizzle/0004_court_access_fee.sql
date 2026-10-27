@@ -1,0 +1,2 @@
+ALTER TABLE "court_locations" DROP CONSTRAINT "court_locations_access";--> statement-breakpoint
+ALTER TABLE "court_locations" ADD CONSTRAINT "court_locations_access" CHECK ("court_locations"."access" in ('free', 'reservation', 'fee'));

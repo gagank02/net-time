@@ -160,6 +160,11 @@
 		font-size: var(--text-body);
 	}
 
+	/* WebKit ignores min-height on a native select; a fixed height keeps it at 44pt on iPhone. */
+	select {
+		height: var(--target);
+	}
+
 	.zip-row {
 		display: flex;
 		gap: var(--space-1);

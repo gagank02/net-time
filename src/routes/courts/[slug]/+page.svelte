@@ -43,7 +43,12 @@
 <header class="title">
 	<h1>{court.name}</h1>
 	<p class="area">{court.communityArea} · Chicago Park District</p>
-	<StatusBadge {status} courtCount={court.courtCount} access={court.access} />
+	<StatusBadge
+		{status}
+		courtCount={court.courtCount}
+		access={court.access}
+		seasonNote={court.seasonNote}
+	/>
 </header>
 
 <section aria-labelledby="facts-h">
@@ -73,6 +78,11 @@
 					{#if court.bookingUrl}
 						<br /><ExternalLink href={court.bookingUrl}>Book court time</ExternalLink>
 					{/if}
+				{:else if court.access === 'fee'}
+					Fee to play
+					{#if court.bookingUrl}
+						<br /><ExternalLink href={court.bookingUrl}>Court fees and booking</ExternalLink>
+					{/if}
 				{:else}
 					Free, first come first served
 				{/if}
@@ -87,6 +97,9 @@
 		<HoursTable hours={court.hours} now={clock.current} builtAt={data.builtAt} />
 	</div>
 	<p class="footnote">
+		{#if court.seasonNote}
+			Seasonal courts, {court.seasonNote}.
+		{/if}
 		{#if court.hoursSourceUrl}
 			<ExternalLink href={court.hoursSourceUrl}>Hours source</ExternalLink>
 		{:else}

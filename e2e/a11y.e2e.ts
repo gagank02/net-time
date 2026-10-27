@@ -55,8 +55,11 @@ test('nav: Courts tab marks the current section and the home row links to it', a
 });
 
 test('keyboard: skip link is first, visible on focus, and moves focus to main', async ({
-	page
+	page,
+	isMobile
 }) => {
+	// Phones have no Tab key (and iOS Safari skips links on Tab).
+	test.skip(isMobile, 'keyboard navigation is a desktop check');
 	await page.goto('/');
 	await page.keyboard.press('Tab');
 	const skip = page.getByRole('link', { name: 'Skip to content' });
@@ -68,10 +71,13 @@ test('keyboard: skip link is first, visible on focus, and moves focus to main', 
 });
 
 test('keyboard: every interactive element is reachable with a visible focus ring', async ({
-	page
+	page,
+	isMobile
 }) => {
+	// Phones have no Tab key (and iOS Safari skips links on Tab).
+	test.skip(isMobile, 'keyboard navigation is a desktop check');
 	await page.goto('/');
-	await expect(page.getByRole('button', { name: 'System' })).toBeEnabled(); // hydrated
+	await expect(page.getByRole('button', { name: 'Dark appearance' })).toBeEnabled(); // hydrated
 	const interactive = await page
 		.locator('a[href], button, input:not([type="hidden"]), select, textarea')
 		.count();

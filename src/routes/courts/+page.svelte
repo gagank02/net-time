@@ -262,6 +262,9 @@
 	.chip input {
 		position: absolute;
 		inset: 0;
+		/* WebKit doesn't stretch a checkbox with inset alone; the whole chip is the hit area. */
+		width: 100%;
+		height: 100%;
 		margin: 0;
 		opacity: 0;
 		cursor: pointer;

@@ -40,6 +40,9 @@ export function addDays(date: string, days: number): string {
 	return d.toISOString().slice(0, 10);
 }
 
+const daysBetween = (from: string, to: string) =>
+	Math.round((Date.parse(`${to}T00:00:00Z`) - Date.parse(`${from}T00:00:00Z`)) / 86_400_000);
+
 const inSeason = (date: string, start: string | null, end: string | null) =>
 	start === null || end === null || (date >= start && date <= end);
 
@@ -70,13 +73,26 @@ export function courtStatus(
 		if (later)
 			return {
 				state: 'closed',
-				nextOpen: { time: toClock(later.opens), inDays: 0, weekday: local.weekday }
+				nextOpen: {
+					time: toClock(later.opens),
+					inDays: 0,
+					weekday: local.weekday,
+					date: local.date
+				}
 			};
-		for (let d = 1; d <= 7; d++) {
-			const weekday = (local.weekday + d) % 7;
-			const [first] = intervalsOn(hours, addDays(local.date, d), weekday);
+		// The coming week, then the start of the next known season (e.g. a court closed for winter).
+		const seasonStarts = hours
+			.map((h) => h.seasonStart)
+			.filter((s): s is string => s !== null && s > addDays(local.date, 7))
+			.sort();
+		const days = [1, 2, 3, 4, 5, 6, 7].map((d) => addDays(local.date, d));
+		if (seasonStarts[0]) days.push(seasonStarts[0]);
+		for (const date of days) {
+			const inDays = daysBetween(local.date, date);
+			const weekday = (local.weekday + inDays) % 7;
+			const [first] = intervalsOn(hours, date, weekday);
 			if (first)
-				return { state: 'closed', nextOpen: { time: toClock(first.opens), inDays: d, weekday } };
+				return { state: 'closed', nextOpen: { time: toClock(first.opens), inDays, weekday, date } };
 		}
 		return { state: 'closed', nextOpen: null };
 	}
@@ -125,7 +141,8 @@ const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 /** Short UI text: a label (what) and a detail (until when). Never claims real-time occupancy. */
 export function describeStatus(
 	s: CourtStatus,
-	courtCount: number
+	courtCount: number,
+	seasonNote: string | null = null
 ): { label: string; detail: string } {
 	switch (s.state) {
 		case 'open':
@@ -144,17 +161,26 @@ export function describeStatus(
 						: `all courts in use until ${formatClock(s.until)}`
 			};
 		case 'closed': {
-			if (!s.nextOpen) return { label: 'Closed', detail: 'no upcoming hours' };
+			const seasonal = seasonNote !== null && (!s.nextOpen || s.nextOpen.inDays > 7);
+			const label = seasonal ? 'Closed for the season' : 'Closed';
+			if (!s.nextOpen) return { label, detail: seasonNote ?? 'no upcoming hours' };
+			if (s.nextOpen.inDays > 6) return { label, detail: `opens ${shortDate(s.nextOpen.date)}` };
 			const when =
 				s.nextOpen.inDays === 0
 					? ''
 					: s.nextOpen.inDays === 1
 						? 'tomorrow '
 						: `${dayNames[s.nextOpen.weekday]} `;
-			return { label: 'Closed', detail: `opens ${when}${formatClock(s.nextOpen.time)}` };
+			return { label, detail: `opens ${when}${formatClock(s.nextOpen.time)}` };
 		}
 	}
 }
+
+/** "2027-05-18" → "May 18". */
+const shortDate = (date: string) =>
+	new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' }).format(
+		new Date(`${date}T00:00:00Z`)
+	);
 
 const longDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 const mondayFirst = [1, 2, 3, 4, 5, 6, 0];
