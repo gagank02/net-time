@@ -179,13 +179,17 @@ export const CurationSeed = z.strictObject({
 				courtCount: z.int().min(1).max(40).optional(),
 				indoor: z.boolean().optional(),
 				access: z.enum(['free', 'reservation', 'fee']).optional(),
+				bookingUrl: httpsUrl.optional(),
 				note: safeText(300),
 				sourceUrl: httpsUrl,
 				verifiedAt: isoDate,
 				verifiedBy: safeText(80)
 			})
 			.refine(
-				(c) => ['name', 'lights', 'surface', 'courtCount', 'indoor', 'access'].some((k) => k in c),
+				(c) =>
+					['name', 'lights', 'surface', 'courtCount', 'indoor', 'access', 'bookingUrl'].some(
+						(k) => k in c
+					),
 				'a correction must change at least one field'
 			)
 	),

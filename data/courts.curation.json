@@ -43,11 +43,12 @@
 			"slug": "lincoln-park",
 			"name": "Diversey Tennis Center",
 			"surface": "clay",
-			"note": "Run by the Lincoln Park Tennis Association at the east end of Diversey Parkway: Har-Tru clay courts, open mid-May to mid-October, paid play (association listing; city tennis guide).",
-			"sourceUrl": "https://www.mycoachingtree.com/company/27617/lincoln-park-tennis-association/",
+			"note": "Diversey Tennis Center, run by the Lincoln Park Tennis Association: Chicago's public clay courts at the east end of Diversey Parkway. $28 an hour, booked online up to 7 days ahead; walk-ins welcome.",
+			"sourceUrl": "https://www.diverseytenniscenter.com/rates-rules",
 			"verifiedAt": "2026-10-26",
 			"verifiedBy": "project owner",
-			"access": "fee"
+			"access": "fee",
+			"bookingUrl": "https://www.diverseytenniscenter.com/book-court"
 		}
 	],
 	"removed": [

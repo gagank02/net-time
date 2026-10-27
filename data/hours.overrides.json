@@ -89,56 +89,105 @@
 			"hours": [
 				{
 					"weekday": 0,
-					"opens": "06:00",
-					"closes": "23:00",
-					"seasonStart": "2026-05-18",
+					"opens": "07:00",
+					"closes": "20:00",
+					"seasonStart": "2026-05-16",
+					"seasonEnd": "2026-08-15"
+				},
+				{
+					"weekday": 1,
+					"opens": "07:00",
+					"closes": "20:00",
+					"seasonStart": "2026-05-16",
+					"seasonEnd": "2026-08-15"
+				},
+				{
+					"weekday": 2,
+					"opens": "07:00",
+					"closes": "20:00",
+					"seasonStart": "2026-05-16",
+					"seasonEnd": "2026-08-15"
+				},
+				{
+					"weekday": 3,
+					"opens": "07:00",
+					"closes": "20:00",
+					"seasonStart": "2026-05-16",
+					"seasonEnd": "2026-08-15"
+				},
+				{
+					"weekday": 4,
+					"opens": "07:00",
+					"closes": "20:00",
+					"seasonStart": "2026-05-16",
+					"seasonEnd": "2026-08-15"
+				},
+				{
+					"weekday": 5,
+					"opens": "07:00",
+					"closes": "20:00",
+					"seasonStart": "2026-05-16",
+					"seasonEnd": "2026-08-15"
+				},
+				{
+					"weekday": 6,
+					"opens": "07:00",
+					"closes": "20:00",
+					"seasonStart": "2026-05-16",
+					"seasonEnd": "2026-08-15"
+				},
+				{
+					"weekday": 0,
+					"opens": "07:00",
+					"closes": "19:00",
+					"seasonStart": "2026-08-16",
 					"seasonEnd": "2026-10-12"
 				},
 				{
 					"weekday": 1,
-					"opens": "06:00",
-					"closes": "23:00",
-					"seasonStart": "2026-05-18",
+					"opens": "07:00",
+					"closes": "19:00",
+					"seasonStart": "2026-08-16",
 					"seasonEnd": "2026-10-12"
 				},
 				{
 					"weekday": 2,
-					"opens": "06:00",
-					"closes": "23:00",
-					"seasonStart": "2026-05-18",
+					"opens": "07:00",
+					"closes": "19:00",
+					"seasonStart": "2026-08-16",
 					"seasonEnd": "2026-10-12"
 				},
 				{
 					"weekday": 3,
-					"opens": "06:00",
-					"closes": "23:00",
-					"seasonStart": "2026-05-18",
+					"opens": "07:00",
+					"closes": "19:00",
+					"seasonStart": "2026-08-16",
 					"seasonEnd": "2026-10-12"
 				},
 				{
 					"weekday": 4,
-					"opens": "06:00",
-					"closes": "23:00",
-					"seasonStart": "2026-05-18",
+					"opens": "07:00",
+					"closes": "19:00",
+					"seasonStart": "2026-08-16",
 					"seasonEnd": "2026-10-12"
 				},
 				{
 					"weekday": 5,
-					"opens": "06:00",
-					"closes": "23:00",
-					"seasonStart": "2026-05-18",
+					"opens": "07:00",
+					"closes": "19:00",
+					"seasonStart": "2026-08-16",
 					"seasonEnd": "2026-10-12"
 				},
 				{
 					"weekday": 6,
-					"opens": "06:00",
-					"closes": "23:00",
-					"seasonStart": "2026-05-18",
+					"opens": "07:00",
+					"closes": "19:00",
+					"seasonStart": "2026-08-16",
 					"seasonEnd": "2026-10-12"
 				}
 			],
 			"seasonNote": "open mid-May to mid-October",
-			"sourceUrl": "https://jobs.rspa.net/job/996/tennis-teaching-professional/",
+			"sourceUrl": "https://www.diverseytenniscenter.com/rates-rules",
 			"verifiedAt": "2026-10-26"
 		}
 	]

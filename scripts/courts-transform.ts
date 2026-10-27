@@ -424,7 +424,14 @@ export function buildCourtsSeed(input: Input) {
 			if (locations.some((x) => x !== l && x.slug === l.slug))
 				curationWarnings.push(`correction ${c.slug}: renamed slug ${l.slug} is taken`);
 		}
-		for (const key of ['lights', 'surface', 'courtCount', 'indoor', 'access'] as const) {
+		for (const key of [
+			'lights',
+			'surface',
+			'courtCount',
+			'indoor',
+			'access',
+			'bookingUrl'
+		] as const) {
 			if (c[key] === undefined) continue;
 			changes.push(`${key} ${String(l[key])} → ${String(c[key])}`);
 			Object.assign(l, { [key]: c[key] });
