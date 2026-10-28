@@ -19,6 +19,7 @@ test('Maggie Daley: facts, hours with today, sources', async ({ page }) => {
 
 	await expect(fact(page, 'Courts')).toHaveText('6');
 	await expect(fact(page, 'Lights')).toHaveText('Yes');
+	await expect(fact(page, 'Surface')).toHaveText('Hard court'); // unknown in the data, shown as hard
 	await expect(fact(page, 'Access')).toContainText('Free, first come first served');
 
 	const today = page.getByRole('row', { name: /Monday/ });
@@ -84,6 +85,7 @@ test('default-hours park: standard hours note, unknowns shown honestly, directio
 	await openAt(page, '/courts/oz-park', '2026-10-26T13:00:00-05:00');
 	await expect(page.getByText('Standard Chicago Park District hours')).toBeVisible();
 	await expect(fact(page, 'Lights')).toHaveText('Not known');
+	await expect(fact(page, 'Surface')).toHaveText('Hard court');
 	for (const name of [/Apple Maps/, /Google Maps/]) {
 		const link = page.getByRole('link', { name });
 		await expect(link).toHaveAttribute('target', '_blank');
