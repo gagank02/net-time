@@ -22,7 +22,6 @@ jobs:
     permissions:
       contents: write # push the refresh branch
       pull-requests: write # open its PR
-      actions: write # start CI on it: PRs opened with this token don't trigger workflows
     env:
       BRANCH: data/classes-refresh
       GH_TOKEN: ${{ github.token }}
@@ -48,7 +47,9 @@ jobs:
           else
             echo "changed=true" >> "$GITHUB_OUTPUT"
           fi
-      - name: Open or update the PR, then run CI on it
+      # GitHub holds CI on PRs opened by this token until someone clicks "Approve workflows to run"
+      # on the PR; that run is the one branch protection counts.
+      - name: Open or update the PR
         if: steps.diff.outputs.changed == 'true'
         run: |
           git config user.name 'github-actions[bot]'
@@ -58,7 +59,8 @@ jobs:
           git commit -m "Refresh class schedules from the City dataset"
           git push --force origin "$BRANCH"
           if [ "$(gh pr view "$BRANCH" --json state -q .state 2>/dev/null)" != "OPEN" ]; then
+            { echo '> To review: click **Approve workflows to run** below so CI checks this data, then merge.'
+              echo; cat data/classes.report.md; } > "$RUNNER_TEMP/body.md"
             gh pr create --base main --head "$BRANCH" --title "Refresh class schedules" \
-              --body-file data/classes.report.md
+              --body-file "$RUNNER_TEMP/body.md"
           fi
-          gh workflow run ci.yml --ref "$BRANCH"
