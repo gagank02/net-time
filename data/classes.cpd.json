@@ -1,5 +1,5 @@
 {
-	"fetchedAt": "2026-10-27T02:36:49Z",
+	"fetchedAt": "2026-10-28T01:47:53Z",
 	"classes": [
 		{
 			"location": "athletic-field-park",
@@ -15,7 +15,7 @@
 			"fee": 82,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/584691",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=584691",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "douglass-tennis-courts",
@@ -31,7 +31,7 @@
 			"fee": 76,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/617325",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=617325",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "field-park",
@@ -47,7 +47,7 @@
 			"fee": 88,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/584697",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=584697",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "gompers-park",
@@ -63,7 +63,7 @@
 			"fee": 82,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/584702",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=584702",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "gompers-park",
@@ -79,7 +79,7 @@
 			"fee": 82,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/584703",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=584703",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "gompers-park",
@@ -95,7 +95,7 @@
 			"fee": 82,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/584704",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=584704",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "gompers-park",
@@ -111,7 +111,7 @@
 			"fee": 82,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/584705",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=584705",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "green-briar-park",
@@ -127,7 +127,7 @@
 			"fee": 82,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/618402",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=618402",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "hale-park",
@@ -143,7 +143,7 @@
 			"fee": 82,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/617374",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=617374",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "hamlin-park",
@@ -159,7 +159,7 @@
 			"fee": 20,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/616363",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=616363",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "hamlin-park",
@@ -175,7 +175,7 @@
 			"fee": 88,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/587324",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=587324",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "hamlin-park",
@@ -191,7 +191,7 @@
 			"fee": 88,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/587325",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=587325",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "humboldt-park",
@@ -207,7 +207,7 @@
 			"fee": 78,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/617307",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=617307",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "humboldt-park",
@@ -223,7 +223,7 @@
 			"fee": 82,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/618448",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=618448",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "humboldt-park",
@@ -239,7 +239,7 @@
 			"fee": 82,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/618449",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=618449",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "indian-boundary-park",
@@ -255,7 +255,7 @@
 			"fee": 76,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/617380",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=617380",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "kennedy-park",
@@ -271,7 +271,7 @@
 			"fee": 15,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/616639",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=616639",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "kilbourn-park",
@@ -287,7 +287,7 @@
 			"fee": 82,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/584716",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=584716",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "kilbourn-park",
@@ -303,23 +303,7 @@
 			"fee": 82,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/584717",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=584717",
-			"verifiedAt": "2026-10-27"
-		},
-		{
-			"location": "maggie-daley-park",
-			"title": "Tennis Partnership",
-			"weekdays": [1, 2, 3, 4],
-			"starts": "17:00",
-			"ends": "20:00",
-			"seasonStart": "2026-09-14",
-			"seasonEnd": "2026-10-26",
-			"except": [],
-			"courtsUsed": null,
-			"ages": "All Ages",
-			"fee": 145,
-			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/589646",
-			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=589646",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mandrake-park",
@@ -335,7 +319,7 @@
 			"fee": 76,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/617309",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=617309",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mandrake-park",
@@ -351,7 +335,7 @@
 			"fee": 76,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/617310",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=617310",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -367,7 +351,7 @@
 			"fee": 288,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/593355",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=593355",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -383,7 +367,7 @@
 			"fee": 288,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/593360",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=593360",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -399,7 +383,7 @@
 			"fee": 290,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/593349",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=593349",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -415,7 +399,7 @@
 			"fee": 288,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/593352",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=593352",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -431,7 +415,7 @@
 			"fee": 288,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/593353",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=593353",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -447,7 +431,7 @@
 			"fee": 288,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/593354",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=593354",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -463,7 +447,7 @@
 			"fee": 288,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/593356",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=593356",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -479,7 +463,7 @@
 			"fee": 288,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/593359",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=593359",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -495,7 +479,7 @@
 			"fee": 288,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/593350",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=593350",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -511,7 +495,7 @@
 			"fee": 288,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/593351",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=593351",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -527,7 +511,7 @@
 			"fee": 288,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/593357",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=593357",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -543,7 +527,7 @@
 			"fee": 288,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/593366",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=593366",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -559,7 +543,7 @@
 			"fee": 288,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/593358",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=593358",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -575,7 +559,7 @@
 			"fee": 288,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/593361",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=593361",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -591,7 +575,7 @@
 			"fee": 290,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/593362",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=593362",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -607,7 +591,7 @@
 			"fee": 288,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/593363",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=593363",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -623,7 +607,7 @@
 			"fee": 290,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/593364",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=593364",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -639,7 +623,7 @@
 			"fee": 288,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/593365",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=593365",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -655,7 +639,7 @@
 			"fee": 123,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622690",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622690",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -671,7 +655,7 @@
 			"fee": 212,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622735",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622735",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -687,7 +671,7 @@
 			"fee": 136,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622770",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622770",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -703,7 +687,7 @@
 			"fee": 156,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622775",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622775",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -719,7 +703,7 @@
 			"fee": 158,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622782",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622782",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -735,7 +719,7 @@
 			"fee": 158,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622784",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622784",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -751,7 +735,7 @@
 			"fee": 158,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622785",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622785",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -767,7 +751,7 @@
 			"fee": 350,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622786",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622786",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -783,7 +767,7 @@
 			"fee": 182,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622792",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622792",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -799,7 +783,7 @@
 			"fee": 182,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622797",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622797",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -815,7 +799,7 @@
 			"fee": 350,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622798",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622798",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -831,7 +815,7 @@
 			"fee": 182,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622801",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622801",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -847,7 +831,7 @@
 			"fee": 204,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622804",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622804",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -863,7 +847,7 @@
 			"fee": 165,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622816",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622816",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -879,7 +863,7 @@
 			"fee": 165,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622818",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622818",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -895,7 +879,7 @@
 			"fee": 144,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622827",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622827",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -911,7 +895,7 @@
 			"fee": 144,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622831",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622831",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -927,7 +911,7 @@
 			"fee": 123,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622697",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622697",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -943,7 +927,7 @@
 			"fee": 123,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622698",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622698",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -959,7 +943,7 @@
 			"fee": 190,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622757",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622757",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -975,7 +959,7 @@
 			"fee": 190,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622759",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622759",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -991,7 +975,7 @@
 			"fee": 136,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622771",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622771",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -1007,7 +991,7 @@
 			"fee": 156,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622776",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622776",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -1023,7 +1007,7 @@
 			"fee": 156,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622778",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622778",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -1039,7 +1023,7 @@
 			"fee": 158,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622780",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622780",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -1055,7 +1039,7 @@
 			"fee": 158,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622783",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622783",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -1071,7 +1055,7 @@
 			"fee": 182,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622793",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622793",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -1087,7 +1071,7 @@
 			"fee": 182,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622794",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622794",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -1103,7 +1087,7 @@
 			"fee": 365,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622802",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622802",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -1119,7 +1103,7 @@
 			"fee": 350,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622807",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622807",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -1135,7 +1119,7 @@
 			"fee": 365,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622812",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622812",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -1151,7 +1135,7 @@
 			"fee": 165,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622817",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622817",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -1167,7 +1151,7 @@
 			"fee": 165,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622820",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622820",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -1183,7 +1167,7 @@
 			"fee": 123,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622821",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622821",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -1199,7 +1183,7 @@
 			"fee": 123,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622693",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622693",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -1215,7 +1199,7 @@
 			"fee": 236,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622734",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622734",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -1231,7 +1215,7 @@
 			"fee": 106,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622736",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622736",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -1247,7 +1231,7 @@
 			"fee": 156,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622777",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622777",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -1263,7 +1247,7 @@
 			"fee": 158,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622781",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622781",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -1279,7 +1263,7 @@
 			"fee": 182,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622787",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622787",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -1295,7 +1279,7 @@
 			"fee": 182,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622789",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622789",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -1311,7 +1295,7 @@
 			"fee": 182,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622791",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622791",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -1327,7 +1311,7 @@
 			"fee": 365,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622803",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622803",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -1343,7 +1327,7 @@
 			"fee": 204,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622805",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622805",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -1359,7 +1343,7 @@
 			"fee": 123,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622822",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622822",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -1375,7 +1359,7 @@
 			"fee": 123,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622823",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622823",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -1391,7 +1375,7 @@
 			"fee": 144,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622832",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622832",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -1407,7 +1391,7 @@
 			"fee": 183,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/623850",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=623850",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -1423,7 +1407,7 @@
 			"fee": 183,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/623851",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=623851",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -1439,7 +1423,7 @@
 			"fee": 123,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622691",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622691",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -1455,7 +1439,7 @@
 			"fee": 123,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622692",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622692",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -1471,7 +1455,7 @@
 			"fee": 190,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622758",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622758",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -1487,7 +1471,7 @@
 			"fee": 190,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622761",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622761",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -1503,7 +1487,7 @@
 			"fee": 136,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622772",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622772",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -1519,7 +1503,7 @@
 			"fee": 136,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622773",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622773",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -1535,7 +1519,7 @@
 			"fee": 182,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622795",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622795",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -1551,7 +1535,7 @@
 			"fee": 350,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622800",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622800",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -1567,7 +1551,7 @@
 			"fee": 204,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622806",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622806",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -1583,7 +1567,7 @@
 			"fee": 365,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622813",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622813",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -1599,7 +1583,7 @@
 			"fee": 165,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622814",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622814",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -1615,7 +1599,7 @@
 			"fee": 123,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622824",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622824",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -1631,7 +1615,7 @@
 			"fee": 123,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622825",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622825",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -1647,7 +1631,7 @@
 			"fee": 350,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/624579",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=624579",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -1663,7 +1647,7 @@
 			"fee": 123,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622694",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622694",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -1679,7 +1663,7 @@
 			"fee": 123,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622695",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622695",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -1695,7 +1679,7 @@
 			"fee": 123,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622696",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622696",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -1711,7 +1695,7 @@
 			"fee": 212,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622755",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622755",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -1727,7 +1711,7 @@
 			"fee": 190,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622756",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622756",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -1743,7 +1727,7 @@
 			"fee": 190,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622760",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622760",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -1759,7 +1743,7 @@
 			"fee": 136,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622774",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622774",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -1775,7 +1759,7 @@
 			"fee": 182,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622799",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622799",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -1791,7 +1775,7 @@
 			"fee": 350,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622808",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622808",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -1807,7 +1791,7 @@
 			"fee": 144,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622828",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622828",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -1823,7 +1807,7 @@
 			"fee": 144,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/623670",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=623670",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -1839,7 +1823,7 @@
 			"fee": 123,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622699",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622699",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -1855,7 +1839,7 @@
 			"fee": 123,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622700",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622700",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -1871,7 +1855,7 @@
 			"fee": 158,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622779",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622779",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -1887,7 +1871,7 @@
 			"fee": 182,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622788",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622788",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -1903,7 +1887,7 @@
 			"fee": 182,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622796",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622796",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -1919,7 +1903,7 @@
 			"fee": 365,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622811",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622811",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -1935,7 +1919,7 @@
 			"fee": 165,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622815",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622815",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -1951,7 +1935,7 @@
 			"fee": 165,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622819",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622819",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -1967,7 +1951,7 @@
 			"fee": 123,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622826",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622826",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -1983,7 +1967,7 @@
 			"fee": 144,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622829",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622829",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -1999,7 +1983,7 @@
 			"fee": 144,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622830",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622830",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -2015,7 +1999,7 @@
 			"fee": 144,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622834",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622834",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -2031,7 +2015,7 @@
 			"fee": 260,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622737",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622737",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -2047,39 +2031,7 @@
 			"fee": 174,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622738",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622738",
-			"verifiedAt": "2026-10-27"
-		},
-		{
-			"location": "mcfetridge-sports-center",
-			"title": "Tennis - Afternoon Dbl's Matinee",
-			"weekdays": [1],
-			"starts": "13:00",
-			"ends": "15:00",
-			"seasonStart": "2026-10-26",
-			"seasonEnd": "2026-10-26",
-			"except": [],
-			"courtsUsed": null,
-			"ages": "Adult",
-			"fee": 24,
-			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622683",
-			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622683",
-			"verifiedAt": "2026-10-27"
-		},
-		{
-			"location": "mcfetridge-sports-center",
-			"title": "Tennis - Round Robin",
-			"weekdays": [1],
-			"starts": "08:00",
-			"ends": "10:00",
-			"seasonStart": "2026-10-26",
-			"seasonEnd": "2026-10-26",
-			"except": [],
-			"courtsUsed": null,
-			"ages": "Senior",
-			"fee": 12,
-			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622740",
-			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622740",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -2095,7 +2047,7 @@
 			"fee": 12,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622746",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622746",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -2111,7 +2063,7 @@
 			"fee": 24,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/623677",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=623677",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -2127,7 +2079,7 @@
 			"fee": 12,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/623688",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=623688",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -2143,7 +2095,7 @@
 			"fee": 15,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/628591",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=628591",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -2159,7 +2111,7 @@
 			"fee": 15,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/628909",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=628909",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -2175,7 +2127,7 @@
 			"fee": 15,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/628593",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=628593",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -2191,7 +2143,7 @@
 			"fee": 12,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622741",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622741",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -2207,7 +2159,7 @@
 			"fee": 24,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622684",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622684",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -2223,7 +2175,7 @@
 			"fee": 12,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622750",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622750",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -2239,7 +2191,7 @@
 			"fee": 12,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622747",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622747",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -2255,7 +2207,7 @@
 			"fee": 30,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/628595",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=628595",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -2271,7 +2223,7 @@
 			"fee": 24,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622685",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622685",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -2287,7 +2239,7 @@
 			"fee": 12,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622742",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622742",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -2303,7 +2255,7 @@
 			"fee": 12,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622753",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622753",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -2319,7 +2271,7 @@
 			"fee": 24,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622686",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622686",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -2335,7 +2287,7 @@
 			"fee": 12,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622743",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622743",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -2351,7 +2303,7 @@
 			"fee": 12,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622754",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622754",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -2367,7 +2319,7 @@
 			"fee": 24,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622687",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622687",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -2383,7 +2335,7 @@
 			"fee": 12,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622744",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622744",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -2399,7 +2351,7 @@
 			"fee": 12,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622749",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622749",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -2415,7 +2367,7 @@
 			"fee": 24,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622688",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622688",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -2431,7 +2383,7 @@
 			"fee": 12,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622745",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622745",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -2447,7 +2399,7 @@
 			"fee": 12,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/622748",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=622748",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -2463,7 +2415,7 @@
 			"fee": 24,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/623678",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=623678",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -2479,7 +2431,7 @@
 			"fee": 12,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/623687",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=623687",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcfetridge-sports-center",
@@ -2495,7 +2447,7 @@
 			"fee": 12,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/623689",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=623689",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "mcguane-park",
@@ -2511,7 +2463,7 @@
 			"fee": 76,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/587329",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=587329",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "oz-park",
@@ -2527,7 +2479,7 @@
 			"fee": 25,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/589668",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=589668",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "revere-park",
@@ -2543,7 +2495,7 @@
 			"fee": 82,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/587337",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=587337",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "river-park",
@@ -2559,7 +2511,7 @@
 			"fee": 84,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/584723",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=584723",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "smith-park",
@@ -2575,7 +2527,7 @@
 			"fee": 82,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/617332",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=617332",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "warren-park",
@@ -2591,7 +2543,7 @@
 			"fee": 76,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/617335",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=617335",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "washington-park-south",
@@ -2607,7 +2559,7 @@
 			"fee": 64,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/617386",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=617386",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "welles-park",
@@ -2623,7 +2575,7 @@
 			"fee": 82,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/617311",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=617311",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "welles-park",
@@ -2639,7 +2591,7 @@
 			"fee": 82,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/617312",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=617312",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "welles-park",
@@ -2655,7 +2607,7 @@
 			"fee": 82,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/617313",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=617313",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "welles-park",
@@ -2671,7 +2623,7 @@
 			"fee": 82,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/617314",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=617314",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "welles-park",
@@ -2687,7 +2639,7 @@
 			"fee": 82,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/617315",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=617315",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		},
 		{
 			"location": "welles-park",
@@ -2703,7 +2655,7 @@
 			"fee": 82,
 			"signupUrl": "https://apm.activecommunities.com/chicagoparkdistrict/Activity_Search/617317",
 			"sourceUrl": "https://data.cityofchicago.org/resource/tn7v-6rnw.json?activity_id=617317",
-			"verifiedAt": "2026-10-27"
+			"verifiedAt": "2026-10-28"
 		}
 	]
 }
