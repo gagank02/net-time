@@ -34,3 +34,16 @@ for (const path of ['/', '/data', '/no-such-page']) {
 		await expect(link).toHaveAttribute('href', '/data');
 	});
 }
+
+test('the activities dataset credits its owner with the link the dataset asks for', async ({
+	page
+}) => {
+	await page.goto('/data');
+	const entry = page
+		.getByRole('listitem')
+		.filter({ has: page.getByRole('link', { name: /Chicago Park District Activities/ }) });
+	await expect(entry.getByRole('link', { name: /^Chicago Park District/ })).toHaveAttribute(
+		'href',
+		'https://www.chicagoparkdistrict.com/'
+	);
+});
