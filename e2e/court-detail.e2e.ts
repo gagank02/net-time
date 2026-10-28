@@ -47,7 +47,7 @@ test('a park with City classes lists them with sign-up and source links in new t
 	);
 	// The City data doesn't say how many courts a class uses, so the page never claims a number.
 	await expect(section).not.toContainText(/uses \d+ of/i);
-	await expect(section).toContainText(/schedules checked/);
+	await expect(section).toContainText(/schedules updated/);
 });
 
 test('a program with many sessions is one entry, collapsed until opened', async ({ page }) => {

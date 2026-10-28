@@ -23,7 +23,7 @@
 		"db:migrate": "drizzle-kit migrate",
 		"db:seed": "node scripts/db-seed.ts",
 		"courts:build-seed": "node scripts/build-courts-seed.ts",
-		"data:classes": "node scripts/fetch-classes.ts"
+		"data:classes": "node scripts/fetch-classes.ts && prettier --write data/classes.cpd.json data/classes.report.md"
 	},
 	"devDependencies": {
 		"@axe-core/playwright": "^4.14.0",

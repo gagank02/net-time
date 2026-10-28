@@ -35,7 +35,12 @@
 			.sort((a, b) => a.title.localeCompare(b.title, 'en', { numeric: true }));
 	});
 
-	const checked = $derived(classes.map((c) => c.verifiedAt).sort()[0]);
+	const updated = $derived(
+		classes
+			.map((c) => c.verifiedAt)
+			.sort()
+			.at(-1)!
+	);
 </script>
 
 {#snippet session(s: ClassDetail, showWho: boolean)}
@@ -82,7 +87,7 @@
 </ul>
 <p class="checked">
 	{programs.length}
-	{programs.length === 1 ? 'program' : 'programs'} · schedules checked {formatDate(checked)}
+	{programs.length === 1 ? 'program' : 'programs'} · schedules updated {formatDate(updated)}
 </p>
 
 <style>
