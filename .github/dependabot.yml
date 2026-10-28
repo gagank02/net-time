@@ -5,8 +5,18 @@ updates:
     schedule:
       interval: weekly
     groups:
+      # Vitest's packages pin each other's exact version: they only upgrade together.
+      vitest:
+        patterns: [vitest, '@vitest/*', vitest-browser-svelte]
       minor-and-patch:
         update-types: [minor, patch]
+    ignore:
+      # Types must match the Node we run (.nvmrc, Workers, CI): bump with Node itself.
+      - dependency-name: '@types/node'
+        update-types: [version-update:semver-major]
+      # TypeScript 7 is a new native compiler; wait until svelte-check and typescript-eslint support it.
+      - dependency-name: typescript
+        update-types: [version-update:semver-major]
   - package-ecosystem: github-actions
     directory: /
     schedule:
