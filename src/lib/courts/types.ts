@@ -9,17 +9,19 @@ export type HoursRow = {
 
 export type ClassRow = {
 	title: string;
-	weekday: number;
+	weekdays: number[]; // 0 = Sunday
 	starts: string;
-	ends: string;
-	courtsUsed: number;
+	ends: string; // may be "24:00"
+	/** null when the source doesn't say (the City dataset never does). */
+	courtsUsed: number | null;
 	seasonStart: string;
 	seasonEnd: string;
+	except: string[]; // dates it doesn't meet
 };
 
 export type CourtStatus =
 	| { state: 'open'; until: string; nextClassAt: string | null }
-	| { state: 'class'; until: string; courtsFree: number; titles: string[] }
+	| { state: 'class'; until: string; courtsFree: number | null; titles: string[] }
 	| {
 			state: 'closed';
 			nextOpen: { time: string; inDays: number; weekday: number; date: string } | null;
@@ -51,7 +53,13 @@ export type CourtListItem = {
 export type Area = { slug: string; name: string; lat: number; lng: number };
 export type Zip = { zip: string; lat: number; lng: number };
 
-export type ClassDetail = ClassRow & { sourceUrl: string; verifiedAt: string };
+export type ClassDetail = ClassRow & {
+	ages: string | null;
+	fee: number | null;
+	signupUrl: string | null;
+	sourceUrl: string;
+	verifiedAt: string;
+};
 
 /** Everything the /courts/[slug] page shows. */
 export type CourtDetail = Omit<CourtListItem, 'classes'> & {

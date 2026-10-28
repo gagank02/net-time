@@ -60,7 +60,7 @@ describe('seed schemas', () => {
 		).toBe(false);
 	});
 
-	it('rejects classes with non-https sources or inverted times', () => {
+	it('rejects classes with non-https links, inverted times or no days', () => {
 		const good = fixture('classes.seed.json').classes[0];
 		const bad = (patch: object) =>
 			ClassesSeed.safeParse({ classes: [{ ...good, ...patch }] }).success;
@@ -68,5 +68,9 @@ describe('seed schemas', () => {
 		expect(bad({ sourceUrl: 'javascript:alert(1)' })).toBe(false);
 		expect(bad({ starts: '18:00', ends: '16:00' })).toBe(false);
 		expect(bad({ seasonStart: '2026-09-01', seasonEnd: '2026-06-01' })).toBe(false);
+		expect(bad({ weekdays: [] })).toBe(false);
+		expect(bad({ signupUrl: 'http://example.com' })).toBe(false);
+		expect(bad({ ends: '24:00' })).toBe(true); // leagues that run to midnight
+		expect(bad({ ends: '24:30' })).toBe(false);
 	});
 });

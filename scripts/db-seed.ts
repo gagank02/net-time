@@ -15,13 +15,7 @@ import {
 	locationHours,
 	zipCodes
 } from '../src/lib/server/db/schema.ts';
-import {
-	AreasSeed,
-	ClassesSeed,
-	CourtsSeed,
-	defaultHours,
-	HoursOverridesSeed
-} from './seed-schema.ts';
+import { AreasSeed, CourtsSeed, defaultHours, HoursOverridesSeed } from './seed-schema.ts';
 
 const dir = process.env.SEED_DIR ?? 'data';
 const url =
@@ -43,14 +37,10 @@ const pointSql = (lng: number, lat: number) => sql`ST_SetSRID(ST_MakePoint(${lng
 const courts = await load('courts.seed.json', CourtsSeed);
 const areas = await load('areas.seed.json', AreasSeed);
 const overrides = await load('hours.overrides.json', HoursOverridesSeed, { overrides: [] });
-const classes = await load('classes.seed.json', ClassesSeed, { classes: [] });
 
 const slugs = new Set(courts.locations.map((l) => l.slug));
-const unknown = [
-	...overrides.overrides.map((o) => o.slug),
-	...classes.classes.map((c) => c.location)
-].filter((s) => !slugs.has(s));
-if (unknown.length) throw new Error(`overrides/classes reference unknown locations: ${unknown}`);
+const unknown = overrides.overrides.map((o) => o.slug).filter((s) => !slugs.has(s));
+if (unknown.length) throw new Error(`overrides reference unknown locations: ${unknown}`);
 
 const client = new pg.Client({ connectionString: url });
 await client.connect();
@@ -123,24 +113,13 @@ try {
 		);
 		if (hourRows.length) await tx.insert(locationHours).values(hourRows);
 
-		const classRows = classes.classes.map((c) => ({
-			locationId: ids.get(c.location)!,
-			title: c.title,
-			weekday: c.weekday,
-			starts: c.starts,
-			ends: c.ends,
-			courtsUsed: c.courtsUsed,
-			seasonStart: c.seasonStart,
-			seasonEnd: c.seasonEnd,
-			sourceUrl: c.sourceUrl,
-			verifiedAt: c.verifiedAt
-		}));
-		if (classRows.length) await tx.insert(classBlocks).values(classRows);
+		// Class schedules live only in data/classes.*.json and are built into the static pages; the
+		// class_blocks table (one weekday per row, court count required) is left empty.
 	});
 
 	console.log(
 		`seeded from ${dir}: ${courts.locations.length} locations, ${areas.communityAreas.length} community areas, ` +
-			`${areas.zips.length} ZIPs, ${overrides.overrides.length} hour overrides, ${classes.classes.length} classes`
+			`${areas.zips.length} ZIPs, ${overrides.overrides.length} hour overrides`
 	);
 } finally {
 	await client.end();

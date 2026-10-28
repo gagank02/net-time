@@ -1,4 +1,5 @@
 import { expect, test, type Page } from './fixtures';
+import { busyProgram, liveClass } from './live-class';
 
 async function openAt(page: Page, path: string, iso: string) {
 	await page.clock.setFixedTime(new Date(iso));
@@ -11,14 +12,14 @@ const fact = (page: Page, term: string) =>
 		.filter({ has: page.locator('dt', { hasText: term }) })
 		.locator('dd');
 
-test('Maggie Daley: facts, hours with today, merged class schedule, sources', async ({ page }) => {
+test('Maggie Daley: facts, hours with today, sources', async ({ page }) => {
 	await openAt(page, '/courts/maggie-daley-park', '2026-10-26T10:00:00-05:00'); // Monday 10 AM
 	await expect(page).toHaveTitle('Maggie Daley Park tennis courts · net-time');
 	await expect(page.getByRole('heading', { level: 1 })).toHaveText('Maggie Daley Park');
-	await expect(page.getByText('Pickleball open play (courts 1–5)').first()).toBeVisible();
 
 	await expect(fact(page, 'Courts')).toHaveText('6');
 	await expect(fact(page, 'Lights')).toHaveText('Yes');
+	await expect(fact(page, 'Surface')).toHaveText('Hard court'); // unknown in the data, shown as hard
 	await expect(fact(page, 'Access')).toContainText('Free, first come first served');
 
 	const today = page.getByRole('row', { name: /Monday/ });
@@ -28,12 +29,41 @@ test('Maggie Daley: facts, hours with today, merged class schedule, sources', as
 		'href',
 		'https://www.maggiedaleypark.com/things-to-do-see/tennis-courts'
 	);
+});
 
-	// 7 weekday rows collapse into two lines.
-	await expect(page.getByText('Mon–Fri · 9 AM – Noon')).toBeVisible();
-	await expect(page.getByText('Sat–Sun · 9 AM – Noon')).toBeVisible();
-	await expect(page.getByText('Uses 5 of 6 courts')).toBeVisible();
-	await expect(page.getByText('Uses 1 of 6 courts')).toBeVisible();
+test('a park with City classes lists them with sign-up and source links in new tabs', async ({
+	page
+}) => {
+	const c = liveClass();
+	await openAt(page, `/courts/${c.slug}`, c.iso);
+	const section = page.getByRole('region', { name: 'Classes and programs using the courts' });
+	await expect(section.getByText(c.title).first()).toBeVisible();
+	const signup = section.getByRole('link', { name: /^Sign up/ }).first();
+	await expect(signup).toHaveAttribute('href', /^https:\/\/apm\.activecommunities\.com\//);
+	await expect(signup).toHaveAttribute('target', '_blank');
+	await expect(section.getByRole('link', { name: /^Source/ }).first()).toHaveAttribute(
+		'href',
+		/^https:\/\/data\.cityofchicago\.org\/resource\/tn7v-6rnw\.json\?activity_id=/
+	);
+	// The City data doesn't say how many courts a class uses, so the page never claims a number.
+	await expect(section).not.toContainText(/uses \d+ of/i);
+	await expect(section).toContainText(/schedules checked/);
+});
+
+test('a program with many sessions is one entry, collapsed until opened', async ({ page }) => {
+	const p = busyProgram();
+	test.skip(!p, 'no program with more than 3 sessions in the current data');
+	await page.goto(`/courts/${p!.slug}`);
+	const entry = page
+		.getByRole('region', { name: 'Classes and programs using the courts' })
+		.getByRole('listitem')
+		.filter({ has: page.getByText(p!.title, { exact: true }) });
+	const summary = entry.locator('summary');
+	await expect(summary).toContainText(`${p!.sessions} sessions`);
+	await expect(entry.getByRole('link', { name: /^Sign up/ }).first()).toBeHidden();
+	await summary.click();
+	await expect(entry.getByRole('link', { name: /^Sign up/ })).toHaveCount(p!.sessions);
+	await expect(entry.getByRole('link', { name: /^Sign up/ }).first()).toBeVisible();
 });
 
 test('McFetridge: reservation access with a booking link in a new tab', async ({ page }) => {
@@ -46,7 +76,7 @@ test('McFetridge: reservation access with a booking link in a new tab', async ({
 		'https://www.mcfetridgesportscenter.com/tennis/book-court-time'
 	);
 	await expect(book).toHaveAttribute('target', '_blank');
-	await expect(page.getByText('Open now · reservation required')).toBeVisible();
+	await expect(page.getByText(/· reservation required/).first()).toBeVisible();
 });
 
 test('default-hours park: standard hours note, unknowns shown honestly, directions open in new tabs', async ({
@@ -55,6 +85,7 @@ test('default-hours park: standard hours note, unknowns shown honestly, directio
 	await openAt(page, '/courts/oz-park', '2026-10-26T13:00:00-05:00');
 	await expect(page.getByText('Standard Chicago Park District hours')).toBeVisible();
 	await expect(fact(page, 'Lights')).toHaveText('Not known');
+	await expect(fact(page, 'Surface')).toHaveText('Hard court');
 	for (const name of [/Apple Maps/, /Google Maps/]) {
 		const link = page.getByRole('link', { name });
 		await expect(link).toHaveAttribute('target', '_blank');

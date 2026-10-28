@@ -7,6 +7,7 @@ const pages = [
 	{ name: 'privacy', path: '/privacy' },
 	{ name: 'courts list', path: '/courts' },
 	{ name: 'court detail', path: '/courts/maggie-daley-park' },
+	{ name: 'court detail with many programs', path: '/courts/mcfetridge-sports-center' },
 	{ name: '404', path: '/no-such-page' },
 	{ name: 'error', path: '/__e2e/throw' }
 ];

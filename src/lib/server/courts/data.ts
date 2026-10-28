@@ -1,6 +1,7 @@
 // Court page data, built at prerender time from the committed seed files (see SPEC-courts
 // Revision 1). Nothing here runs per request: /courts and /courts/[slug] ship as static files.
 // The seeds are third-party data, so they're Zod-validated here too; a bad file fails the build.
+import cityClassesJson from '../../../../data/classes.cpd.json';
 import classesJson from '../../../../data/classes.seed.json';
 import areasJson from '../../../../data/areas.seed.json';
 import courtsJson from '../../../../data/courts.seed.json';
@@ -26,7 +27,11 @@ export type CourtsPage = { courts: CourtListItem[]; areas: Area[]; zips: Zip[] }
 const courtsSeed = CourtsSeed.parse(courtsJson);
 const areasSeed = AreasSeed.parse(areasJson);
 const overrides = HoursOverridesSeed.parse(overridesJson).overrides;
-const classes = ClassesSeed.parse(classesJson).classes;
+// Hand-entered blocks, then programs from the City dataset (scripts/fetch-classes.ts).
+const classes = [
+	...ClassesSeed.parse(classesJson).classes,
+	...ClassesSeed.parse(cityClassesJson).classes
+];
 
 const bySlug = new Map(courtsSeed.locations.map((l) => [l.slug, l]));
 const unknown = [...overrides.map((o) => o.slug), ...classes.map((c) => c.location)].filter(
@@ -53,22 +58,32 @@ function hoursFor(slug: string, today: string): HoursRow[] {
 		.sort((a, b) => a.weekday - b.weekday || a.opens.localeCompare(b.opens));
 }
 
-/** Classes not yet ended on `today`, weekday then start time. */
+/** Classes not yet ended on `today`, by first weekday (Monday first) then start time. */
 function classesFor(slug: string, today: string): ClassDetail[] {
+	const firstDay = (c: { weekdays: number[] }) => Math.min(...c.weekdays.map((d) => (d + 6) % 7));
 	return classes
 		.filter((c) => c.location === slug && c.seasonEnd >= today)
 		.map((c) => ({
 			title: c.title,
-			weekday: c.weekday,
+			weekdays: c.weekdays,
 			starts: c.starts,
 			ends: c.ends,
 			courtsUsed: c.courtsUsed,
 			seasonStart: c.seasonStart,
 			seasonEnd: c.seasonEnd,
+			except: c.except,
+			ages: c.ages,
+			fee: c.fee,
+			signupUrl: c.signupUrl,
 			sourceUrl: c.sourceUrl,
 			verifiedAt: c.verifiedAt
 		}))
-		.sort((a, b) => a.weekday - b.weekday || a.starts.localeCompare(b.starts));
+		.sort(
+			(a, b) =>
+				firstDay(a) - firstDay(b) ||
+				a.starts.localeCompare(b.starts) ||
+				a.title.localeCompare(b.title, 'en')
+		);
 }
 
 function listItem(l: (typeof courtsSeed.locations)[number], today: string): CourtListItem {
@@ -89,12 +104,13 @@ function listItem(l: (typeof courtsSeed.locations)[number], today: string): Cour
 		// The list needs only what status uses; sources and dates stay on the detail page.
 		classes: classesFor(l.slug, today).map((c) => ({
 			title: c.title,
-			weekday: c.weekday,
+			weekdays: c.weekdays,
 			starts: c.starts,
 			ends: c.ends,
 			courtsUsed: c.courtsUsed,
 			seasonStart: c.seasonStart,
-			seasonEnd: c.seasonEnd
+			seasonEnd: c.seasonEnd,
+			except: c.except
 		}))
 	};
 }

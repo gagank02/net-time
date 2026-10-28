@@ -68,7 +68,9 @@
 		</div>
 		<div>
 			<dt>Surface</dt>
-			<dd>{court.surface ? surfaces[court.surface] : 'Not known'}</dd>
+			<!-- Unknown surfaces show as hard, as nearly all Park District courts are; the data keeps
+			     them null so corrections can confirm them. -->
+			<dd>{surfaces[court.surface ?? 'hard']}</dd>
 		</div>
 		<div>
 			<dt>Access</dt>

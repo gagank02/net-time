@@ -12,6 +12,15 @@
 			use: 'finding which tennis courts belong to the Park District'
 		},
 		{
+			id: 'tn7v-6rnw',
+			name: 'Chicago Park District Activities',
+			owner: 'Chicago Park District',
+			// The dataset's own attribution link.
+			ownerUrl: 'https://www.chicagoparkdistrict.com/',
+			license: 'City of Chicago Data Terms of Use',
+			use: 'class and program schedules, with sign-up links to the Park District registration site'
+		},
+		{
 			id: 'igwz-8jzy',
 			name: 'Boundaries - Community Areas',
 			owner: 'City of Chicago',
@@ -56,7 +65,10 @@
 				<span class="title">
 					<ExternalLink href="https://data.cityofchicago.org/d/{d.id}">{d.name}</ExternalLink>
 				</span>
-				<span class="meta">{d.owner} · {d.license}</span>
+				<span class="meta">
+					{#if d.ownerUrl}<ExternalLink href={d.ownerUrl}>{d.owner}</ExternalLink
+						>{:else}{d.owner}{/if} · {d.license}
+				</span>
 				<span class="meta">Used for {d.use}</span>
 			</li>
 		{/each}

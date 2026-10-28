@@ -1,4 +1,5 @@
 import { expect, test, type Page } from './fixtures';
+import { liveClass } from './live-class';
 
 // The page is static; statuses come from the browser clock, pinned here. Runs against the real
 // seed data built into the page.
@@ -19,16 +20,18 @@ test('lists every seeded location with a status', async ({ page }) => {
 	await expect(row(page, /^Oz Park/)).toContainText('Open now');
 });
 
-test('class blocks show their own title and courts free', async ({ page }) => {
-	await openAt(page, '2026-10-26T10:00:00-05:00'); // Monday 10 AM
-	const maggie = row(page, /^Maggie Daley Park/);
-	await expect(maggie).toContainText('Pickleball open play (courts 1–5)');
-	await expect(maggie).toContainText('1 of 6 courts free until Noon');
+test('a running City class shows as a class and never claims free courts', async ({ page }) => {
+	const c = liveClass();
+	await openAt(page, c.iso);
+	const site = row(page, c.name);
+	await expect(site).toContainText('Class in progress');
+	await expect(site).toContainText('some courts may be in use until');
 });
 
 test('reservation courts say so; closed courts say when they open', async ({ page }) => {
 	await openAt(page, '2026-10-26T21:30:00-05:00'); // Monday 9:30 PM
-	await expect(row(page, /^McFetridge/)).toContainText('Open now · reservation required');
+	// McFetridge often has a class or league on; either way the label says booking is needed.
+	await expect(row(page, /^McFetridge/)).toContainText('· reservation required');
 	await expect(row(page, /^Maggie Daley Park/)).toContainText('Closed');
 	await expect(row(page, /^Maggie Daley Park/)).toContainText('opens tomorrow 7 AM');
 });
