@@ -18,7 +18,7 @@
 			// The dataset's own attribution link.
 			ownerUrl: 'https://www.chicagoparkdistrict.com/',
 			license: 'City of Chicago Data Terms of Use',
-			use: 'class and program schedules, with sign-up links to the Park District registration site'
+			use: 'class and program schedules, refreshed weekly, with sign-up links to the Park District registration site'
 		},
 		{
 			id: 'igwz-8jzy',

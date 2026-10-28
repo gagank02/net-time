@@ -4,6 +4,8 @@ on:
   pull_request:
   push:
     branches: [main]
+  # The weekly data refresh starts CI on its branch this way (see refresh-data.yml).
+  workflow_dispatch:
 
 permissions:
   contents: read

@@ -1,0 +1,64 @@
+name: Refresh class data
+
+# Once a week, read the City's "Chicago Park District Activities" dataset (one API request, see
+# scripts/fetch-classes.ts) and open or update a PR when the schedules changed. Nothing merges or
+# deploys without review. Late starts are fine: GitHub may delay scheduled runs.
+on:
+  schedule:
+    # Mondays 11:17 UTC (6:17 AM Chicago in summer). An odd minute: top-of-hour runs wait longest.
+    - cron: '17 11 * * 1'
+  workflow_dispatch:
+
+permissions: {}
+
+concurrency:
+  group: refresh-data
+  cancel-in-progress: false
+
+jobs:
+  classes:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write # push the refresh branch
+      pull-requests: write # open its PR
+      actions: write # start CI on it: PRs opened with this token don't trigger workflows
+    env:
+      BRANCH: data/classes-refresh
+      GH_TOKEN: ${{ github.token }}
+      WRANGLER_SEND_METRICS: 'false'
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - name: Read the City dataset (one request, no retries)
+        run: npm run data:classes
+      - name: Did the schedules change? (ignoring the check dates)
+        id: diff
+        run: |
+          strip='del(.fetchedAt) | .classes |= map(del(.verifiedAt))'
+          git show HEAD:data/classes.cpd.json | jq -S "$strip" > "$RUNNER_TEMP/old.json"
+          jq -S "$strip" data/classes.cpd.json > "$RUNNER_TEMP/new.json"
+          if cmp -s "$RUNNER_TEMP/old.json" "$RUNNER_TEMP/new.json"; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "No schedule changes this week."
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Open or update the PR, then run CI on it
+        if: steps.diff.outputs.changed == 'true'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git switch -C "$BRANCH"
+          git add data/classes.cpd.json data/classes.report.md
+          git commit -m "Refresh class schedules from the City dataset"
+          git push --force origin "$BRANCH"
+          if [ "$(gh pr view "$BRANCH" --json state -q .state 2>/dev/null)" != "OPEN" ]; then
+            gh pr create --base main --head "$BRANCH" --title "Refresh class schedules" \
+              --body-file data/classes.report.md
+          fi
+          gh workflow run ci.yml --ref "$BRANCH"
