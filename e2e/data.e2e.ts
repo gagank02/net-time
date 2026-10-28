@@ -42,8 +42,8 @@ test('the activities dataset credits its owner with the link the dataset asks fo
 	const entry = page
 		.getByRole('listitem')
 		.filter({ has: page.getByRole('link', { name: /Chicago Park District Activities/ }) });
-	await expect(entry.getByRole('link', { name: /^Chicago Park District/ })).toHaveAttribute(
-		'href',
-		'https://www.chicagoparkdistrict.com/'
-	);
+	const owner = entry.locator('a[href="https://www.chicagoparkdistrict.com/"]');
+	await expect(owner).toHaveCount(1);
+	await expect(owner).toContainText('Chicago Park District');
+	await expect(owner).toHaveAttribute('target', '_blank');
 });
