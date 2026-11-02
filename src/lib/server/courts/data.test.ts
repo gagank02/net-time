@@ -36,6 +36,20 @@ describe('build-time court data', () => {
 		expect(getCourt(site.slug, later)!.classes).toEqual([]);
 	});
 
+	it('dates a court by its newest check: record, hours or a current class', () => {
+		const oz = getCourt('oz-park', '2026-10-25')!;
+		const newestClass =
+			oz.classes
+				.map((c) => c.verifiedAt)
+				.sort()
+				.at(-1) ?? '';
+		expect(oz.updatedAt >= newestClass).toBe(true);
+		const waveland = getCourt('waveland-park-tennis-courts', '2026-11-02')!;
+		expect(waveland.updatedAt >= '2026-11-02').toBe(true);
+		expect(waveland.surfaceNote).toMatch(/north courts/);
+		expect(oz.surfaceNote).toBeNull();
+	});
+
 	it('returns null for an unknown slug', () => {
 		expect(getCourt('no-such-park', '2026-10-25')).toBeNull();
 	});

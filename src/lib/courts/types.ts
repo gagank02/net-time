@@ -65,7 +65,10 @@ export type ClassDetail = ClassRow & {
 export type CourtDetail = Omit<CourtListItem, 'classes'> & {
 	address: string | null;
 	osmIds: string[];
-	verifiedAt: string;
+	/** Condition beyond the surface type, where someone checked in person. */
+	surfaceNote: string | null;
+	/** Newest check across the court record, its hours and its current classes. */
+	updatedAt: string;
 	hoursSourceUrl: string | null;
 	classes: ClassDetail[];
 };

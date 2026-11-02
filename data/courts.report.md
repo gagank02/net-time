@@ -1,6 +1,6 @@
 # Courts seed report
 
-Generated 2026-10-27T01:45:16Z from OpenStreetMap (data as of 2026-10-25T14:55:50Z) and City of Chicago datasets eix4-gf83, igwz-8jzy, unjd-c2ca.
+Generated 2026-11-02T22:47:30Z from OpenStreetMap (data as of 2026-10-25T14:55:50Z) and City of Chicago datasets eix4-gf83, igwz-8jzy, unjd-c2ca.
 
 ## Totals
 
@@ -26,6 +26,7 @@ Generated 2026-10-27T01:45:16Z from OpenStreetMap (data as of 2026-10-25T14:55:5
 
 - Maggie Daley Park: lights null → true. Park page: "Tennis court lights will be on an hour before dusk." Court hours Monday–Sunday 7:00 am–9:00 pm. Source: https://www.maggiedaleypark.com/things-to-do-see/tennis-courts. Verified 2026-10-25 by project owner.
 - Diversey Tennis Center: name Lincoln Park → Diversey Tennis Center, surface null → clay, access free → fee, bookingUrl null → https://www.diverseytenniscenter.com/book-court. Diversey Tennis Center, run by the Lincoln Park Tennis Association: Chicago's public clay courts at the east end of Diversey Parkway. $28 an hour, booked online up to 7 days ahead; walk-ins welcome. Source: https://www.diverseytenniscenter.com/rates-rules. Verified 2026-10-26 by project owner.
+- Waveland Park Tennis Courts: surfaceNote undefined → The north courts are sandy and in worse shape than the south courts.. Visitor correction sent through the site on 2026-11-02 (seen 2026-10-31); confirmed in person by the project owner. Source: seen in person. Verified 2026-11-02 by project owner.
 
 ## Confirmed removed (data/courts.curation.json)
 

@@ -96,7 +96,7 @@
 
 <p class="footnote provenance">
 	Something wrong? <a href={suggestUrl}>Suggest a correction</a><br />
-	Last checked {formatDate(court.verifiedAt)}. Court locations from
+	Last updated {formatDate(court.updatedAt)}. Court locations from
 	{#if court.osmIds.length}
 		<ExternalLink href="https://www.openstreetmap.org/{court.osmIds[0]}">OpenStreetMap</ExternalLink
 		>

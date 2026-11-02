@@ -44,6 +44,11 @@ const overrideBySlug = new Map(overrides.map((o) => [o.slug, o]));
 /** Every slug with a page; drives the prerender entries. */
 export const courtSlugs = courtsSeed.locations.map((l) => l.slug);
 
+/** Slug to display name, for the correction form's checks and the owner's ping. */
+export const courtNames: ReadonlyMap<string, string> = new Map(
+	courtsSeed.locations.map((l) => [l.slug, l.name])
+);
+
 /** Hours in effect on or after `today` (Chicago date), weekday then opening time. */
 function hoursFor(slug: string, today: string): HoursRow[] {
 	return (overrideBySlug.get(slug)?.hours ?? defaultHours)
@@ -130,12 +135,20 @@ export function listCourts(today: string): CourtsPage {
 export function getCourt(slug: string, today: string): CourtDetail | null {
 	const l = bySlug.get(slug);
 	if (!l) return null;
+	const override = overrideBySlug.get(slug);
+	const courtClasses = classesFor(slug, today);
+	const checked = [
+		l.verifiedAt,
+		override?.verifiedAt ?? '',
+		...courtClasses.map((c) => c.verifiedAt)
+	];
 	return {
 		...listItem(l, today),
-		classes: classesFor(slug, today),
+		classes: courtClasses,
 		address: l.address,
 		osmIds: l.osmIds,
-		verifiedAt: l.verifiedAt,
-		hoursSourceUrl: overrideBySlug.get(slug)?.sourceUrl ?? null
+		surfaceNote: l.surfaceNote ?? null,
+		updatedAt: checked.sort().at(-1)!,
+		hoursSourceUrl: override?.sourceUrl ?? null
 	};
 }

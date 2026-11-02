@@ -2,14 +2,12 @@ import { env } from 'cloudflare:workers';
 import { error, fail, redirect } from '@sveltejs/kit';
 import { addDays, chicagoTime } from '#lib/courts/status.js';
 import { submitCorrection } from '#lib/server/corrections/submit.js';
-import { courtSlugs, getCourt } from '#lib/server/courts/data.js';
+import { courtNames, getCourt } from '#lib/server/courts/data.js';
 import type { Actions, PageServerLoad } from './$types';
 
 // Rendered by the Worker, not prerendered: only this page's CSP allows Turnstile (hooks.server.ts),
 // and a prerendered page's <meta> CSP can't be widened per path.
 export const prerender = false;
-
-const courts = new Set(courtSlugs);
 
 /** What the visitor sees for each refusal. Never echoes what they typed. */
 const messages = {
@@ -54,7 +52,7 @@ export const actions: Actions = {
 		const result = await submitCorrection(request, {
 			court: params.slug,
 			ip,
-			courts,
+			courts: courtNames,
 			now: new Date(),
 			requestId: locals.requestId,
 			waitUntil: platform?.ctx.waitUntil.bind(platform.ctx)

@@ -26,7 +26,10 @@
 		<dt>Surface</dt>
 		<!-- Unknown surfaces show as hard, as nearly all Park District courts are; the data keeps
 		     them null so corrections can confirm them. -->
-		<dd>{surfaces[court.surface ?? 'hard']}</dd>
+		<dd>
+			{surfaces[court.surface ?? 'hard']}
+			{#if court.surfaceNote}<br /><span class="note">{court.surfaceNote}</span>{/if}
+		</dd>
 	</div>
 	<div>
 		<dt>Access</dt>
@@ -74,5 +77,9 @@
 		margin: 0;
 		color: var(--label-2);
 		text-align: right;
+	}
+
+	.note {
+		font-size: var(--text-footnote);
 	}
 </style>

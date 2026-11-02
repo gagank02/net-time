@@ -12,7 +12,7 @@ vi.mock('./notify', () => ({ notifyOwner: vi.fn().mockResolvedValue(undefined) }
 const vars = env as unknown as Record<string, unknown>;
 const origin = 'https://net-time.example';
 const ip = '203.0.113.5';
-const courts = new Set(['waveland-park']);
+const courts = new Map([['waveland-park', 'Waveland Park']]);
 // 2026-10-28 03:00 UTC is still Oct 27 in Chicago.
 const now = new Date('2026-10-28T03:00:00Z');
 const fields = {
@@ -128,7 +128,12 @@ describe('submitCorrection', () => {
 		expect(notifyOwner).not.toHaveBeenCalled();
 		vi.mocked(storeCorrection).mockResolvedValue({ result: 'stored', pending: 3, notify: true });
 		await submit(post());
-		expect(notifyOwner).toHaveBeenCalledWith(3, undefined);
+		// The name comes from our data; the visitor's details never reach the ping.
+		expect(notifyOwner).toHaveBeenCalledWith(
+			3,
+			{ court: 'Waveland Park', topics: ['hours'] },
+			undefined
+		);
 	});
 
 	it('hands the ping to waitUntil so the visitor doesn’t wait for Discord', async () => {
