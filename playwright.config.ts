@@ -16,9 +16,8 @@ export default defineConfig({
 		: { command: 'npm run build && npm run preview -- --var E2E_ROUTES:1', port: 4173 },
 	testMatch: '**/*.e2e.{ts,js}',
 	projects: [
-		{ name: 'desktop', use: { ...devices['Desktop Chrome'] }, testIgnore: '**/mobile.e2e.ts' },
-		// Safari's engine at iPhone size, and Chrome at Android size.
-		{ name: 'iphone', use: { ...devices['iPhone 15'] }, testMatch: pageTests },
-		{ name: 'android', use: { ...devices['Pixel 7'] }, testMatch: pageTests }
+		// WebKit only: Playwright's bundled Chromium lags Chrome security fixes.
+		{ name: 'desktop', use: { ...devices['Desktop Safari'] }, testIgnore: '**/mobile.e2e.ts' },
+		{ name: 'iphone', use: { ...devices['iPhone 15'] }, testMatch: pageTests }
 	]
 });

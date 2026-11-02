@@ -1,5 +1,5 @@
 import AxeBuilder from '@axe-core/playwright';
-import { expect, mockTiles, test, type Page } from './fixtures';
+import { expect, mockTiles, tabKey, test, type Page } from './fixtures';
 
 const pages = [
 	{ name: 'home', path: '/' },
@@ -57,12 +57,13 @@ test('nav: Courts tab marks the current section and the home row links to it', a
 
 test('keyboard: skip link is first, visible on focus, and moves focus to main', async ({
 	page,
-	isMobile
+	isMobile,
+	browserName
 }) => {
 	// Phones have no Tab key (and iOS Safari skips links on Tab).
 	test.skip(isMobile, 'keyboard navigation is a desktop check');
 	await page.goto('/');
-	await page.keyboard.press('Tab');
+	await page.keyboard.press(tabKey(browserName));
 	const skip = page.getByRole('link', { name: 'Skip to content' });
 	await expect(skip).toBeFocused();
 	await expect(skip).toBeInViewport();
@@ -73,7 +74,8 @@ test('keyboard: skip link is first, visible on focus, and moves focus to main', 
 
 test('keyboard: every interactive element is reachable with a visible focus ring', async ({
 	page,
-	isMobile
+	isMobile,
+	browserName
 }) => {
 	// Phones have no Tab key (and iOS Safari skips links on Tab).
 	test.skip(isMobile, 'keyboard navigation is a desktop check');
@@ -85,7 +87,7 @@ test('keyboard: every interactive element is reachable with a visible focus ring
 
 	const reached = new Set<string>();
 	for (let i = 0; i < interactive + 2; i++) {
-		await page.keyboard.press('Tab');
+		await page.keyboard.press(tabKey(browserName));
 		const info = await page.evaluate(() => {
 			const el = document.activeElement as HTMLElement | null;
 			if (!el || el === document.body) return null;

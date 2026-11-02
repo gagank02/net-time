@@ -14,6 +14,7 @@ npm run db:setup && npm run db:migrate
 npm run dev        # http://localhost:5173 (hot reload)
 npm run build && npm run preview   # production runtime (workerd) at http://localhost:4173
 npm run lint && npm run check && npm test
+npx playwright install webkit   # once, before browser tests
 npm run test:e2e
 curl localhost:5173/healthz   # {"status":"ok"}
 ```
