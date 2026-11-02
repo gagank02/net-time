@@ -19,6 +19,16 @@ declare global {
 		// interface PageData {}
 		// interface PageState {}
 	}
+
+	interface Window {
+		/** Cloudflare Turnstile, loaded only on the correction form. */
+		turnstile?: {
+			render(
+				el: HTMLElement,
+				options: { sitekey: string; action?: string; theme?: string; size?: string }
+			): string;
+		};
+	}
 }
 
 export {};

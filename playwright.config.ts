@@ -5,7 +5,7 @@ const deployed = process.env.BASE_URL;
 
 // What a visitor sees and taps; header, CSRF, error and rate-limit checks don't depend on the device.
 const pageTests =
-	/(a11y|courts|court-detail|data|links|map|mobile|near-me|privacy|theme)\.e2e\.ts$/;
+	/(a11y|courts|court-detail|data|links|map|mobile|near-me|privacy|suggest|theme)\.e2e\.ts$/;
 
 export default defineConfig({
 	// Explicit so contexts that tests create themselves (no-JS checks) get it too.

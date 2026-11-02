@@ -1,17 +1,21 @@
 <script lang="ts">
 	import ExternalLink from '#lib/components/ExternalLink.svelte';
-	import { reportDataProblemUrl } from '#lib/legal.js';
+	import { githubIssuesUrl } from '#lib/legal.js';
 </script>
 
 <svelte:head>
 	<title>Privacy · net-time</title>
-	<meta name="description" content="What net-time collects about you. In short, nothing." />
+	<meta
+		name="description"
+		content="What net-time collects about you. In short, nothing that says who you are."
+	/>
 </svelte:head>
 
 <h1>Privacy</h1>
 <p class="lede">
-	You don't need an account, and we don't collect anything about you. No cookies, no ads, no
-	tracking, no fingerprinting, and nothing records what you type or tap.
+	You don't need an account, and we don't collect anything that says who you are. No cookies, no
+	ads, no tracking, no fingerprinting, and nothing records what you type or tap. The only thing we
+	keep is a correction you choose to send us.
 </p>
 
 <section aria-labelledby="location">
@@ -31,6 +35,22 @@
 	<p>
 		If you pick Light or Dark, your browser remembers that choice on your device. Pick System and it
 		forgets it.
+	</p>
+</section>
+
+<section aria-labelledby="corrections">
+	<h2 id="corrections">Corrections you send</h2>
+	<p>
+		If you use Suggest a correction on a court's page, we keep what you choose to send: the court,
+		what's wrong, what's right, and the date you were there if you add it. We don't ask for your
+		name or contact details, so please don't include them. Nothing you send is shown on the site; we
+		check it against an official source before changing anything.
+	</p>
+	<p>
+		We never store your IP address. To limit each network to 5 reports a day, we keep a scrambled
+		code made from it and the date, which can't be turned back into the address and changes every
+		day. Those codes are deleted the next day. Reports are deleted 30 days after we review them, or
+		after 180 days if we never do.
 	</p>
 </section>
 
@@ -62,6 +82,19 @@
 			>
 		</li>
 		<li>
+			<span class="title">Cloudflare Turnstile checks the correction form for bots</span>
+			<span class="meta"
+				>It runs only on the Suggest a correction page. It looks at signals such as your IP address
+				and browser to tell people from bots. Cloudflare says it uses them only to detect bots, not
+				to identify, profile or target anyone.</span
+			>
+			<span class="meta"
+				><ExternalLink href="https://www.cloudflare.com/turnstile-privacy-policy/"
+					>Turnstile privacy addendum</ExternalLink
+				></span
+			>
+		</li>
+		<li>
 			<span class="title">Apple Maps and Google Maps</span>
 			<span class="meta"
 				>Directions links open their sites only when you tap them. Their own privacy policies apply
@@ -74,15 +107,15 @@
 <section aria-labelledby="children">
 	<h2 id="children">Children</h2>
 	<p>
-		This site is for adult players. It has no accounts and collects no personal information from
-		anyone, including children under 13.
+		This site is for adult players. It has no accounts and asks no one for personal information,
+		including children under 13. If a correction includes any by mistake, we delete it.
 	</p>
 </section>
 
 <section aria-labelledby="questions">
 	<h2 id="questions">Questions</h2>
 	<p>
-		<ExternalLink href={reportDataProblemUrl}>Open an issue on GitHub</ExternalLink>. If this page
+		<ExternalLink href={githubIssuesUrl}>Open an issue on GitHub</ExternalLink>. If this page
 		changes, the new version goes up here before we collect anything new.
 	</p>
 </section>

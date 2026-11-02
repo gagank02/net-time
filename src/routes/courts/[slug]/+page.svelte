@@ -2,6 +2,7 @@
 	import { resolve } from '$app/paths';
 	import ExternalLink from '#lib/components/ExternalLink.svelte';
 	import ClassSchedule from '#lib/components/courts/ClassSchedule.svelte';
+	import CourtFacts from '#lib/components/courts/CourtFacts.svelte';
 	import HoursTable from '#lib/components/courts/HoursTable.svelte';
 	import StatusBadge from '#lib/components/courts/StatusBadge.svelte';
 	import { liveNow } from '#lib/courts/clock.svelte.js';
@@ -15,8 +16,7 @@
 		clock.current ? courtStatus(court.courtCount, court.hours, court.classes, clock.current) : null
 	);
 
-	const yesNo = (v: boolean | null) => (v === null ? 'Not known' : v ? 'Yes' : 'No');
-	const surfaces = { hard: 'Hard court', clay: 'Clay', grass: 'Grass', other: 'Other' } as const;
+	const suggestUrl = $derived(resolve('/courts/[slug]/suggest', { slug: court.slug }));
 
 	// Directions go to the court's coordinates (never the user's) in the user's map app of choice.
 	const destination = $derived(`${court.lat},${court.lng}`);
@@ -49,48 +49,12 @@
 		access={court.access}
 		seasonNote={court.seasonNote}
 	/>
+	<a class="suggest" href={suggestUrl}>Something wrong here? Suggest a correction</a>
 </header>
 
 <section aria-labelledby="facts-h">
 	<h2 id="facts-h" class="section-title">About the courts</h2>
-	<dl class="card facts">
-		<div>
-			<dt>Courts</dt>
-			<dd>{court.courtCount}</dd>
-		</div>
-		<div>
-			<dt>Setting</dt>
-			<dd>{court.indoor ? 'Indoor' : 'Outdoor'}</dd>
-		</div>
-		<div>
-			<dt>Lights</dt>
-			<dd>{yesNo(court.lights)}</dd>
-		</div>
-		<div>
-			<dt>Surface</dt>
-			<!-- Unknown surfaces show as hard, as nearly all Park District courts are; the data keeps
-			     them null so corrections can confirm them. -->
-			<dd>{surfaces[court.surface ?? 'hard']}</dd>
-		</div>
-		<div>
-			<dt>Access</dt>
-			<dd>
-				{#if court.access === 'reservation'}
-					Paid, reservation required
-					{#if court.bookingUrl}
-						<br /><ExternalLink href={court.bookingUrl}>Book court time</ExternalLink>
-					{/if}
-				{:else if court.access === 'fee'}
-					Fee to play
-					{#if court.bookingUrl}
-						<br /><ExternalLink href={court.bookingUrl}>Court fees and booking</ExternalLink>
-					{/if}
-				{:else}
-					Free, first come first served
-				{/if}
-			</dd>
-		</div>
-	</dl>
+	<CourtFacts {court} />
 </section>
 
 <section aria-labelledby="hours-h">
@@ -131,6 +95,7 @@
 </section>
 
 <p class="footnote provenance">
+	Something wrong? <a href={suggestUrl}>Suggest a correction</a><br />
 	Last checked {formatDate(court.verifiedAt)}. Court locations from
 	{#if court.osmIds.length}
 		<ExternalLink href="https://www.openstreetmap.org/{court.osmIds[0]}">OpenStreetMap</ExternalLink
@@ -164,6 +129,14 @@
 		color: var(--label-2);
 	}
 
+	.suggest {
+		justify-self: start;
+		display: inline-flex;
+		align-items: center;
+		min-height: var(--target);
+		font-size: var(--text-subhead);
+	}
+
 	section {
 		margin-top: var(--space-6);
 	}
@@ -181,27 +154,6 @@
 		padding: var(--space-2) var(--space-4);
 		border-radius: var(--radius-card);
 		background: var(--card);
-	}
-
-	.facts {
-		margin: 0;
-	}
-
-	.facts div {
-		display: flex;
-		justify-content: space-between;
-		gap: var(--space-4);
-		padding: var(--space-3) 0;
-	}
-
-	.facts div + div {
-		border-top: 0.5px solid var(--separator);
-	}
-
-	dd {
-		margin: 0;
-		color: var(--label-2);
-		text-align: right;
 	}
 
 	.directions {

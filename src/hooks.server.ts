@@ -2,7 +2,7 @@ import { building } from '$app/env';
 import { sequence } from '@sveltejs/kit/hooks';
 import type { Handle, HandleServerError } from '@sveltejs/kit/hooks';
 import { describeError, log } from '#lib/server/log.js';
-import { applySecurityHeaders } from '#lib/server/security/headers.js';
+import { allowTurnstile, applySecurityHeaders } from '#lib/server/security/headers.js';
 import { checkLimit, ipPrefix, periodSeconds } from '#lib/server/security/ratelimit.js';
 
 const requestContext: Handle = async ({ event, resolve }) => {
@@ -21,8 +21,17 @@ const requestContext: Handle = async ({ event, resolve }) => {
 	return response;
 };
 
-const securityHeaders: Handle = async ({ event, resolve }) =>
-	applySecurityHeaders(await resolve(event));
+/** The one page allowed to load a third party: the correction form's Turnstile widget. */
+const turnstileRoute = '/courts/[slug]/suggest';
+
+const securityHeaders: Handle = async ({ event, resolve }) => {
+	const response = applySecurityHeaders(await resolve(event));
+	const csp = response.headers.get('content-security-policy');
+	if (event.route.id === turnstileRoute && csp) {
+		response.headers.set('content-security-policy', allowTurnstile(csp));
+	}
+	return response;
+};
 
 /** Global per-IP limit before any route code or DB access. Limiter outage → 503 (fail closed). */
 export const rateLimit: Handle = async ({ event, resolve }) => {

@@ -1,3 +1,11 @@
 # Copy to .dev.vars for local dev. Committed: holds only key names + public Cloudflare test values.
 # Cloudflare Turnstile TEST secret (always passes). Real secret: `npx wrangler secret put TURNSTILE_SECRET`.
 TURNSTILE_SECRET=1x0000000000000000000000000000000AA
+# Keys the per-network daily limit and same-day duplicate check for corrections (HMAC-SHA256).
+# Local value is public on purpose. Real one: `openssl rand -base64 32 | npx wrangler secret put CORRECTIONS_HMAC_KEY`.
+CORRECTIONS_HMAC_KEY=local-dev-only-not-a-secret
+# Cloudflare Turnstile TEST site key (always passes, shows a visible widget). Public by design.
+TURNSTILE_SITE_KEY=1x00000000000000000000AA
+# Owner-only Discord ping for new corrections. Leave empty locally (no ping). Real one:
+# `npx wrangler secret put DISCORD_WEBHOOK_URL` (a webhook in a private server only you are in).
+DISCORD_WEBHOOK_URL=
