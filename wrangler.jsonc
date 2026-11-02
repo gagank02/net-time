@@ -25,6 +25,9 @@
 			"localConnectionString": "postgres://net_time_app:local@localhost:5432/net_time"
 		}
 	],
+	// Turnstile site key is public (it's in the form's HTML). .dev.vars overrides it locally with
+	// Cloudflare's test key; the secret and HMAC key are Wrangler secrets.
+	"vars": { "TURNSTILE_SITE_KEY": "0x4AAAAAAFxPTzgj03WUO6gh" },
 	// Workers Logs: free plan includes 200k events/day, 3-day retention. Logs are allowlisted JSON.
 	"observability": { "enabled": true },
 	"workers_dev": true,
