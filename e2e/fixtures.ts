@@ -19,6 +19,9 @@ export const test = base.extend({
 	}
 });
 
+/** Safari moves through links and buttons with Option+Tab; plain Tab only reaches text fields. */
+export const tabKey = (browserName: string) => (browserName === 'webkit' ? 'Alt+Tab' : 'Tab');
+
 export { expect } from '@playwright/test';
 export type { Page, Request } from '@playwright/test';
 
