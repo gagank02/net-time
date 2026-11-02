@@ -6,4 +6,5 @@ export const chicagoDataDisclaimer =
 
 export const chicagoTermsUrl = 'https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html';
 
-export const reportDataProblemUrl = 'https://github.com/gagank02/net-time/issues';
+// Problems with the site itself. Data problems go through each court's correction form.
+export const githubIssuesUrl = 'https://github.com/gagank02/net-time/issues';

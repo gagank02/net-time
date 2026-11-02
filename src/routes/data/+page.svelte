@@ -1,6 +1,7 @@
 <script lang="ts">
+	import { resolve } from '$app/paths';
 	import ExternalLink from '#lib/components/ExternalLink.svelte';
-	import { chicagoDataDisclaimer, chicagoTermsUrl, reportDataProblemUrl } from '#lib/legal.js';
+	import { chicagoDataDisclaimer, chicagoTermsUrl, githubIssuesUrl } from '#lib/legal.js';
 	import { facilitySources } from '#lib/sources.js';
 
 	const cityDatasets = [
@@ -99,8 +100,14 @@
 <section aria-labelledby="problems">
 	<h2 id="problems">Found a mistake?</h2>
 	<p>
-		<ExternalLink href={reportDataProblemUrl}>Report a data problem</ExternalLink>. We fix our copy
-		and, where the error is in a City dataset, pass it on to the City.
+		Every court's page has a <strong>Suggest a correction</strong> link near the top. No account
+		needed. We check each report against an official source, fix our copy and, where the error is in
+		a City dataset, pass it on to the City. <a href={resolve('/courts')}>Find a court</a>.
+	</p>
+	<p>
+		Problem with the site itself? <ExternalLink href={githubIssuesUrl}
+			>Open an issue on GitHub</ExternalLink
+		>.
 	</p>
 </section>
 

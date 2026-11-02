@@ -10,6 +10,7 @@ import {
 	smallint,
 	text,
 	time,
+	timestamp,
 	uuid
 } from 'drizzle-orm/pg-core';
 
@@ -129,4 +130,74 @@ export const zipCodes = pgTable(
 		centroid: point('centroid').notNull()
 	},
 	(t) => [check('zip_codes_zip', sql`${t.zip} ~ '^[0-9]{5}$'`)]
+);
+
+// Anonymous corrections (SPEC-submissions). Visitors' reports wait here for the owner's review;
+// nothing in these tables is ever shown on the site. No name, email, IP or user agent, ever.
+// The app role may only add reports and count pending ones (see the migration's grants).
+export const correctionTopics = [
+	'hours',
+	'class',
+	'surface',
+	'lights',
+	'court_count',
+	'access',
+	'name',
+	'closed',
+	'other'
+] as const;
+
+export const corrections = pgTable(
+	'corrections',
+	{
+		id: uuid('id').primaryKey().defaultRandom(),
+		// Checked against the built court list by the app: court data lives in data/*.json, not here.
+		courtSlug: text('court_slug').notNull(),
+		// One report can cover several things (e.g. hours and lights).
+		topics: text('topics', { enum: correctionTopics }).array().notNull(),
+		details: text('details').notNull(),
+		seenOn: date('seen_on'),
+		status: text('status', { enum: ['pending', 'applied', 'rejected'] })
+			.notNull()
+			.default('pending'),
+		// HMAC of court, topic, details and the Chicago date: drops same-day repeats without the app
+		// ever reading report text.
+		dedupeKey: text('dedupe_key').notNull().unique(),
+		createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
+		reviewedAt: timestamp('reviewed_at', { withTimezone: true })
+	},
+	(t) => [
+		index('corrections_status').on(t.status, t.createdAt),
+		check('corrections_court_slug', sql`${t.courtSlug} ~ '^[a-z0-9-]{1,80}$'`),
+		check(
+			'corrections_topics',
+			sql`cardinality(${t.topics}) between 1 and 9 and ${t.topics} <@ array['hours', 'class', 'surface', 'lights', 'court_count', 'access', 'name', 'closed', 'other']`
+		),
+		check('corrections_details', sql`char_length(${t.details}) between 1 and 1000`),
+		check('corrections_status', sql`${t.status} in ('pending', 'applied', 'rejected')`),
+		check('corrections_reviewed', sql`(${t.status} = 'pending') = (${t.reviewedAt} is null)`)
+	]
+);
+
+// Per-network daily counter. `key` is an HMAC of the IP and the Chicago date (never the IP), so
+// keys can't be linked across days; rows from earlier days are deleted as new ones arrive.
+export const correctionLimits = pgTable(
+	'correction_limits',
+	{
+		key: text('key').primaryKey(),
+		day: date('day').notNull(),
+		count: smallint('count').notNull().default(1)
+	},
+	(t) => [index('correction_limits_day').on(t.day)]
+);
+
+// One row: when the owner was last pinged about new reports (Discord). The app may only move it
+// forward once an hour has passed, so a burst of reports sends one notification, not many.
+export const correctionNotices = pgTable(
+	'correction_notices',
+	{
+		id: smallint('id').primaryKey(),
+		sentAt: timestamp('sent_at', { withTimezone: true }).notNull()
+	},
+	(t) => [check('correction_notices_single', sql`${t.id} = 1`)]
 );
