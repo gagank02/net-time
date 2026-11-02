@@ -1,6 +1,6 @@
 # Class data report
 
-Tennis programs in the dataset: 169; matched: 166; skipped: 3.
+Tennis programs in the dataset: 167; matched: 165; skipped: 2.
 
 ## Programs per court site
 
@@ -16,7 +16,7 @@ Tennis programs in the dataset: 169; matched: 166; skipped: 3.
 - kennedy-park: 1
 - kilbourn-park: 2
 - mandrake-park: 2
-- mcfetridge-sports-center: 132
+- mcfetridge-sports-center: 131
 - mcguane-park: 1
 - oz-park: 1
 - revere-park: 1
@@ -29,5 +29,4 @@ Tennis programs in the dataset: 169; matched: 166; skipped: 3.
 ## Skipped
 
 - 589886 Veterans Seasonal Sports at McKinley at McKinley (William) Park: several sites match (mckinley-park-north, mckinley-park-south); add curation
-- 558965 Veterans Tennis at McKinley at McKinley (William) Park: several sites match (mckinley-park-north, mckinley-park-south); add curation
 - 617328 Cardio Tennis Partnership at McKinley at McKinley (William) Park: several sites match (mckinley-park-north, mckinley-park-south); add curation
