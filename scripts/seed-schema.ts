@@ -31,6 +31,8 @@ export const CourtLocationSeed = z.strictObject({
 	courtCount: z.int().min(1).max(40),
 	lights: z.boolean().nullable(),
 	surface: z.enum(['hard', 'clay', 'grass', 'other']).nullable(),
+	/** Condition beyond the surface type, e.g. which courts are worn; only where someone checked. */
+	surfaceNote: safeText(160).optional(),
 	indoor: z.boolean(),
 	access: z.enum(['free', 'reservation', 'fee']),
 	bookingUrl: httpsUrl.nullable(),
@@ -165,6 +167,17 @@ export const defaultHours: z.infer<typeof HoursSeed>[] = Array.from(
  * OSM, and 2016 CPD tennis parks confirmed to have no courts any more. Each entry records who
  * verified it and when, so a later --refresh keeps the corrections and their provenance.
  */
+/** Facts an official page can confirm; changing one needs a sourceUrl. */
+const factKeys = new Set([
+	'name',
+	'lights',
+	'surface',
+	'courtCount',
+	'indoor',
+	'access',
+	'bookingUrl'
+]);
+
 export const CurationSeed = z.strictObject({
 	additions: z.array(
 		z
@@ -200,17 +213,20 @@ export const CurationSeed = z.strictObject({
 				indoor: z.boolean().optional(),
 				access: z.enum(['free', 'reservation', 'fee']).optional(),
 				bookingUrl: httpsUrl.optional(),
+				surfaceNote: safeText(160).optional(),
 				note: safeText(300),
-				sourceUrl: httpsUrl,
+				/** Required for listed facts; a court's condition can be seen in person instead. */
+				sourceUrl: httpsUrl.optional(),
 				verifiedAt: isoDate,
 				verifiedBy: safeText(80)
 			})
 			.refine(
-				(c) =>
-					['name', 'lights', 'surface', 'courtCount', 'indoor', 'access', 'bookingUrl'].some(
-						(k) => k in c
-					),
+				(c) => [...factKeys, 'surfaceNote'].some((k) => k in c),
 				'a correction must change at least one field'
+			)
+			.refine(
+				(c) => c.sourceUrl !== undefined || Object.keys(c).every((k) => !factKeys.has(k)),
+				'a correction to a listed fact needs a sourceUrl'
 			)
 	),
 	removed: z.array(

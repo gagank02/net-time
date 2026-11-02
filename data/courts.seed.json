@@ -1,5 +1,5 @@
 {
-	"generatedAt": "2026-10-27T01:45:16Z",
+	"generatedAt": "2026-11-02T22:47:30Z",
 	"locations": [
 		{
 			"slug": "abbott-park",
@@ -2766,7 +2766,8 @@
 				"way/950184395",
 				"way/950184396"
 			],
-			"verifiedAt": "2026-10-25"
+			"verifiedAt": "2026-11-02",
+			"surfaceNote": "The north courts are sandy and in worse shape than the south courts."
 		},
 		{
 			"slug": "welles-park",

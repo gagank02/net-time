@@ -5,6 +5,7 @@ import {
 	ClassesSeed,
 	CourtLocationSeed,
 	CourtsSeed,
+	CurationSeed,
 	HoursOverridesSeed,
 	HoursSeed
 } from './seed-schema';
@@ -15,6 +16,28 @@ const fixture = (file: string) =>
 const oz = fixture('courts.seed.json').locations[0];
 
 describe('seed schemas', () => {
+	it('needs a source for listed facts, but not for a condition seen in person', () => {
+		const ok = (correction: object) =>
+			CurationSeed.safeParse({
+				additions: [],
+				removed: [],
+				corrections: [
+					{
+						slug: 'oz-park',
+						note: 'x',
+						verifiedAt: '2026-11-02',
+						verifiedBy: 'owner',
+						...correction
+					}
+				]
+			}).success;
+		expect(ok({ surfaceNote: 'North courts are worn.' })).toBe(true);
+		expect(ok({ lights: true })).toBe(false);
+		expect(ok({ lights: true, surfaceNote: 'Worn.' })).toBe(false);
+		expect(ok({ lights: true, sourceUrl: 'https://example.org' })).toBe(true);
+		expect(ok({})).toBe(false);
+	});
+
 	it('accept the fixture seed', () => {
 		expect(CourtsSeed.safeParse(fixture('courts.seed.json')).success).toBe(true);
 		expect(AreasSeed.safeParse(fixture('areas.seed.json')).success).toBe(true);

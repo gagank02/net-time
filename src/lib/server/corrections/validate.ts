@@ -72,7 +72,7 @@ const isDay = (s: string) =>
  * Builds the form schema. `courts` is the built court list (data/*.json) and `today` the Chicago
  * date, both passed in so the rules stay pure. Unknown or repeated fields are rejected.
  */
-export function correctionSchema(courts: ReadonlySet<string>, today: string) {
+export function correctionSchema(courts: Pick<ReadonlySet<string>, 'has'>, today: string) {
 	return z.strictObject(
 		{
 			court: z.string(tampered).refine((s) => courts.has(s), 'Unknown court.'),
@@ -108,7 +108,7 @@ export type Correction = z.infer<ReturnType<typeof correctionSchema>>;
 
 export function parseCorrection(
 	form: FormData,
-	courts: ReadonlySet<string>,
+	courts: Pick<ReadonlySet<string>, 'has'>,
 	today: string
 ): ParseResult<Correction> {
 	return parseForm(correctionSchema(courts, today), form);

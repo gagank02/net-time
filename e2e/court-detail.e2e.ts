@@ -95,7 +95,13 @@ test('default-hours park: standard hours note, unknowns shown honestly, directio
 		'href',
 		/destination=41\.\d+%2C-87\.\d+/
 	);
-	await expect(page.getByText(/Last checked \w{3} \d+, 2026/)).toBeVisible();
+	await expect(page.getByText(/Last updated \w{3} \d+, 2026/)).toBeVisible();
+});
+
+test('Waveland: the surface row notes the courts’ condition', async ({ page }) => {
+	await openAt(page, '/courts/waveland-park-tennis-courts', '2026-11-03T13:00:00-06:00');
+	await expect(fact(page, 'Surface')).toContainText('Hard court');
+	await expect(fact(page, 'Surface')).toContainText('north courts are sandy');
 });
 
 test('list rows link to their detail page and back', async ({ page }) => {

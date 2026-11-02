@@ -2,7 +2,7 @@
 // No network here; build-courts-seed.ts fetches (politely, cached) and calls buildCourtsSeed().
 import type { z } from 'zod';
 import { distanceMeters, type LatLng } from '../src/lib/geo.ts';
-import type { CurationSeed } from './seed-schema.ts';
+import type { CourtLocationSeed, CurationSeed } from './seed-schema.ts';
 
 export type Ring = [number, number][]; // [lng, lat] pairs, closed
 export type Polygon = Ring[]; // outer ring, then holes
@@ -297,7 +297,7 @@ export function buildCourtsSeed(input: Input) {
 	const usedSlugs = new Map<string, number>();
 	const collisions: string[] = [];
 
-	const locations = kept.map((k) => {
+	const locations: z.infer<typeof CourtLocationSeed>[] = kept.map((k) => {
 		const displayName = labelOf.get(k)!;
 		let slug = slugify(displayName);
 		const n = (usedSlugs.get(slug) ?? 0) + 1;
@@ -430,7 +430,8 @@ export function buildCourtsSeed(input: Input) {
 			'courtCount',
 			'indoor',
 			'access',
-			'bookingUrl'
+			'bookingUrl',
+			'surfaceNote'
 		] as const) {
 			if (c[key] === undefined) continue;
 			changes.push(`${key} ${String(l[key])} → ${String(c[key])}`);
@@ -438,7 +439,7 @@ export function buildCourtsSeed(input: Input) {
 		}
 		l.verifiedAt = c.verifiedAt;
 		correctedLines.push(
-			`- ${l.name}: ${changes.join(', ')}. ${c.note} Source: ${c.sourceUrl}. Verified ${c.verifiedAt} by ${c.verifiedBy}.`
+			`- ${l.name}: ${changes.join(', ')}. ${c.note} Source: ${c.sourceUrl ?? 'seen in person'}. Verified ${c.verifiedAt} by ${c.verifiedBy}.`
 		);
 	}
 

@@ -61,7 +61,8 @@ type Context = {
 	/** From the page address (/courts/[slug]/suggest), never from the form body. */
 	court: string;
 	ip: string;
-	courts: ReadonlySet<string>;
+	/** Slug to name: every court with a page. */
+	courts: ReadonlyMap<string, string>;
 	now: Date;
 	requestId?: string;
 	/** Keeps the owner ping running after the response is sent (Workers' ctx.waitUntil). */
@@ -153,7 +154,8 @@ async function check(request: Request, ctx: Context): Promise<{ result: Outcome;
 	if (stored.result === 'rate_limited' || stored.result === 'queue_full')
 		return fail(stored.result);
 	if (stored.result === 'stored' && stored.notify) {
-		const ping = notifyOwner(stored.pending, ctx.requestId);
+		const report = { court: ctx.courts.get(court) ?? court, topics };
+		const ping = notifyOwner(stored.pending, report, ctx.requestId);
 		if (ctx.waitUntil) ctx.waitUntil(ping);
 		else await ping;
 	}
