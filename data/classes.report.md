@@ -1,6 +1,6 @@
 # Class data report
 
-Tennis programs in the dataset: 167; matched: 165; skipped: 2.
+Tennis programs in the dataset: 156; matched: 154; skipped: 2.
 
 ## Programs per court site
 
@@ -16,7 +16,7 @@ Tennis programs in the dataset: 167; matched: 165; skipped: 2.
 - kennedy-park: 1
 - kilbourn-park: 2
 - mandrake-park: 2
-- mcfetridge-sports-center: 131
+- mcfetridge-sports-center: 120
 - mcguane-park: 1
 - oz-park: 1
 - revere-park: 1
